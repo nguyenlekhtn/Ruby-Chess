@@ -5,6 +5,10 @@ Board.new
 @board.set("A2", Pawn.new("white)) -> set the cell at the given location, the given piece object
 @board.delete("A2) -> delete the piece object at the given location if exist
 
+cell.row
+cell.column
+Cell.from_notation('A3')
+
 
 # game init
 2 players: one controls black pieces and one controls white pieces
