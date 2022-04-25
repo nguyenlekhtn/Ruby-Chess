@@ -13,5 +13,41 @@ describe Board do
         expect(result).to eq(Rook.new('white'))
       end
     end
+
+    context 'when the cell has no piece there' do
+      it 'returns blank piece' do
+        cell = Cell.from_notation('D3')
+        result = board.get(cell)
+
+        expect(result).to eq(Piece.new)
+      end
+    end
+  end
+
+  describe '#set' do
+    subject(:board) { described_class.new }
+
+    context 'when set the piece White Rook at a3' do
+      it 'has the white rook at A3' do
+        cell = Cell.from_notation('A3')
+        white_rook = Rook.new('white')
+        board.set(cell, white_rook)
+
+        expect(board.get(cell)).to eq(white_rook)
+      end
+    end
+  end
+
+  describe "#delete" do
+    subject(:board) { described_class.new }
+
+    context 'when delte the cell a3' do
+      it 'has blank piece at there' do
+        cell = Cell.from_notation('A3')
+        board.delete(cell)
+
+        expect(board.delete(cell)).to eq(Piece.new)
+      end
+    end
   end
 end
