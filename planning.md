@@ -9,6 +9,15 @@ cell.row
 cell.column
 Cell.from_notation('A3')
 
+Notation.piece('w)
+Notation.piece('B')
+Notation.piece
+Notation.boardRow('rnbqkbnr')
+Notation.boardRow('8')
+Notation.boardFull('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')
+
+
+
 
 # game init
 2 players: one controls black pieces and one controls white pieces

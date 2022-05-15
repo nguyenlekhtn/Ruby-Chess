@@ -2,13 +2,13 @@ require_relative '../lib/cell'
 require_relative '../lib/board'
 
 describe Board do
-  describe '#get' do
+  describe '#get_name_at' do
     subject(:board) { described_class.new }
 
     context 'when the cell has a piece there' do
       it 'returns the piece' do
-        cell = Cell.from_notation('A1')
-        result = board.get(cell)
+        cell = Cell.for('A1')
+        result = board.get_name_at(cell)
 
         expect(result).to eq(Rook.new('white'))
       end
@@ -16,7 +16,7 @@ describe Board do
 
     context 'when the cell has no piece there' do
       it 'returns blank piece' do
-        cell = Cell.from_notation('D3')
+        cell = Cell.for('D3')
         result = board.get(cell)
 
         expect(result).to eq(Piece.new)
@@ -29,7 +29,7 @@ describe Board do
 
     context 'when set the piece White Rook at a3' do
       it 'has the white rook at A3' do
-        cell = Cell.from_notation('A3')
+        cell = Cell.for('A3')
         white_rook = Rook.new('white')
         board.set(cell, white_rook)
 
@@ -43,7 +43,7 @@ describe Board do
 
     context 'when delte the cell a3' do
       it 'has blank piece at there' do
-        cell = Cell.from_notation('A3')
+        cell = Cell.for('A3')
         board.delete(cell)
 
         expect(board.delete(cell)).to eq(Piece.new)

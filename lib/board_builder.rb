@@ -1,11 +1,21 @@
-require 'piece/piece'
-
 class BoardBuilder
+  def cell(string)
+    if %w[r n b q k p].include? string.downcase
+      Piece.for(string)
+    elsif ('1'..'8').include?(string)
+      Array.new(string.to_i) { Piece.for('') }
+    else
+      throw 'Invalid FEN notation'
+    end
+  end
+
   def row(string)
-    return Array.new(8) { Piece.new }
+    return Array.new(8) { BlankPiece.new } if string == '8'
+
+    string.chars.map { |char| cell(char) }.flatten
   end
 
   def whole(string)
-    
+    string.split('/').map { |row_string| row(row_string) }
   end
 end

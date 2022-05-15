@@ -1,5 +1,5 @@
 class Cell
-  def self.from_notation(notation)
+  def self.for(notation)
     format = /[A-H][1-8]/
     return nil unless notation.match(format)
 

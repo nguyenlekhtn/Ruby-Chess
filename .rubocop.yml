@@ -1,0 +1,20 @@
+inherit_from: ~/.rubocop.yml
+
+AllCops:
+  TargetRubyVersion: 3.0
+  Exclude:
+    - 'Gemfile'
+    - 'spec/spec_helper.rb'
+  NewCops: enable
+Metrics/BlockLength:
+  Exclude:
+    - './spec/*'
+    - './spec_answers/*'
+Layout/LineLength:
+  Exclude:
+    - 'spec/*'
+    - 'spec_answers/*'
+Style/Documentation:
+  Enabled: false
+Lint/NonDeterministicRequireOrder:
+  Enabled: false
