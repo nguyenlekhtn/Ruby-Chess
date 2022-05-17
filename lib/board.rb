@@ -1,8 +1,8 @@
 class Board
   attr_reader :board
 
-  def initialize(notation = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')
-    @board = BoardBuilder.new.whole(notation)
+  def initialize(board = BoardBuilder.new.whole('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'))
+    @board = board
   end
 
   def get(cell)
