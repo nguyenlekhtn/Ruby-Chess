@@ -10,8 +10,8 @@ class Cell
   attr_reader :row, :col
 
   def self.notation_to_position(notation)
-    row = notation[0].ord - 65
-    col = notation[1].to_i - 1
+    col = notation[0].ord - 65
+    row = notation[1].to_i - 1
 
     [row, col]
   end
