@@ -19,4 +19,18 @@ class Board
     row, col = cell.position
     board[row][col] = Piece.new
   end
+
+  def self.default_board
+    [
+      'rnbqkbnr'.chars.map { |it| Piece.for(it) },
+      'pppppppp'.chars.map { |it| Piece.for(it) },
+      Array.new(8) { |it| Piece.for('') },
+      Array.new(8) { |it| Piece.for('') },
+      Array.new(8) { |it| Piece.for('') },
+      Array.new(8) { |it| Piece.for('') },
+      'PPPPPPPP'.chars.map { |it| Piece.for(it) },
+      'RNBQKBNR'.chars.map { |it| Piece.for(it) },
+    ]
+  end
+    
 end

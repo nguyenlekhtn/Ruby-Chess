@@ -2,8 +2,9 @@ class Game
   def initialize(**opts)
     @board = opts[:board] || Board.new
   end
+  
   def legal_move?(piece, start, goal)
-
+    
   end
 
   def play
@@ -40,6 +41,21 @@ class Game
     loop do
       return get_move_from_player if get_move_from_player
     end
+  end
+
+  def move_valid?(_piece)
+    true
+  end
+
+  def player_input
+    gets.chomp
+  end
+
+  def get_positions_from_input(input)
+    format = /[A-H][1-8][A-H][1-8]/i
+    return nil unless input.match(format)
+
+    [Cell.for(input[0..1]), Cell.for(input[2..3])]
   end
       
 

@@ -24,4 +24,8 @@ class Cell
   def position
     [row, col]
   end
+
+  def ==(other)
+    other.class == self.class && other.row == @row && other.col == @col
+  end
 end

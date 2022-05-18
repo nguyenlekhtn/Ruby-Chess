@@ -10,7 +10,7 @@ class BoardBuilder
   end
 
   def row(string)
-    return Array.new(8) { BlankPiece.new } if string == '8'
+    return Array.new(8) { Piece.for('') } if string == '8'
 
     string.chars.map { |char| cell(char) }.flatten
   end
