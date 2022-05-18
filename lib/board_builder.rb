@@ -16,6 +16,6 @@ class BoardBuilder
   end
 
   def whole(string)
-    string.split('/').map { |row_string| row(row_string) }
+    string.split('/').map { |row_string| row(row_string) }.reverse
   end
 end

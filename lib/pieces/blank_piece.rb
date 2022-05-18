@@ -1,6 +1,6 @@
 class BlankPiece < Piece
   def initialize
-    super(nil, nil)
+    super('', '')
   end
 
   def to_s

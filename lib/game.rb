@@ -1,34 +1,43 @@
 class Game
+  COLOR = %w[white black].freeze
+
+  attr_reader :active_color, :board
+  
   def initialize(**opts)
     @board = opts[:board] || Board.new
+    @active_color = active_color || 'white'
   end
   
-  def legal_move?(piece, start, goal)
+  # def legal_move?(piece, start, goal)
     
-  end
+  # end
 
   def play
-    loop do
-      piece, start_pos, end_pos = get_move_from_player
+    6.times do
+      puts "#{active_color}'s turn"
+      puts board
+      piece, start_pos, end_pos = move_from_player
       move_piece(piece, start_pos, end_pos)
       switch_active_color
     end
   end
 
-  def get_move_from_player
+  def get_move
+    puts "Enter start and end position (A1D2)"
     input = player_input
-    positions = get_postions_from_input(input)
+    positions = get_positions_from_input(input)
     if positions.nil?
       puts "Wrong input format"
       return nil
     end
-    start_pos, end_pos = postions
-    if board.emptyAt?(start_pos)
-      puts "Start postion has no pieces"
+    
+    start_pos, end_pos = positions
+    if board.empty_at?(start_pos) || board.get_piece_at(start_pos).color != active_color
+      puts "Start position has no owner's pieces"
       return nil
     end
 
-    piece = board.getPieceAt(start_pos)
+    piece = board.get_piece_at(start_pos)
     unless move_valid?(piece)
       puts "${piece} can't move from ${start_pos} to ${end_pos}"
       return nil
@@ -37,9 +46,10 @@ class Game
     [piece, start_pos, end_pos]
   end
     
-  def get_move_from_player
+  def move_from_player
     loop do
-      return get_move_from_player if get_move_from_player
+      move = get_move
+      return move if move
     end
   end
 
@@ -57,11 +67,18 @@ class Game
 
     [Cell.for(input[0..1]), Cell.for(input[2..3])]
   end
-      
 
+  def move_piece(piece, start_pos, end_pos)
+    board.clear_piece_at(start_pos)
+    board.set_piece_at(end_pos, piece)
+  end
 
-  
+  def switch_active_color
+    @active_color =  if active_color == COLOR.first
+                      COLOR.last
+                    else
+                       COLOR.first
+                    end
+  end
 
-  
-  
 end

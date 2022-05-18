@@ -43,14 +43,14 @@ describe BoardBuilder do
         result = builder.whole(string)
 
         expected = [
-          [Piece.for('r'), Piece.for('n'), Piece.for('b'), Piece.for('q'), Piece.for('k'), Piece.for('b'), Piece.for('n'), Piece.for('r')],
-          [Piece.for('p'), Piece.for('p'), Piece.for('p'), Piece.for('p'), Piece.for('p'), Piece.for('p'), Piece.for('p'), Piece.for('p')],
-          [Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for('')],
-          [Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for('')],
-          [Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for('')],
-          [Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for('')],
+          [Piece.for('R'), Piece.for('N'), Piece.for('B'), Piece.for('Q'), Piece.for('K'), Piece.for('B'), Piece.for('N'), Piece.for('R')],
           [Piece.for('P'), Piece.for('P'), Piece.for('P'), Piece.for('P'), Piece.for('P'), Piece.for('P'), Piece.for('P'), Piece.for('P')],
-          [Piece.for('R'), Piece.for('N'), Piece.for('B'), Piece.for('Q'), Piece.for('K'), Piece.for('B'), Piece.for('N'), Piece.for('R')]
+          [Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for('')],
+          [Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for('')],
+          [Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for('')],
+          [Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for('')],
+          [Piece.for('p'), Piece.for('p'), Piece.for('p'), Piece.for('p'), Piece.for('p'), Piece.for('p'), Piece.for('p'), Piece.for('p')],
+           [Piece.for('r'), Piece.for('n'), Piece.for('b'), Piece.for('q'), Piece.for('k'), Piece.for('b'), Piece.for('n'), Piece.for('r')],
         ]
         (0..7).each do |i|
           expect(result[i]).to match_array(expected[i])
