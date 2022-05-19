@@ -13,15 +13,26 @@ class Game
   # end
 
   def play
-    6.times do
-      puts "#{active_color}'s turn"
-      puts board
-      piece, start_pos, end_pos = move_from_player
-      move_piece(piece, start_pos, end_pos)
+    loop do
+      player_turn
       switch_active_color
     end
   end
 
+  def player_turn
+    puts "#{active_color}'s turn"
+    puts board
+    piece, start_pos, end_pos = move_from_player
+    move_piece(piece, start_pos, end_pos)
+  end
+
+  def move_from_player
+    loop do
+      move = get_move
+      return move if move
+    end
+  end
+    
   def get_move
     puts "Enter start and end position (A1D2)"
     input = player_input
@@ -30,7 +41,8 @@ class Game
       puts "Wrong input format"
       return nil
     end
-    
+
+
     start_pos, end_pos = positions
     if board.empty_at?(start_pos) || board.get_piece_at(start_pos).color != active_color
       puts "Start position has no owner's pieces"
@@ -45,13 +57,8 @@ class Game
 
     [piece, start_pos, end_pos]
   end
-    
-  def move_from_player
-    loop do
-      move = get_move
-      return move if move
-    end
-  end
+
+
 
   def move_valid?(_piece)
     true
