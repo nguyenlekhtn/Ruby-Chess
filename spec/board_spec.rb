@@ -72,9 +72,33 @@ describe Board do
 
     context 'when there is no piece at the selected cell' do
       it 'returns true' do
-        cell = Cell.for('C1')
+        cell = Cell.for('C3')
         result = board.empty_at?(cell)
         expect(result).to be true
+      end
+    end
+  end
+
+  describe '#indexToRowNotation' do
+    subject(:board) { described_class.new }
+    context 'when index is 0' do
+      it 'returns A' do
+        result = board.indexToRowNotation(0)
+        expect(result).to eq 'A'
+      end
+    end
+
+    context 'when index is 3' do
+      it 'returns D' do
+        result = board.indexToRowNotation(3)
+        expect(result).to eq 'D'
+      end
+    end
+
+    context 'when index out of range' do
+      it 'returns ""' do
+        result = board.indexToRowNotation(9)
+        expect(result).to eq ""
       end
     end
   end

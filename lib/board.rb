@@ -24,10 +24,14 @@ class Board
     get_piece_at(cell).name == ''
   end
 
+  def indexToRowNotation(index)
+    [*('A'..'H')][index] || ''
+  end
+
   def to_s
-    board.reverse.map do |row|
-      row.map { |piece| piece.to_s }.join(" | ")
-    end.join("\n")
+    board.reverse.map.with_index do |row, index|
+      (8 - index).to_s + row.map { |piece| piece.to_s }.join(" | ")
+    end.join("\n") + + "\n" +' ' + ('A'..'H').to_a.join('   ')
   end
 
   def self.default_board

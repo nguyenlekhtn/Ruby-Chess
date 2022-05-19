@@ -1,2 +1,2 @@
 language = "nix"
-run = "ruby lib/main.rb"
+run = "ruby lib/runner.rb"
