@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BlackPawn < Piece
   def initialize
     super('pawn', 'black')

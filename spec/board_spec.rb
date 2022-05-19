@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/main'
 
 describe Board do
@@ -45,7 +47,7 @@ describe Board do
     end
   end
 
-  describe "#clear_piece_at" do
+  describe '#clear_piece_at' do
     subject(:board) { described_class.new }
 
     context 'when delete the cell a3' do
@@ -59,7 +61,7 @@ describe Board do
     end
   end
 
-  describe "#empty_at?" do
+  describe '#empty_at?' do
     subject(:board) { described_class.new }
 
     context 'when there is a piece at the selected cell' do
@@ -98,7 +100,7 @@ describe Board do
     context 'when index out of range' do
       it 'returns ""' do
         result = board.indexToRowNotation(9)
-        expect(result).to eq ""
+        expect(result).to eq ''
       end
     end
   end

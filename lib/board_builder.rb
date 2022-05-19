@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BoardBuilder
   def cell(string)
     if %w[r n b q k p].include? string.downcase

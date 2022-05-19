@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/main'
 
 describe BoardBuilder do
@@ -50,12 +52,11 @@ describe BoardBuilder do
           [Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for('')],
           [Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for(''), Piece.for('')],
           [Piece.for('p'), Piece.for('p'), Piece.for('p'), Piece.for('p'), Piece.for('p'), Piece.for('p'), Piece.for('p'), Piece.for('p')],
-           [Piece.for('r'), Piece.for('n'), Piece.for('b'), Piece.for('q'), Piece.for('k'), Piece.for('b'), Piece.for('n'), Piece.for('r')],
+          [Piece.for('r'), Piece.for('n'), Piece.for('b'), Piece.for('q'), Piece.for('k'), Piece.for('b'), Piece.for('n'), Piece.for('r')]
         ]
         (0..7).each do |i|
           expect(result[i]).to match_array(expected[i])
         end
-
       end
     end
   end

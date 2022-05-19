@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'pieces/piece'
 require_relative 'pieces/bishop'
 require_relative 'pieces/king'
@@ -11,4 +13,3 @@ require_relative 'board'
 require_relative 'board_builder'
 require_relative 'cell'
 require_relative 'game'
-

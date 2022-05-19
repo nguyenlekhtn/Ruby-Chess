@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Piece
   def self.for(notation)
     Hash.new(BlankPiece.new).merge(

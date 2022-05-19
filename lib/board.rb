@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Board
   attr_reader :board
 
@@ -30,21 +32,20 @@ class Board
 
   def to_s
     board.reverse.map.with_index do |row, index|
-      (8 - index).to_s + row.map { |piece| piece.to_s }.join(" | ")
-    end.join("\n") + + "\n" +' ' + ('A'..'H').to_a.join('   ')
+      (8 - index).to_s + row.map(&:to_s).join(' | ')
+    end.join("\n") + + "\n" + ' ' + ('A'..'H').to_a.join('   ')
   end
 
   def self.default_board
     [
       'RNBQKBNR'.chars.map { |it| Piece.for(it) },
       'PPPPPPPP'.chars.map { |it| Piece.for(it) },
-      Array.new(8) { |it| Piece.for('') },
-      Array.new(8) { |it| Piece.for('') },
-      Array.new(8) { |it| Piece.for('') },
-      Array.new(8) { |it| Piece.for('') },
+      Array.new(8) { |_it| Piece.for('') },
+      Array.new(8) { |_it| Piece.for('') },
+      Array.new(8) { |_it| Piece.for('') },
+      Array.new(8) { |_it| Piece.for('') },
       'pppppppp'.chars.map { |it| Piece.for(it) },
-      'rnbqkbnr'.chars.map { |it| Piece.for(it) },
+      'rnbqkbnr'.chars.map { |it| Piece.for(it) }
     ]
   end
-    
 end

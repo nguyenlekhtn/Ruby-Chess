@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 class Game
   COLOR = %w[white black].freeze
 
   attr_reader :active_color, :board
-  
+
   def initialize(**opts)
     @board = opts[:board] || Board.new
     @active_color = active_color || 'white'
   end
-  
+
   # def legal_move?(piece, start, goal)
-    
+
   # end
 
   def play
@@ -32,16 +34,15 @@ class Game
       return move if move
     end
   end
-    
+
   def get_move
-    puts "Enter start and end position (A1D2)"
+    puts 'Enter start and end position (A1D2)'
     input = player_input
     positions = get_positions_from_input(input)
     if positions.nil?
-      puts "Wrong input format"
+      puts 'Wrong input format'
       return nil
     end
-
 
     start_pos, end_pos = positions
     if board.empty_at?(start_pos) || board.get_piece_at(start_pos).color != active_color
@@ -57,8 +58,6 @@ class Game
 
     [piece, start_pos, end_pos]
   end
-
-
 
   def move_valid?(_piece)
     true
@@ -81,11 +80,10 @@ class Game
   end
 
   def switch_active_color
-    @active_color =  if active_color == COLOR.first
+    @active_color = if active_color == COLOR.first
                       COLOR.last
                     else
-                       COLOR.first
+                      COLOR.first
                     end
   end
-
 end

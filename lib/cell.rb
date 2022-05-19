@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Cell
   def self.for(notation)
     format = /[A-H][1-8]/
