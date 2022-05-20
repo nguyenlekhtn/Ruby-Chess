@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../lib/main'
+require_relative '../lib/library'
 
 describe Board do
   describe '#get_piece_at' do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../lib/main'
+require_relative '../lib/library'
 
 describe Game do
   describe '#legal_move?' do
