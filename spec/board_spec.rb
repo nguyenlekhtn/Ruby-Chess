@@ -81,26 +81,50 @@ describe Board do
     end
   end
 
-  describe '#indexToRowNotation' do
-    subject(:board) { described_class.new }
-    context 'when index is 0' do
-      it 'returns A' do
-        result = board.indexToRowNotation(0)
-        expect(result).to eq 'A'
+  # describe '#indexToRowNotation' do
+  #   subject(:board) { described_class.new }
+  #   context 'when index is 0' do
+  #     it 'returns A' do
+  #       result = board.indexToRowNotation(0)
+  #       expect(result).to eq 'A'
+  #     end
+  #   end
+
+  #   context 'when index is 3' do
+  #     it 'returns D' do
+  #       result = board.indexToRowNotation(3)
+  #       expect(result).to eq 'D'
+  #     end
+  #   end
+
+  #   context 'when index out of range' do
+  #     it 'returns ""' do
+  #       result = board.indexToRowNotation(9)
+  #       expect(result).to eq ''
+  #     end
+  #   end
+  # end
+
+  describe '#same_color_between_two_positions?' do
+    subject(:board_color) { described_class.new }
+    context 'when two cells have same color' do
+      it 'returns true' do
+        result = board_color.same_color_between_two_positions?(Cell.for('A1'), Cell.for('B1'))
+        expect(result).to be true
       end
     end
 
-    context 'when index is 3' do
-      it 'returns D' do
-        result = board.indexToRowNotation(3)
-        expect(result).to eq 'D'
+    context 'when two cells have different colors' do
+      it 'returns false' do
+        result = board_color.same_color_between_two_positions?(Cell.for('A1'), Cell.for('A8'))
+        expect(result).to be false
       end
     end
 
-    context 'when index out of range' do
-      it 'returns ""' do
-        result = board.indexToRowNotation(9)
-        expect(result).to eq ''
+    context 'when one has color and the other is empty' do
+      it 'returns false' do
+        result = board_color.same_color_between_two_positions?(Cell.for('A1'), Cell.for('A3'))
+        expect(result).to be false
       end
     end
   end
