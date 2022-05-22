@@ -14,6 +14,10 @@ class Board
     ]
   end
 
+  def self.for(notation)
+    new(BoardBuilder.new.whole(notation))
+  end
+
   attr_reader :board
 
   def initialize(board = BoardBuilder.new.whole('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'))
