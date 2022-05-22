@@ -42,4 +42,8 @@ class Cell
   def same_diagonal_line_with_cell?(cell)
     col - row == cell.col - cell.row
   end
+
+  def same_anti_diagonal_line_with_cell?(cell)
+    col - cell.col == - (row - cell.row)
+  end
 end
