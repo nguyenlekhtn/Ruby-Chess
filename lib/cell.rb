@@ -38,4 +38,8 @@ class Cell
   def same_vertical_line_with_cell?(cell)
     col == cell.col
   end
+
+  def same_diagonal_line_with_cell?(cell)
+    col - row == cell.col - cell.row
+  end
 end
