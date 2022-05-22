@@ -30,4 +30,12 @@ class Cell
   def ==(other)
     other.class == self.class && other.row == @row && other.col == @col
   end
+
+  def same_horizontal_line_with_cell?(cell)
+    row == cell.row
+  end
+
+  def same_vertical_line_with_cell?(cell)
+    col == cell.col
+  end
 end

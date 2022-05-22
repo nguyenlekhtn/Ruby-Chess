@@ -21,4 +21,40 @@ describe Cell do
       end
     end
   end
+
+  describe '#same_horizontal_line_with_cell?' do
+    subject(:cell) { described_class.new(0, 1) }
+
+    context 'if the cell is in the same row with another cell' do
+      it 'returns true' do
+        result = cell.same_horizontal_line_with_cell?(described_class.new(0, 3))
+        expect(result).to be true
+      end
+    end
+
+    context 'if the cell is not in the same row with another cell' do
+      it 'returns false' do
+        result = cell.same_horizontal_line_with_cell?(described_class.new(1, 3))
+        expect(result).to be false
+      end
+    end
+  end
+
+  describe '#same_vertical_line_with_cell?' do
+    subject(:cell) { described_class.new(4, 3) }
+
+    context 'if the cell is in the same column with another cell' do
+      it 'returns true' do
+        result = cell.same_vertical_line_with_cell?(described_class.new(0, 3))
+        expect(result).to be true
+      end
+    end
+
+    context 'if the cell is not in the same column with another cell' do
+      it 'returns false' do
+        result = cell.same_vertical_line_with_cell?(described_class.new(4, 2))
+        expect(result).to be false
+      end
+    end
+  end
 end
