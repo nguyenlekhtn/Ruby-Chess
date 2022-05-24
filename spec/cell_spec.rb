@@ -93,4 +93,52 @@ describe Cell do
       end
     end
   end
+
+  describe '#cells_in_between_horizontal_line_from_cell' do
+    subject(:cell_horizontal) { described_class.new(0, 0) }
+
+    context 'when the cell is at 0, 0 and the other is at 0, 3' do
+      it 'has (0,1) (0,2) cell in betrween' do
+        result = cell_horizontal.cells_in_between_horizontal_line_from_cell(described_class.new(0, 3))
+        expected = [Cell.new(0,1), Cell.new(0, 2)]
+        expect(result).to match_array(expected)
+      end
+    end
+  end
+
+  describe '#cells_in_between_vertical_line_from_cell' do
+    subject(:cell_horizontal) { described_class.new(0, 0) }
+
+    context 'when the cell is at 0, 0 and the other is at 0, 3' do
+      it 'has (0,1) (0,2) cell in betrween' do
+        result = cell_horizontal.cells_in_between_vertical_line_from_cell(described_class.new(3, 0))
+        expected = [Cell.new(1, 0), Cell.new(2, 0)]
+        expect(result).to match_array(expected)
+      end
+    end
+  end
+
+  describe '#cells_in_between_diagonal_line_from_cell' do
+    subject(:cell_horizontal) { described_class.new(4, 0) }
+
+    context 'when the cell is at 4, 0 and the other is at 1, 3' do
+      it 'has (3,1) (2,2) cell in betrween' do
+        result = cell_horizontal.cells_in_between_diagonal_line_from_cell(described_class.new(1, 3))
+        expected = [Cell.new(3, 1), Cell.new(2, 2)]
+        expect(result).to match_array(expected)
+      end
+    end
+  end
+
+  describe '#cells_in_between_anti_diagonal_line_from_cell' do
+    subject(:cell_horizontal) { described_class.new(1, 0) }
+
+    context 'when the cell is at 1, 0 and the other is at 4, 3' do
+      it 'has (2,1) (3,2) cell in betrween' do
+        result = cell_horizontal.cells_in_between_diagonal_line_from_cell(described_class.new(4, 3))
+        expected = [Cell.new(2, 1), Cell.new(3, 2)]
+        expect(result).to match_array(expected)
+      end
+    end
+  end
 end

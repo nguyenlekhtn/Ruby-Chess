@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Cell
+  include ReversableRange
+
   def self.for(notation)
     format = /[A-H][1-8]/
     return nil unless notation.match(format)
@@ -45,5 +47,31 @@ class Cell
 
   def same_anti_diagonal_line_with_cell?(cell)
     col - cell.col == - (row - cell.row)
+  end
+
+  def cells_in_between_horizontal_line_from_cell(cell)
+    start_col, end_col = [col, cell.col].minmax
+    [*(start_col..end_col)][1..-2].map { |col| Cell.new(cell.row, col) }
+  end
+
+  def cells_in_between_vertical_line_from_cell(cell)
+    start_row, end_row = [row, cell.row].minmax
+    [*(start_row..end_row)][1..-2].map { |row| Cell.new(row, cell.col) }
+  end
+
+  def cells_in_between_diagonal_line_from_cell(cell)
+    row_range = range(row, cell.row)
+    col_range = range(col, cell.col)
+    whole_diagonal = row_range.zip(col_range)
+
+    whole_diagonal[1..-2].map { |(row, col)| Cell.new(row, col) }
+  end
+
+  def cells_in_between_anti_diagonal_line_from_cell(cell)
+    row_range = range(row, cell.row)
+    col_range = range(col, cell.col)
+    whole_diagonal = row_range.zip(col_range)
+
+    whole_diagonal[1..-2].map { |(row, col)| Cell.new(row, col) }
   end
 end
