@@ -56,4 +56,24 @@ class Board
   def same_color_between_two_positions?(cell_one, cell_two)
     get_piece_at(cell_one).color == get_piece_at(cell_two).color
   end
+
+  def no_piece_in_horizontal_line_between_2_cells?(cell1, cell2)
+    cells_in_between = cell1.cells_in_between_horizontal_line_from_cell(cell2)
+    all_empty?(cells_in_between)
+  end
+
+  def no_piece_in_vertical_line_between_2_cells?(cell1, cell2)
+    cells_in_between = cell1.cells_in_between_vertical_line_from_cell(cell2)
+    all_empty?(cells_in_between)
+  end
+
+  def no_piece_in_diagonal_line_between_2_cells?(cell1, cell2)
+    cells_in_between = cell1.cells_in_between_diagonal_line_from_cell(cell2)
+    p cells_in_between
+    all_empty?(cells_in_between)
+  end
+
+  def all_empty?(cells)
+    cells.all? { |cell| empty_at?(cell) }
+  end
 end
