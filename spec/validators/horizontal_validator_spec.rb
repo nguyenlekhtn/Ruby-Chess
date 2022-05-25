@@ -23,17 +23,25 @@ describe HorizontalValidator do
     end
 
     context 'when 2 cells are in the same horizontal line' do
+      let(:cell_a) { instance_double(Cell, row: 1, col: 2) }
+      let(:cell_b) { instance_double(Cell, row: 1, col: 7) }
+
       before do
-        allow(cell1).to receive(:same_horizontal_line_with_cell?).and_return(true)
+        allow(cell_a).to receive(:same_horizontal_line_with_cell?).with(cell_b).and_return(true)
       end
 
-      xit 'returns true if no piece is in between' do
-        cell_a = instance_double(Cell, row: 1, col: 2)
-        cell_b = instance_double(Cell, row: 1, col: 7)
+      it 'returns true if no piece is in between' do
         allow(board).to receive(:no_piece_in_horizontal_line_between_2_cells?)
-                    .with(row: 1, cols: [2, 7]).and_return(true)
+                    .with(cell_a, cell_b).and_return(true)
         result = validator.valid?(cell_a, cell_b)
         expect(result).to be true
+      end
+
+      it 'returns false if there are pieces is in between' do
+        allow(board).to receive(:no_piece_in_horizontal_line_between_2_cells?)
+                    .with(cell_a, cell_b).and_return(false)
+        result = validator.valid?(cell_a, cell_b)
+        expect(result).to be false
       end
     end
   end
