@@ -41,12 +41,12 @@ class Cell
     col == cell.col
   end
 
-  def same_diagonal_line_with_cell?(cell)
-    col - row == cell.col - cell.row
-  end
-
   def same_anti_diagonal_line_with_cell?(cell)
     col - cell.col == - (row - cell.row)
+  end
+
+  def same_diagonal_line_with_cell?(cell)
+    (col - cell.col).abs == (row - cell.row).abs
   end
 
   def cells_in_between_horizontal_line_from_cell(cell)
