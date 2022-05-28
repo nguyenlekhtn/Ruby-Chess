@@ -13,7 +13,7 @@ class Bishop < Piece
     end
   end
 
-  def validators
+  def validators_class
     [DiagonalValidator]
   end
 end

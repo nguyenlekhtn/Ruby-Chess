@@ -12,4 +12,8 @@ class Queen < Piece
       '♕'
     end
   end
+
+  def validators_class
+    [VerticalValidator, HorizontalValidator, DiagonalValidator]
+  end
 end

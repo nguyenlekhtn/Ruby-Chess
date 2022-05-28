@@ -12,4 +12,8 @@ class Rook < Piece
       '♖'
     end
   end
+
+  def validators_class
+    [HorizontalValidator, VerticalValidator]
+  end
 end
