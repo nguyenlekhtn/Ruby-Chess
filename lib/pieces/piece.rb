@@ -33,4 +33,12 @@ class Piece
   def to_s
     throw 'Need to implement this'
   end
+
+  def validators_class
+    throw NotImplementedError
+  end
+
+  def validators
+    validators_class.map { |it| it.new(board) }
+  end
 end
