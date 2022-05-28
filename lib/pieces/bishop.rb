@@ -12,4 +12,8 @@ class Bishop < Piece
       '♗'
     end
   end
+
+  def validators
+    [DiagonalValidator]
+  end
 end
