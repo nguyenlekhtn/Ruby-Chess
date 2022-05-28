@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-<<<<<<< HEAD
-=======
 require_relative 'reversable_range'
->>>>>>> move-logic
 require_relative 'pieces/piece'
 require_relative 'pieces/bishop'
 require_relative 'pieces/king'

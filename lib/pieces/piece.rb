@@ -27,7 +27,7 @@ class Piece
   end
 
   def ==(other)
-    other.class == self.class && other.name == @name && other.color == @color && other.board == @board
+    other.class == self.class && other.name == @name && other.color == @color
   end
 
   def to_s

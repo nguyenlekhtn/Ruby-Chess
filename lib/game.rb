@@ -64,7 +64,7 @@ class Game
 
     return false if board.same_color_at_cell?(cell, active_color)
 
-    piece.validators.map { |validator_class| validator_class.new(board) }.any? { |validator| validator.valid?(start_pos, end_pos) }
+    piece.validators.any? { |validator| validator.valid?(start_pos, end_pos) }
   end
 
   def player_input

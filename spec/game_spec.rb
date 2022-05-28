@@ -6,7 +6,7 @@ describe Game do
   describe '#legal_move?' do
     context 'when rook move' do
       xit 'can move to a square in same vertical line if not blocked by any pieces' do
-        subject(:game) { Game.new(board: Board.new(board: BoardBuilder.new.whole('rnbqkbnr/1ppppppp/1p6/8/8/8/1PPPPPPP/RNBQKBNR'))) }
+        subject(:game) { Game.new(notation: 'rnbqkbnr/1ppppppp/1p6/8/8/8/1PPPPPPP/RNBQKBNR') }
 
         result = game.legal_move?(Cell.for('A1'), Cell.for('A5'))
 
@@ -24,7 +24,7 @@ describe Game do
   end
 
   describe '#get_positions_from_input' do
-    subject(:game) { Game.new(board: Board.new(BoardBuilder.new.whole('rnbqkbnr/1ppppppp/1p6/8/8/8/1PPPPPPP/RNBQKBNR'))) }
+    subject(:game) { Game.new(board: Board.new(notation: 'rnbqkbnr/1ppppppp/1p6/8/8/8/1PPPPPPP/RNBQKBNR')) }
 
     context 'when give input A1A8' do
       it 'retuns Cell A1 and Cell A8' do

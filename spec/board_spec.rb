@@ -10,7 +10,7 @@ describe Board do
       it 'returns the White Rock' do
         result = board.get_piece_at(Cell.for('A1'))
 
-        expect(result).to eq(Piece.for('R'))
+        expect(result).to eq(Piece.for('R', board))
       end
     end
 
@@ -18,7 +18,7 @@ describe Board do
       it 'returns the White Pawn' do
         result = board.get_piece_at(Cell.for('C2'))
 
-        expect(result).to eq(Piece.for('P'))
+        expect(result).to eq(Piece.for('P', board))
       end
     end
 
@@ -27,7 +27,7 @@ describe Board do
         cell = Cell.for('D3')
         result = board.get_piece_at(cell)
 
-        expect(result).to eq(Piece.for(''))
+        expect(result).to eq(Piece.for('', board))
       end
     end
   end
@@ -38,7 +38,7 @@ describe Board do
     context 'when set the piece White Rook at a3' do
       it 'has the white rook at A3' do
         cell = Cell.for('A3')
-        white_rook = Piece.for('R')
+        white_rook = Piece.for('R', board)
         board.set_piece_at(cell, white_rook)
 
         result = board.get_piece_at(cell)
@@ -55,8 +55,9 @@ describe Board do
         cell = Cell.for('A3')
         board.clear_piece_at(cell)
 
-        expected = Piece.for('')
-        expect(board.clear_piece_at(cell)).to eq(Piece.for(''))
+        board.clear_piece_at(cell)
+        expected = Piece.for('', board)
+        expect(board.get_piece_at(cell)).to eq(expected)
       end
     end
   end

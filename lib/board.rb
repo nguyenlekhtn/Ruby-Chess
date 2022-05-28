@@ -5,23 +5,31 @@ class Board
     [
       'RNBQKBNR'.chars.map { |it| Piece.for(it) },
       'PPPPPPPP'.chars.map { |it| Piece.for(it) },
-      Array.new(8) { |_it| Piece.for('') },
-      Array.new(8) { |_it| Piece.for('') },
-      Array.new(8) { |_it| Piece.for('') },
-      Array.new(8) { |_it| Piece.for('') },
+      Array.new(8) { |_it| Piece.for('', board) },
+      Array.new(8) { |_it| Piece.for('', board) },
+      Array.new(8) { |_it| Piece.for('', board) },
+      Array.new(8) { |_it| Piece.for('', board) },
       'pppppppp'.chars.map { |it| Piece.for(it) },
       'rnbqkbnr'.chars.map { |it| Piece.for(it) }
     ]
   end
 
   def self.for(notation)
-    new(BoardBuilder.new.whole(notation))
+    new(notation: notation)
   end
 
   attr_reader :board
 
-  def initialize(board = BoardBuilder.new.whole('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'))
-    @board = board
+  # def initialize(board = default_builder.whole('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'))
+  #   @board = board
+  # end
+
+  def initialize(builder: default_builder, notation: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')
+    @board = builder.whole(notation)
+  end
+
+  def default_builder
+    BoardBuilder.new(self)
   end
 
   def get_piece_at(cell)
@@ -36,7 +44,7 @@ class Board
 
   def clear_piece_at(cell)
     row, col = cell.position
-    board[row][col] = Piece.for('')
+    board[row][col] = Piece.for('', board)
   end
 
   def empty_at?(cell)
