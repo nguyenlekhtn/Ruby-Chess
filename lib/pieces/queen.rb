@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Queen < Piece
-  def initialize(color)
-    super('queen', color)
+  def initialize(color, board)
+    super('queen', color, board)
   end
 
   def to_s

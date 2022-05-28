@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class BlankPiece < Piece
-  def initialize
-    super('', '')
+  def initialize(board)
+    super('', '', board)
   end
 
   def to_s

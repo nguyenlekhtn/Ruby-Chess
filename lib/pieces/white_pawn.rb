@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class WhitePawn < Piece
-  def initialize
-    super('pawn', 'white')
+  def initialize(board)
+    super('pawn', 'white', board)
   end
 
   def to_s
