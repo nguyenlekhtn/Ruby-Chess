@@ -192,4 +192,51 @@ describe Board do
       end
     end
   end
+
+  describe '#opposite_color_between_2_cells?' do
+    context 'when one cell has white piece and the other has black piece' do
+      subject(:board) { described_class.for('8/8/8/2Q1n3/8/8/8/8') }
+
+      it 'should return true' do
+        result = board.opposite_color_between_2_cells?(Cell.for('C5'), Cell.for('E5'))
+        expect(result).to be true
+      end
+    end
+
+    context 'when one cell has black piece and the other has white piece' do
+      subject(:board) { described_class.for('8/8/8/5N2/2r5/8/8/8') }
+
+      it 'should return true' do
+        result = board.opposite_color_between_2_cells?(Cell.for('C4'), Cell.for('F5'))
+        expect(result).to be true
+      end
+    end
+
+    context 'when one cell has black piece and the other has white piece' do
+      subject(:board) { described_class.for('8/8/8/5N2/2r5/8/8/8') }
+
+      it 'should return true' do
+        result = board.opposite_color_between_2_cells?(Cell.for('C4'), Cell.for('F5'))
+        expect(result).to be true
+      end
+    end
+
+    context 'when one cell has black piece and the other has black piece' do
+      subject(:board) { described_class.for('8/8/8/2q2n2/8/8/8/8') }
+
+      it 'should return false' do
+        result = board.opposite_color_between_2_cells?(Cell.for('C5'), Cell.for('F5'))
+        expect(result).to be false
+      end
+    end
+
+    context 'when one cell has black piece and the other has blank piece' do
+      subject(:board) { described_class.for('8/8/8/2q2n2/8/8/8/8') }
+
+      it 'should return false' do
+        result = board.opposite_color_between_2_cells?(Cell.for('C5'), Cell.for('E5'))
+        expect(result).to be false
+      end
+    end
+  end
 end

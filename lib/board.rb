@@ -65,6 +65,11 @@ class Board
     get_piece_at(cell_one).color == get_piece_at(cell_two).color
   end
 
+  def opposite_color_between_2_cells?(cell_one, cell_two)
+    (get_piece_at(cell_one).color == 'black' && get_piece_at(cell_two).color == 'white') ||
+      (get_piece_at(cell_one).color == 'white' && get_piece_at(cell_two).color == 'black')
+  end
+
   def no_piece_in_horizontal_line_between_2_cells?(cell1, cell2)
     cells_in_between = cell1.cells_in_between_horizontal_line_from_cell(cell2)
     all_empty?(cells_in_between)
