@@ -12,4 +12,8 @@ class King < Piece
       '♔'
     end
   end
+
+  def validators_class
+    [KingMoveValidator]
+  end
 end
