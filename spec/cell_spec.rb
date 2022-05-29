@@ -141,4 +141,26 @@ describe Cell do
       end
     end
   end
+
+  describe '#jump' do
+    subject(:cell) { described_class.new(3, 4) }
+
+    context 'when the cell jump in-range' do
+      it 'should return a new cell' do
+        result = cell.jump(row_step: 2, col_step: -2)
+        expected = described_class.new(5, 2)
+
+        expect(result).to eq expected
+      end
+    end
+
+    context 'when the cell jump out-range' do
+      it 'should return nil' do
+        result = cell.jump(row_step: 5, col_step: -2)
+        expected = nil
+
+        expect(result).to eq expected
+      end
+    end
+  end
 end

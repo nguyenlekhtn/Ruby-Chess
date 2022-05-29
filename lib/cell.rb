@@ -74,4 +74,16 @@ class Cell
 
     whole_diagonal[1..-2].map { |(row, col)| Cell.new(row, col) }
   end
+
+  def valid?(row, col)
+    row.between?(0, 7) && col.between?(0, 7)
+  end
+
+  def jump(row_step: 0, col_step: 0)
+    row_after = row + row_step
+    col_after = col + col_step
+    return nil unless valid?(row_after, col_after)
+
+    Cell.new(row_after, col_after)
+  end
 end
