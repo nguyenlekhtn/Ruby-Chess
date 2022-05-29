@@ -12,4 +12,8 @@ class Knight < Piece
       '♘'
     end
   end
+
+  def validators_class
+    [KnightMoveValidator]
+  end
 end
