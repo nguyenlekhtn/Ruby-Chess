@@ -5,6 +5,8 @@ class BlackPawnPeaceMoveValidator < Validator
 
     if end_pos == reachable_cells(start_pos).first
       true
+    elsif start_pos.row != 6
+      false
     elsif board.no_piece_in_vertical_line_between_2_cells?(start_pos, end_pos)
       true
     else
