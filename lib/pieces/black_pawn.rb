@@ -8,4 +8,8 @@ class BlackPawn < Piece
   def to_s
     '♟'
   end
+
+  def validators_class
+    [BlackPawnCaptureMoveValidator, BlackPawnPeaceMoveValidator]
+  end
 end
