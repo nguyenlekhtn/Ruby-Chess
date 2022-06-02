@@ -45,7 +45,7 @@ describe BlackPawnPeaceMoveValidator do
       end
 
       context 'when end_pos is at (-2, 0) from start_pos' do
-        context 'when end_pos is not at  row 6' do
+        context 'when start_pos is not at  row 6' do
           let(:cell1) { Cell.new(5, 2) }
           let(:cell2) { Cell.new(3, 2) }
 
@@ -55,7 +55,7 @@ describe BlackPawnPeaceMoveValidator do
           end
         end
 
-        context 'when end_pos is at row 6' do
+        context 'when start_pos is at row 6' do
           let(:cell1) { Cell.new(6, 2) }
           let(:cell2) { Cell.new(4, 2) }
 
