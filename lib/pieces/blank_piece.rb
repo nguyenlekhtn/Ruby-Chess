@@ -8,4 +8,8 @@ class BlankPiece < Piece
   def to_s
     ' '
   end
+
+  def validators_class
+    []
+  end
 end
