@@ -86,4 +86,14 @@ class Cell
 
     Cell.new(row_after, col_after)
   end
+
+  def to_notation
+    first_char = [*('A'..'H')][col]
+    second_char = (row + 1).to_s
+    first_char + second_char
+  end
+
+  def to_s
+    to_notation
+  end
 end

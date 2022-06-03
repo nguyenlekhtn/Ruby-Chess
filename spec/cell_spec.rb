@@ -163,4 +163,33 @@ describe Cell do
       end
     end
   end
+
+  describe 'to_s' do
+    context 'if the cell is at row 0, col 0' do
+      subject(:cell)  { described_class.new(0, 0) }
+
+      it 'should be print as A1' do
+        result = cell.to_s
+        expect(result).to eq 'A1'
+      end
+    end
+
+    context 'if the cell is at row 7, col 7' do
+      subject(:cell)  { described_class.new(7, 7) }
+
+      it 'should be print as H8' do
+        result = cell.to_s
+        expect(result).to eq 'H8'
+      end
+    end
+
+    context 'if the cell is at row 4, col 4' do
+      subject(:cell)  { described_class.new(4, 4) }
+
+      it 'should be print as E5' do
+        result = cell.to_s
+        expect(result).to eq 'E5'
+      end
+    end
+  end
 end
