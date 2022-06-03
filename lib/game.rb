@@ -50,9 +50,9 @@ class Game
       return nil
     end
 
-    piece = board.get_piece_at(start_pos)
-    unless move_valid?(piece)
-      puts "${piece} can't move from ${start_pos} to ${end_pos}"
+    unless move_valid?(start_pos, end_pos)
+      piece = board.get_piece_at(start_pos)
+      puts "#{piece} can't move from #{start_pos} to #{end_pos}"
       return nil
     end
 
@@ -62,7 +62,7 @@ class Game
   def move_valid?(start_pos, end_pos)
     piece = board.get_piece_at(start_pos)
 
-    return false if board.same_color_at_cell?(cell, active_color)
+    return false if board.same_color_at_cell?(start_pos, active_color)
 
     !board.same_color_between_two_positions?(start_pos, end_pos) &&
       piece.validators.any? { |validator| validator.valid?(start_pos, end_pos) }
