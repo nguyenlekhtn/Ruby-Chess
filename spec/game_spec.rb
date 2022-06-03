@@ -53,4 +53,34 @@ describe Game do
       end
     end
   end
+
+  describe '#move_valid?' do
+
+    context 'when the board is at starting position and the move is D2 to D3' do
+      subject(:game) { described_class.new(board: Board.for('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')) }
+
+      it 'should be a valid move' do
+        result = game.move_valid?(Cell.for('D2'), Cell.for('D3'))
+        expect(result).to be true
+      end
+    end
+
+    context 'when the board is at starting position and the move is E2 to D4' do
+      subject(:game) { described_class.new(board: Board.for('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')) }
+
+      it 'should be a valid move' do
+        result = game.move_valid?(Cell.for('E2'), Cell.for('E4'))
+        expect(result).to be true
+      end
+    end
+
+    context 'when the board is at starting position and the move is D1 to F3' do
+      subject(:game) { described_class.new(board: Board.for('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')) }
+
+      it 'should be an invalid move' do
+        result = game.move_valid?(Cell.for('D1'), Cell.for('F3'))
+        expect(result).to be false
+      end
+    end
+  end
 end

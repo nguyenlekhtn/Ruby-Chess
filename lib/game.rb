@@ -62,10 +62,11 @@ class Game
   def move_valid?(start_pos, end_pos)
     piece = board.get_piece_at(start_pos)
 
-    return false if board.same_color_at_cell?(start_pos, active_color)
+    return false if board.same_color_at_cell?(end_pos, active_color)
 
-    !board.same_color_between_two_positions?(start_pos, end_pos) &&
-      piece.validators.any? { |validator| validator.valid?(start_pos, end_pos) }
+    return false if board.same_color_between_two_positions?(start_pos, end_pos)
+    
+    piece.validators.any? { |validator| validator.valid?(start_pos, end_pos) }
   end
 
   def player_input
