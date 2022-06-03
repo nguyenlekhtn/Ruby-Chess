@@ -239,4 +239,50 @@ describe Board do
       end
     end
   end
+
+  describe '#same_color_at_cell?' do
+    subject(:board) { described_class.for('8/8/3K4/5n2/8/2N1n3/8/8') }
+
+    context 'when the piece at cell has color white and the comparing color is white' do
+      it 'should return true' do
+        result = board.same_color_at_cell?(Cell.for('C3'), 'white')
+        expect(result).to be true
+      end
+    end
+
+    context 'when the piece at cell has color white and the comparing color is black' do
+      it 'should return false' do
+        result = board.same_color_at_cell?(Cell.for('C3'), 'black')
+        expect(result).to be false
+      end
+    end
+
+    context 'when the piece at cell has color black and the comparing color is white' do
+      it 'should return false' do
+        result = board.same_color_at_cell?(Cell.for('E3'), 'white')
+        expect(result).to be false
+      end
+    end
+
+    context 'when the piece at cell has color black and the comparing color is black' do
+      it 'should return true' do
+        result = board.same_color_at_cell?(Cell.for('E3'), 'black')
+        expect(result).to be true
+      end
+    end
+
+    context 'when there is no piece and the comparing color is black' do
+      it 'should return false' do
+        result = board.same_color_at_cell?(Cell.for('D3'), 'black')
+        expect(result).to be false
+      end
+    end
+
+    context 'when there is no piece and the comparing color is black' do
+      it 'should return false' do
+        result = board.same_color_at_cell?(Cell.for('D3'), 'white')
+        expect(result).to be false
+      end
+    end
+  end
 end

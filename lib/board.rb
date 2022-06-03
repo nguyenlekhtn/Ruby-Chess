@@ -89,4 +89,8 @@ class Board
   def all_empty?(cells)
     cells.all? { |cell| empty_at?(cell) }
   end
+
+  def same_color_at_cell?(cell, color)
+    get_piece_at(cell).color == color
+  end
 end
