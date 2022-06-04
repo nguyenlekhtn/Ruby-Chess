@@ -3,7 +3,11 @@ class KingMoveValidator < Validator
     [0,1],
     [0,-1],
     [-1,0],
-    [1,0]
+    [1,0],
+    [-1,-1],
+    [-1,1],
+    [1,-1],
+    [1,1]
   ].freeze
 
   def valid?(start_pos, end_pos)
