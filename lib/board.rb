@@ -56,9 +56,14 @@ class Board
   # end
 
   def to_s
-    board.reverse.map.with_index do |row, index|
-      (8 - index).to_s + row.map(&:to_s).join(' | ')
-    end.join("\n") + + "\n" + ' ' + ('A'..'H').to_a.join('   ')
+    top_bottom_notation = ('A'..'H').to_a.join('   ')
+    top_bottom_border = "  #{top_bottom_notation}"
+    between_top_bottom = board.reverse.map.with_index do |row, index|
+      side_notation = (8 - index).to_s
+      cells_inside = row.map(&:to_s).join(' | ')
+      "#{side_notation} #{cells_inside} #{side_notation}"
+    end.join("\n")
+    "#{top_bottom_border}\n#{between_top_bottom}\n#{top_bottom_border}"
   end
 
   def same_color_between_two_positions?(cell_one, cell_two)
