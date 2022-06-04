@@ -24,8 +24,8 @@ class Game
   def player_turn
     puts "#{active_color}'s turn"
     puts board
-    piece, start_pos, end_pos = move_from_player
-    move_piece(piece, start_pos, end_pos)
+    start_pos, end_pos = move_from_player
+    move_piece(start_pos, end_pos)
   end
 
   def move_from_player
@@ -56,7 +56,7 @@ class Game
       return nil
     end
 
-    [piece, start_pos, end_pos]
+    [start_pos, end_pos]
   end
 
   def move_valid?(start_pos, end_pos)
@@ -80,7 +80,8 @@ class Game
     [Cell.for(input[0..1]), Cell.for(input[2..3])]
   end
 
-  def move_piece(piece, start_pos, end_pos)
+  def move_piece(start_pos, end_pos)
+    piece = board.get_piece_at(start_pos)
     board.clear_piece_at(start_pos)
     board.set_piece_at(end_pos, piece)
   end

@@ -4,11 +4,20 @@ require_relative '../lib/library'
 
 describe Cell do
   describe '#self.for' do
-    context 'when give a valid input' do
+    context 'when give a valid input with uppcase' do
       it 'returns the cell instance with correct row and col' do
         cell = Cell.for('A4')
 
         expect(cell.row).to eq 3
+        expect(cell.col).to eq 0
+      end
+    end
+
+    context 'when give a valid input with lowercase' do
+      it 'returns the cell instance with correct row and col' do
+        cell = Cell.for('a3')
+
+        expect(cell.row).to eq 2
         expect(cell.col).to eq 0
       end
     end
