@@ -37,6 +37,10 @@ class Board
     board[row][col]
   end
 
+  def get_color_at(cell)
+    get_piece_at(cell).color
+  end
+
   def set_piece_at(cell, piece)
     row, col = cell.position
     board[row][col] = piece

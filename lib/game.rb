@@ -59,6 +59,11 @@ class Game
     [start_pos, end_pos]
   end
 
+  def checked_mate?
+    # any opposite piece can attack king? AND
+    # king can move to any of its neighbouts?
+  end
+
   def move_valid?(start_pos, end_pos)
     piece = board.get_piece_at(start_pos)
 
