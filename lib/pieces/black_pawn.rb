@@ -2,7 +2,7 @@
 
 class BlackPawn < Piece
   def initialize(board)
-    super('pawn', 'black', board)
+    super('pawn', Color::BLACK, board)
   end
 
   def to_s

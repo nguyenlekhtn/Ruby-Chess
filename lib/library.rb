@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'color'
 require_relative 'reversable_range'
 require_relative 'pieces/piece'
 require_relative 'pieces/bishop'

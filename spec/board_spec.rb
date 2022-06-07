@@ -245,42 +245,42 @@ describe Board do
 
     context 'when the piece at cell has color white and the comparing color is white' do
       it 'should return true' do
-        result = board.same_color_at_cell?(Cell.for('C3'), 'white')
+        result = board.same_color_at_cell?(Cell.for('C3'), Color::WHITE)
         expect(result).to be true
       end
     end
 
     context 'when the piece at cell has color white and the comparing color is black' do
       it 'should return false' do
-        result = board.same_color_at_cell?(Cell.for('C3'), 'black')
+        result = board.same_color_at_cell?(Cell.for('C3'), Color::BLACK)
         expect(result).to be false
       end
     end
 
     context 'when the piece at cell has color black and the comparing color is white' do
       it 'should return false' do
-        result = board.same_color_at_cell?(Cell.for('E3'), 'white')
+        result = board.same_color_at_cell?(Cell.for('E3'), Color::WHITE)
         expect(result).to be false
       end
     end
 
     context 'when the piece at cell has color black and the comparing color is black' do
       it 'should return true' do
-        result = board.same_color_at_cell?(Cell.for('E3'), 'black')
+        result = board.same_color_at_cell?(Cell.for('E3'), Color::BLACK)
         expect(result).to be true
       end
     end
 
     context 'when there is no piece and the comparing color is black' do
       it 'should return false' do
-        result = board.same_color_at_cell?(Cell.for('D3'), 'black')
+        result = board.same_color_at_cell?(Cell.for('D3'), Color::BLACK)
         expect(result).to be false
       end
     end
 
     context 'when there is no piece and the comparing color is black' do
       it 'should return false' do
-        result = board.same_color_at_cell?(Cell.for('D3'), 'white')
+        result = board.same_color_at_cell?(Cell.for('D3'), Color::WHITE)
         expect(result).to be false
       end
     end

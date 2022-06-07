@@ -6,7 +6,7 @@ class Queen < Piece
   end
 
   def to_s
-    if color == 'black'
+    if color == Color::BLACK
       '♛'
     else
       '♕'

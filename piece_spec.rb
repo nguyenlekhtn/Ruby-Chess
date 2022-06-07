@@ -8,7 +8,7 @@ describe Piece do
       it 'returns white rook' do
         result = Piece.for('R')
 
-        expect(result).to eq Rook.new('white')
+        expect(result).to eq Rook.new(Color::WHITE)
       end
     end
 

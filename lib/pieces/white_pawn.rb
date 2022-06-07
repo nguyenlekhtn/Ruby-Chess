@@ -2,7 +2,7 @@
 
 class WhitePawn < Piece
   def initialize(board)
-    super('pawn', 'white', board)
+    super('pawn', Color::WHITE, board)
   end
 
   def to_s

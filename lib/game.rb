@@ -7,7 +7,7 @@ class Game
 
   def initialize(**opts)
     @board = opts[:board] || Board.new
-    @active_color = active_color || 'white'
+    @active_color = active_color || Color::WHITE
   end
 
   # def legal_move?(piece, start, goal)
