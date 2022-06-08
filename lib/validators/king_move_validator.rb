@@ -30,7 +30,7 @@ class KingMoveValidator < Validator
 
   def valid_move?(start_pos, end_pos)
     piece = board.get_piece_at(start_pos)
-    piece.validators.any? { |validator| validator.valid?(start_pos, end_pos) }
+    piece.move_valid?(start_pos, end_pos)
   end
 
   def reacheable_cells(pos)
