@@ -12,22 +12,25 @@ class KingMoveValidator < Validator
 
   def valid?(start_pos, end_pos)
     return false unless reacheable_cells(start_pos).include?(end_pos)
-    
-    return true if any_opposite_piece_can_reach_king_neighbours?(start_pos)
-    
+    return true unless any_opposite_piece_can_reach_end_pos?(start_pos, end_pos)
+
+    false
   end
 
-  def any_opposite_piece_can_reach_king_neighbours?(king_pos)
+  def any_opposite_piece_can_reach_end_pos?(king_pos, end_pos)
     king_color = board.get_color_at(king_pos)
-    opposite_color = opposite_color(king_color)
+    opposite_color = king_color.opposite
 
     opposite_cells = board.get_all_cells_have_color(opposite_color)
     opposite_cells.any? do |opposite_cell|
-      reacheable_cells.any? do |neighbour|
-        validator.valid?(opposite_cell, neighbour)
-      end
+      valid_move?(opposite_cell, end_pos)
     end
     # any opposite cells can reach any king's neibours?
+  end
+
+  def valid_move?(start_pos, end_pos)
+    piece = board.get_piece_at(start_pos)
+    piece.validators.any? { |validator| validator.valid?(start_pos, end_pos) }
   end
 
   def reacheable_cells(pos)

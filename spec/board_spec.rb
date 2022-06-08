@@ -285,4 +285,15 @@ describe Board do
       end
     end
   end
+
+  describe '#get_all_cells_have_color' do
+    subject(:board) { described_class.for('8/8/1b6/4B3/8/2Q5/5N2/8') }
+
+    it 'should return all cells have same color' do
+      result = board.get_all_cells_have_color(Color::WHITE)
+      expected = [Cell.for('C3'), Cell.for('E5'), Cell.for('F2')]
+
+      expect(result).to match_array(expected)
+    end
+  end
 end

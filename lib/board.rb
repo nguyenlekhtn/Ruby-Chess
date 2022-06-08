@@ -102,4 +102,16 @@ class Board
   def same_color_at_cell?(cell, color)
     get_piece_at(cell).color == color
   end
+
+  def get_all_cells_have_color(color)
+    all_cells.filter { |cell| get_color_at(cell) == color }
+  end
+
+  def all_cells
+    board.map.with_index do |row, row_index|
+      row.map.with_index do |_item, col_index|
+        Cell.new(row_index, col_index)
+      end
+    end.flatten
+  end
 end
