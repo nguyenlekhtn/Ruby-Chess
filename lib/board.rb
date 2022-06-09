@@ -1,19 +1,6 @@
 # frozen_string_literal: true
 
 class Board
-  def self.default_board
-    [
-      'RNBQKBNR'.chars.map { |it| Piece.for(it) },
-      'PPPPPPPP'.chars.map { |it| Piece.for(it) },
-      Array.new(8) { |_it| Piece.for('', board) },
-      Array.new(8) { |_it| Piece.for('', board) },
-      Array.new(8) { |_it| Piece.for('', board) },
-      Array.new(8) { |_it| Piece.for('', board) },
-      'pppppppp'.chars.map { |it| Piece.for(it) },
-      'rnbqkbnr'.chars.map { |it| Piece.for(it) }
-    ]
-  end
-
   def self.for(notation)
     new(notation: notation)
   end
