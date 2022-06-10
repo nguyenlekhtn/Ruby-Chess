@@ -3,26 +3,6 @@
 require_relative '../lib/library'
 
 describe Game do
-  describe '#legal_move?' do
-    context 'when rook move' do
-      xit 'can move to a square in same vertical line if not blocked by any pieces' do
-        subject(:game) { Game.new(notation: 'rnbqkbnr/1ppppppp/1p6/8/8/8/1PPPPPPP/RNBQKBNR') }
-
-        result = game.legal_move?(Cell.for('A1'), Cell.for('A5'))
-
-        expect(result).to be true
-      end
-
-      xit 'can move to a square in same vertical line if not blocked by any pieces' do
-        subject(:game) { Game.new({ board: Board.new('rnbqkbnr/1ppppppp/1p6/8/R7/8/1PPPPPPP/1NBQKBNR') }) }
-
-        result = game.legal_move?(Cell.for('A4'), Cell.for('E4'))
-
-        expect(result).to be true
-      end
-    end
-  end
-
   describe '#get_positions_from_input' do
     subject(:game) { Game.new(board: Board.new(notation: 'rnbqkbnr/1ppppppp/1p6/8/8/8/1PPPPPPP/RNBQKBNR')) }
 
@@ -80,6 +60,42 @@ describe Game do
       it 'should be an invalid move' do
         result = game.move_valid?(Cell.for('D1'), Cell.for('F3'))
         expect(result).to be false
+      end
+    end
+  end
+
+  describe '#checkmated?' do
+    subject(:game) { described_class.new(board: board, color: color) }
+
+
+    context 'when black is checkmated, ' do
+      let(:color) { Color::BLACK }
+      let(:board) { Board.for('rnbqkbnr/ppppp2p/8/5ppQ/4P3/2N5/PPPP1PPP/R1B1KBNR') }
+
+      it 'returns true' do
+        result = game.checkmated?
+        expect(result).to be true
+      end
+    end
+
+    context 'when white is not checkmated' do
+      let(:color) { Color::WHITE }
+      let(:board) { Board.for('1Q6/5pk1/2p3p1/1p2N2p/1b5P/1bn5/r5P1/1K6') }
+
+
+      it 'returns false' do
+        result = game.checkmated?
+        expect(result).to be false
+      end
+    end
+
+    context 'when white is checkmated' do\
+      let(:color) { Color::WHITE }
+      let(:board) { Board.for('1Q6/5pk1/2p3p1/1p2N2p/1b5P/1bn5/2r3P1/2K5') }
+
+      it 'returns true' do
+        result = game.checkmated?
+        expect(result).to be true
       end
     end
   end

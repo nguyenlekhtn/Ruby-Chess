@@ -296,4 +296,31 @@ describe Board do
       expect(result).to match_array(expected)
     end
   end
+
+  describe '#get_king_position' do
+    context 'if the king is still alive' do
+      subject(:board_king) { described_class.for('8/2k5/8/8/8/8/3K4/8') }
+
+      it 'returns the correct postion if black color is given as argument' do
+        result = board_king.get_king_position(Color::BLACK)
+        expected = Cell.for('C7')
+        expect(result).to eq(expected)
+      end
+
+      it 'returns the correct postion if white color is given as argument' do
+        result = board_king.get_king_position(Color::WHITE)
+        expected = Cell.for('D2')
+        expect(result).to eq(expected)
+      end
+    end
+
+    context 'when the king is died' do
+      subject(:board_king) { described_class.for('8/2k5/8/8/8/8/8/8') }
+
+      it 'returns nil' do
+        result = board_king.get_king_position(Color::WHITE)
+        expect(result).to eq(nil)
+      end
+    end
+  end
 end

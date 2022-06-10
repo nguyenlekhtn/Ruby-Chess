@@ -7,7 +7,7 @@ class Game
 
   def initialize(**opts)
     @board = opts[:board] || Board.new
-    @active_color = active_color || Color::WHITE
+    @active_color = opts[:color] || Color::WHITE
   end
 
   # def legal_move?(piece, start, goal)
@@ -59,9 +59,45 @@ class Game
     [start_pos, end_pos]
   end
 
-  def checked_mate?
-    # any opposite piece can attack king? AND
-    # king can move to any of its neighbouts?
+  def checkmated?
+    # # any opposite piece can attack king? AND
+    # # king can't move to any of its neighbouts?
+    king_position = board.get_king_position(active_color)
+    # king_area = [king_position, *king_neighbors(king_position)]
+    # king_area.all? do |king_area_cell|
+    opposite_cells = board.get_all_cells_have_color(active_color.opposite)
+    is_king_atackable = opposite_cells.any? do |opposite_cell|
+      opposite_piece = board.get_piece_at(opposite_cell)
+      opposite_piece.move_valid?(opposite_cell, king_position)
+    end 
+    is_king_not_movable = king_neighbors(king_position).all? do |king_neighbor|
+      board.same_color_at_cell?(king_neighbor, active_color) || opposite_cells.any? do |opposite_cell|
+        opposite_piece = board.get_piece_at(opposite_cell)
+        opposite_piece.move_valid?(opposite_cell, king_neighbor)
+      end
+    end
+    is_king_atackable && is_king_not_movable
+  end
+
+  def king_neighbors(pos)
+    pairs = [
+      [0,1],
+      [0,-1],
+      [-1,0],
+      [1,0],
+      [-1,-1],
+      [-1,1],
+      [1,-1],
+      [1,1]
+    ].freeze
+
+    pairs.map do |(row_step, col_step)|
+      pos.jump(row_step: row_step, col_step: col_step)
+    end.compact
+  end\
+
+  def any_opposite_piece_can_attack_king?
+    
   end
 
   def move_valid?(start_pos, end_pos)

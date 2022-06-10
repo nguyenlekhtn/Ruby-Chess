@@ -13,6 +13,7 @@ class Board
 
   def initialize(builder: default_builder, notation: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')
     @board = builder.whole(notation)
+    @piece_class = Piece
   end
 
   def default_builder
@@ -35,7 +36,7 @@ class Board
 
   def clear_piece_at(cell)
     row, col = cell.position
-    board[row][col] = Piece.for('', board)
+    board[row][col] = piece_class.for('', board)
   end
 
   def empty_at?(cell)
@@ -78,7 +79,6 @@ class Board
 
   def no_piece_in_diagonal_line_between_2_cells?(cell1, cell2)
     cells_in_between = cell1.cells_in_between_diagonal_line_from_cell(cell2)
-    p cells_in_between
     all_empty?(cells_in_between)
   end
 
@@ -101,4 +101,18 @@ class Board
       end
     end.flatten
   end
+
+  def get_king_position(color)
+    throw 'Invalid Color' unless [Color::BLACK, Color::WHITE].include? color
+
+    king = King.new(color, self)
+
+    all_cells.find do |cell|
+      get_piece_at(cell) == king
+    end
+  end
+
+  private
+
+  attr_reader :piece_class
 end

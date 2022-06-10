@@ -1,4 +1,6 @@
 class KingMoveValidator < Validator
+
+
   POSSIBLE_PAIRS = [
     [0,1],
     [0,-1],
@@ -9,6 +11,12 @@ class KingMoveValidator < Validator
     [1,-1],
     [1,1]
   ].freeze
+
+  def initialize(board)
+    super
+    @king_class = King
+  end
+
 
   def valid?(start_pos, end_pos)
     return false unless reacheable_cells(start_pos).include?(end_pos)
