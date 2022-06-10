@@ -59,24 +59,28 @@ class Game
     [start_pos, end_pos]
   end
 
-  def checkmated?
-    # # any opposite piece can attack king? AND
-    # # king can't move to any of its neighbouts?
-    king_position = board.get_king_position(active_color)
-    # king_area = [king_position, *king_neighbors(king_position)]
-    # king_area.all? do |king_area_cell|
-    opposite_cells = board.get_all_cells_have_color(active_color.opposite)
-    is_king_atackable = opposite_cells.any? do |opposite_cell|
+  def king_atackable?(king_position:, opposite_cells:)
+    opposite_cells.any? do |opposite_cell|
       opposite_piece = board.get_piece_at(opposite_cell)
       opposite_piece.move_valid?(opposite_cell, king_position)
-    end 
-    is_king_not_movable = king_neighbors(king_position).all? do |king_neighbor|
+    end
+  end
+
+  def king_not_movable?(king_position:, opposite_cells:)
+    king_neighbors(king_position).all? do |king_neighbor|
       board.same_color_at_cell?(king_neighbor, active_color) || opposite_cells.any? do |opposite_cell|
         opposite_piece = board.get_piece_at(opposite_cell)
         opposite_piece.move_valid?(opposite_cell, king_neighbor)
       end
     end
-    is_king_atackable && is_king_not_movable
+  end
+
+  def checkmated?
+    king_position = board.get_king_position(active_color)
+
+    opposite_cells = board.get_all_cells_have_color(active_color.opposite)
+
+    king_atackable?(king_position:, opposite_cells:) && king_not_movable?(king_position:, opposite_cells:)
   end
 
   def king_neighbors(pos)
