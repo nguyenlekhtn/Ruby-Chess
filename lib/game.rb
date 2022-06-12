@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Game
-  COLOR = %w[white black].freeze
-
   attr_reader :active_color, :board
 
   def initialize(**opts)
@@ -15,10 +13,28 @@ class Game
   # end
 
   def play
+    # until checkmated? || staledmate? || draw_declared?
     loop do
-      player_turn
+      # player_turn
+      puts "#{active_color}'s turn"
+      puts board
+      result = end_game_condition
+      if result
+        puts result
+        break
+      end
+      start_pos, end_pos = move_from_player
+      move_piece(start_pos, end_pos)
       switch_active_color
     end
+  end
+
+  def end_game_condition
+    if checkmated?
+      return "Checkmate. Player #{active_color} won"
+    end
+
+    nil
   end
 
   def player_turn
@@ -132,10 +148,6 @@ class Game
   end
 
   def switch_active_color
-    @active_color = if active_color == COLOR.first
-                      COLOR.last
-                    else
-                      COLOR.first
-                    end
+    @active_color = @active_color.opposite
   end
 end
