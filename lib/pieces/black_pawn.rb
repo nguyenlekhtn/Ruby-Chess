@@ -5,8 +5,8 @@ class BlackPawn < Piece
     super('pawn', Color::BLACK, board)
   end
 
-  def to_s
-    '♟'
+  def symbol
+    '♙'
   end
 
   def validators_class

@@ -5,7 +5,7 @@ class BlankPiece < Piece
     super('', Color::BLANK, board)
   end
 
-  def to_s
+  def symbol
     ' '
   end
 

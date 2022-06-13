@@ -30,11 +30,11 @@ class Piece
     other.class == self.class && other.name == @name && other.color == @color
   end
 
-  def to_s
-    throw 'Need to implement this'
+  def validators_class
+    throw NotImplementedError
   end
 
-  def validators_class
+  def symbol
     throw NotImplementedError
   end
 
@@ -44,5 +44,13 @@ class Piece
 
   def validators
     validators_class.map { |it| it.new(board) }
+  end
+
+  def to_s
+    if color == Color::BLACK
+      symbol.black
+    else
+      symbol.white
+    end
   end
 end

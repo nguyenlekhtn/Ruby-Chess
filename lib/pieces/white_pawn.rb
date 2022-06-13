@@ -5,7 +5,7 @@ class WhitePawn < Piece
     super('pawn', Color::WHITE, board)
   end
 
-  def to_s
+  def symbol
     '♙'
   end
 

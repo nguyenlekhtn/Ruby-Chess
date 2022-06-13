@@ -5,12 +5,8 @@ class Queen < Piece
     super('queen', color, board)
   end
 
-  def to_s
-    if color == Color::BLACK
-      '♛'
-    else
-      '♕'
-    end
+  def symbol
+    '♛'
   end
 
   def validators_class
