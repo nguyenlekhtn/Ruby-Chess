@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class Game
-  attr_reader :active_color, :board
+  attr_reader :active_color, :board, :checkmate_checker
 
   def initialize(**opts)
     @board = opts[:board] || Board.new
     @active_color = opts[:color] || Color::WHITE
+    @checkmate_checker = CheckmateChecker.new(board)
   end
 
   # def legal_move?(piece, start, goal)
@@ -75,46 +76,9 @@ class Game
     [start_pos, end_pos]
   end
 
-  def king_atackable?(king_position:, opposite_cells:)
-    opposite_cells.any? do |opposite_cell|
-      opposite_piece = board.get_piece_at(opposite_cell)
-      opposite_piece.move_valid?(opposite_cell, king_position)
-    end
-  end
-
-  def king_not_movable?(king_position:, opposite_cells:)
-    king_neighbors(king_position).all? do |king_neighbor|
-      board.same_color_at_cell?(king_neighbor, active_color) || opposite_cells.any? do |opposite_cell|
-        opposite_piece = board.get_piece_at(opposite_cell)
-        opposite_piece.move_valid?(opposite_cell, king_neighbor)
-      end
-    end
-  end
-
   def checkmated?
-    king_position = board.get_king_position(active_color)
-
-    opposite_cells = board.get_all_cells_have_color(active_color.opposite)
-
-    king_atackable?(king_position:, opposite_cells:) && king_not_movable?(king_position:, opposite_cells:)
+    checkmate_checker.checkmated?(active_color)
   end
-
-  def king_neighbors(pos)
-    pairs = [
-      [0,1],
-      [0,-1],
-      [-1,0],
-      [1,0],
-      [-1,-1],
-      [-1,1],
-      [1,-1],
-      [1,1]
-    ].freeze
-
-    pairs.map do |(row_step, col_step)|
-      pos.jump(row_step: row_step, col_step: col_step)
-    end.compact
-  end\
 
   def any_opposite_piece_can_attack_king?
     
