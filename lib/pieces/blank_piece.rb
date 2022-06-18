@@ -9,6 +9,10 @@ class BlankPiece < Piece
     ' '
   end
 
+  def to_s
+    symbol
+  end
+
   def validators_class
     []
   end

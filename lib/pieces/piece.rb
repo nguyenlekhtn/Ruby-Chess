@@ -34,10 +34,6 @@ class Piece
     throw NotImplementedError
   end
 
-  def symbol
-    throw NotImplementedError
-  end
-
   def move_valid?(start_pos, end_pos)
     validators.any? { |validator| validator.valid?(start_pos, end_pos) }
   end
@@ -47,10 +43,13 @@ class Piece
   end
 
   def to_s
-    if color == Color::BLACK
+    case color
+    when Color::BLACK
       symbol.black
-    else
+    when Color::WHITE
       symbol.white
-    end
+    else
+      symbol
+    end.on_light_cyan
   end
 end

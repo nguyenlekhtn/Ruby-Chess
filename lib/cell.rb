@@ -11,6 +11,14 @@ class Cell
     new(row, col)
   end
 
+  def self.row_to_notation(row)
+    (row + 1).to_s
+  end
+
+  def self.col_to_notation(col)
+    [*('A'..'H')][col]
+  end
+
   attr_reader :row, :col
 
   def self.notation_to_position(notation)
@@ -88,8 +96,8 @@ class Cell
   end
 
   def to_notation
-    first_char = [*('A'..'H')][col]
-    second_char = (row + 1).to_s
+    first_char = Cell.col_to_notation(col)
+    second_char = Cell.row_to_notation(row)
     first_char + second_char
   end
 

@@ -5,7 +5,7 @@ class Board
     new(notation: notation)
   end
 
-  attr_reader :board
+  attr_reader :board, :display
 
   # def initialize(board = default_builder.whole('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'))
   #   @board = board
@@ -14,6 +14,7 @@ class Board
   def initialize(builder: default_builder, notation: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')
     @board = builder.whole(notation)
     @piece_class = Piece
+    @display = BoardDisplay.new(self)
   end
 
   def default_builder
@@ -48,14 +49,7 @@ class Board
   # end
 
   def to_s
-    top_bottom_notation = ('A'..'H').to_a.join('   ')
-    top_bottom_border = "  #{top_bottom_notation}"
-    between_top_bottom = board.reverse.map.with_index do |row, index|
-      side_notation = (8 - index).to_s
-      cells_inside = row.map(&:to_s).join(' | ')
-      "#{side_notation} #{cells_inside} #{side_notation}"
-    end.join("\n")
-    "#{top_bottom_border}\n#{between_top_bottom}\n#{top_bottom_border}"
+    display.box
   end
 
   def same_color_between_two_positions?(cell_one, cell_two)

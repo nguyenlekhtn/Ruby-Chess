@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'colorize'
 
 require_relative 'color'
 require_relative 'reversable_range'
@@ -12,6 +13,7 @@ require_relative 'pieces/white_pawn'
 require_relative 'pieces/knight'
 require_relative 'pieces/blank_piece'
 require_relative 'board'
+require_relative 'board_display'
 require_relative 'board_builder'
 require_relative 'cell'
 require_relative 'game'

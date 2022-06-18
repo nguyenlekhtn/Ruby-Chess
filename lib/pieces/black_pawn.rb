@@ -6,8 +6,12 @@ class BlackPawn < Piece
   end
 
   def symbol
-    '♙'
+    '♟'
   end
+
+  # def to_s
+  #   '♟'
+  # end
 
   def validators_class
     [BlackPawnCaptureMoveValidator, BlackPawnPeaceMoveValidator]
