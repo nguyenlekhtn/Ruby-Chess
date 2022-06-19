@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Board
-  def self.for(notation)
-    new(notation: notation)
+  def self.for(notation = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR', builder = BoardBuilder.new)
+    new(builder.build(notation))
   end
 
   attr_reader :board, :display
@@ -11,14 +11,14 @@ class Board
   #   @board = board
   # end
 
-  def initialize(builder: default_builder, notation: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')
-    @board = builder.whole(notation)
+  def initialize(board)
+    @board = board
     @piece_class = Piece
     @display = BoardDisplay.new(self)
   end
 
   def default_builder
-    BoardBuilder.new(self)
+    BoardBuilder.new
   end
 
   def get_piece_at(cell)
@@ -30,6 +30,10 @@ class Board
     get_piece_at(cell).color
   end
 
+  def get_piece_name_at(cell)
+    get_piece_at(cell).name
+  end
+
   def set_piece_at(cell, piece)
     row, col = cell.position
     board[row][col] = piece
@@ -37,7 +41,7 @@ class Board
 
   def clear_piece_at(cell)
     row, col = cell.position
-    board[row][col] = piece_class.for('', board)
+    board[row][col] = piece_class.for('')
   end
 
   def empty_at?(cell)
@@ -98,11 +102,8 @@ class Board
 
   def get_king_position(color)
     throw 'Invalid Color' unless [Color::BLACK, Color::WHITE].include? color
-
-    king = King.new(color, self)
-
     all_cells.find do |cell|
-      get_piece_at(cell) == king
+      get_color_at(cell) == color && get_piece_name_at(cell) == 'king'
     end
   end
 

@@ -4,13 +4,13 @@ require_relative '../lib/library'
 
 describe Board do
   describe '#get_piece_at' do
-    subject(:board) { described_class.new }
+    subject(:board) { described_class.for }
 
     context 'when the cell has a White Rock there' do
       it 'returns the White Rock' do
         result = board.get_piece_at(Cell.for('A1'))
 
-        expect(result).to eq(Piece.for('R', board))
+        expect(result).to eq(Piece.for('R'))
       end
     end
 
@@ -18,7 +18,7 @@ describe Board do
       it 'returns the White Pawn' do
         result = board.get_piece_at(Cell.for('C2'))
 
-        expect(result).to eq(Piece.for('P', board))
+        expect(result).to eq(Piece.for('P'))
       end
     end
 
@@ -27,18 +27,18 @@ describe Board do
         cell = Cell.for('D3')
         result = board.get_piece_at(cell)
 
-        expect(result).to eq(Piece.for('', board))
+        expect(result).to eq(Piece.for(''))
       end
     end
   end
 
   describe '#set_piece_at' do
-    subject(:board) { described_class.new }
+    subject(:board) { described_class.for }
 
     context 'when set the piece White Rook at a3' do
       it 'has the white rook at A3' do
         cell = Cell.for('A3')
-        white_rook = Piece.for('R', board)
+        white_rook = Piece.for('R')
         board.set_piece_at(cell, white_rook)
 
         result = board.get_piece_at(cell)
@@ -48,7 +48,7 @@ describe Board do
   end
 
   describe '#clear_piece_at' do
-    subject(:board) { described_class.new }
+    subject(:board) { described_class.for }
 
     context 'when delete the cell a3' do
       it 'the cell contains blank piece after' do
@@ -56,14 +56,14 @@ describe Board do
         board.clear_piece_at(cell)
 
         board.clear_piece_at(cell)
-        expected = Piece.for('', board)
+        expected = Piece.for('')
         expect(board.get_piece_at(cell)).to eq(expected)
       end
     end
   end
 
   describe '#empty_at?' do
-    subject(:board) { described_class.new }
+    subject(:board) { described_class.for }
 
     context 'when there is a piece at the selected cell' do
       it 'returns false' do
@@ -83,7 +83,7 @@ describe Board do
   end
 
   # describe '#indexToRowNotation' do
-  #   subject(:board) { described_class.new }
+  #   subject(:board) { described_class.for }
   #   context 'when index is 0' do
   #     it 'returns A' do
   #       result = board.indexToRowNotation(0)
@@ -107,7 +107,7 @@ describe Board do
   # end
 
   describe '#same_color_between_two_positions?' do
-    subject(:board_color) { described_class.new }
+    subject(:board_color) { described_class.for }
     context 'when two cells have same color' do
       it 'returns true' do
         result = board_color.same_color_between_two_positions?(Cell.for('A1'), Cell.for('B1'))

@@ -20,4 +20,8 @@ class BoardBuilder
   def whole(string)
     string.split('/').map { |row_string| row(row_string) }.reverse
   end
+
+  def build(string)
+    whole(string)
+  end
 end
