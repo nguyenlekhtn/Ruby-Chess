@@ -62,5 +62,23 @@ describe Game do
         expect(result).to be false
       end
     end
+
+    context 'when the end positon has a piece with same color' do
+      subject(:game) { described_class.new(board: Board.for('8/8/8/3N4/8/8/3R4/8')) }
+
+      it 'should be an invalid move' do
+        result = game.move_valid?(Cell.for('D2'), Cell.for('D5'))
+        expect(result).to be false
+      end
+    end
+
+    context 'when the end positon has a piece with same color with start position' do
+      subject(:game) { described_class.new(board: Board.for('8/8/8/3N4/8/8/3R4/8')) }
+
+      it 'should be an invalid move' do
+        result = game.move_valid?(Cell.for('D2'), Cell.for('D5'))
+        expect(result).to be false
+      end
+    end
   end
 end

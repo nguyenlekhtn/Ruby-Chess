@@ -37,13 +37,16 @@ class KingMoveValidator < Validator
   end
 
   def valid_move?(start_pos, end_pos)
-    piece = board.get_piece_at(start_pos)
-    piece.move_valid?(start_pos, end_pos)
+    piece_move_validator.valid?(start_pos, end_pos)
   end
 
   def reacheable_cells(pos)
     POSSIBLE_PAIRS.map do |(row_step, col_step)|
       pos.jump(row_step: row_step, col_step: col_step)
     end.compact
+  end
+
+  def piece_move_validator
+    PieceTypeMoveValidator.new(board)
   end
 end

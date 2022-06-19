@@ -33,15 +33,7 @@ class Piece
   def validators_class
     throw NotImplementedError
   end
-
-  def move_valid?(start_pos, end_pos)
-    validators.any? { |validator| validator.valid?(start_pos, end_pos) }
-  end
-
-  def validators
-    validators_class.map { |it| it.new(board) }
-  end
-
+  
   def to_s
     case color
     when Color::BLACK

@@ -13,10 +13,13 @@ class CheckmateChecker
     king_in_check?(king_position:, opposite_cells:) && king_not_movable?(king_position:, opposite_cells:)
   end
 
+  def piece_move_validator
+    PieceTypeMoveValidator.new(board)
+  end
+
   def king_in_check?(king_position:, opposite_cells:)
     opposite_cells.any? do |opposite_cell|
-      opposite_piece = board.get_piece_at(opposite_cell)
-      opposite_piece.move_valid?(opposite_cell, king_position)
+      piece_move_validator.valid?(opposite_cell, king_position)
     end
   end
 
@@ -24,8 +27,7 @@ class CheckmateChecker
     active_color = board.get_color_at(king_position)
     king_neighbors(king_position).all? do |king_neighbor|
       board.same_color_at_cell?(king_neighbor, active_color) || opposite_cells.any? do |opposite_cell|
-        opposite_piece = board.get_piece_at(opposite_cell)
-        opposite_piece.move_valid?(opposite_cell, king_neighbor)
+        piece_move_validator.valid?(opposite_cell, king_neighbor)
       end
     end
   end

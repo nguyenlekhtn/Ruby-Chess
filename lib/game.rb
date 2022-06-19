@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class Game
-  attr_reader :active_color, :board, :checkmate_checker
+  attr_reader :active_color, :board, :checkmate_checker, :piece_move_validator
 
   def initialize(**opts)
     @board = opts[:board] || Board.new
     @active_color = opts[:color] || Color::WHITE
     @checkmate_checker = CheckmateChecker.new(board)
+    @piece_move_validator = PieceTypeMoveValidator.new(board)
   end
 
   # def legal_move?(piece, start, goal)
@@ -87,11 +88,9 @@ class Game
   def move_valid?(start_pos, end_pos)
     piece = board.get_piece_at(start_pos)
 
-    return false if board.same_color_at_cell?(end_pos, active_color)
-
     return false if board.same_color_between_two_positions?(start_pos, end_pos)
 
-    piece.move_valid?(start_pos, end_pos)
+    piece_move_validator.valid?(start_pos, end_pos)
   end
 
   def player_input
