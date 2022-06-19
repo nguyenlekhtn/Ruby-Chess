@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class WhitePawn < Piece
-  def initialize(board)
-    super('pawn', Color::WHITE, board)
+  def initialize
+    super('pawn', Color::WHITE)
   end
 
   def symbol

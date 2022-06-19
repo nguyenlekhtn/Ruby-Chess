@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class BlankPiece < Piece
-  def initialize(board)
-    super('', Color::BLANK, board)
+  def initialize
+    super('', Color::BLANK)
   end
 
   def symbol

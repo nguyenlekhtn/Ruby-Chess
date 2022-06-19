@@ -1,29 +1,28 @@
 # frozen_string_literal: true
 
 class Piece
-  def self.for(notation, board)
-    Hash.new(BlankPiece.new(board)).merge(
-      'r' => Rook.new(Color::BLACK, board),
-      'b' => Bishop.new(Color::BLACK, board),
-      'n' => Knight.new(Color::BLACK, board),
-      'q' => Queen.new(Color::BLACK, board),
-      'k' => King.new(Color::BLACK, board),
-      'p' => BlackPawn.new(board),
-      'R' => Rook.new(Color::WHITE, board),
-      'B' => Bishop.new(Color::WHITE, board),
-      'N' => Knight.new(Color::WHITE, board),
-      'Q' => Queen.new(Color::WHITE, board),
-      'K' => King.new(Color::WHITE, board),
-      'P' => WhitePawn.new(board)
+  def self.for(notation)
+    Hash.new(BlankPiece.new).merge(
+      'r' => Rook.new(Color::BLACK),
+      'b' => Bishop.new(Color::BLACK),
+      'n' => Knight.new(Color::BLACK),
+      'q' => Queen.new(Color::BLACK),
+      'k' => King.new(Color::BLACK),
+      'p' => BlackPawn.new,
+      'R' => Rook.new(Color::WHITE),
+      'B' => Bishop.new(Color::WHITE),
+      'N' => Knight.new(Color::WHITE),
+      'Q' => Queen.new(Color::WHITE),
+      'K' => King.new(Color::WHITE),
+      'P' => WhitePawn.new
     )[notation]
   end
 
-  attr_reader :name, :color, :board
+  attr_reader :name, :color
 
-  def initialize(name, color, board)
+  def initialize(name, color)
     @name = name
     @color = color
-    @board = board
   end
 
   def ==(other)
@@ -33,7 +32,7 @@ class Piece
   def validators_class
     throw NotImplementedError
   end
-  
+
   def to_s
     case color
     when Color::BLACK
