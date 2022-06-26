@@ -24,4 +24,21 @@ class Bishop < Piece
   def validators_class
     [DiagonalValidator]
   end
+
+  def possible_neighbors
+    pairs = [
+      [0,1],
+      [0,-1],
+      [-1,0],
+      [1,0],
+      [-1,-1],
+      [-1,1],
+      [1,-1],
+      [1,1]
+    ].freeze
+
+    pairs.map do |(row_step, col_step)|
+      pos.jump(row_step: row_step, col_step: col_step)
+    end.compact
+  end
 end
