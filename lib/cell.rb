@@ -37,7 +37,11 @@ class Cell
     [row, col]
   end
 
-  def ==(other)
+  def hash
+    [row, col].hash
+  end
+
+  def eql?(other)
     other.class == self.class && other.row == @row && other.col == @col
   end
 
@@ -104,4 +108,6 @@ class Cell
   def to_s
     to_notation
   end
+
+  alias_method :==, :eql?
 end
