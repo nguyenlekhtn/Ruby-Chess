@@ -2,7 +2,7 @@ require_relative '../../lib/library'
 require_relative '../validator_interface_spec'
 
 describe HorizontalValidator do
-  let(:board) { Board.new }
+  let(:board) { instance_double(Board) }
   subject(:validator) { described_class.new(board) }
 
   context 'when HorizontalValidator is a child of Validator' do
@@ -13,22 +13,19 @@ describe HorizontalValidator do
     let(:cell1) { instance_double(Cell) }
     let(:cell2) { instance_double(Cell) }
 
-    context 'when 2 cells are not in the same horizontal line' do
-      it 'returns false' do
-        allow(cell1).to receive(:same_horizontal_line_with_cell?).and_return(false)
+    # context 'when 2 cells are not in the same horizontal line' do
+    #   let(:cell1) { Cell.new(2, 2) }
+    #   let(:cell2) { Cell.new(3, 2) }
 
-        result = validator.valid?(cell1, cell2)
-        expect(result).to be false
-      end
-    end
+    #   it 'returns false' do
+    #     result = validator.valid?(cell1, cell2)
+    #     expect(result).to be false
+    #   end
+    # end
 
     context 'when 2 cells are in the same horizontal line' do
-      let(:cell_a) { instance_double(Cell, row: 1, col: 2) }
-      let(:cell_b) { instance_double(Cell, row: 1, col: 7) }
-
-      before do
-        allow(cell_a).to receive(:same_horizontal_line_with_cell?).with(cell_b).and_return(true)
-      end
+      let(:cell_a) { Cell.new(2, 8) }
+      let(:cell_b) { Cell.new(2, 6) }
 
       it 'returns true if no piece is in between' do
         allow(board).to receive(:no_piece_in_horizontal_line_between_2_cells?)

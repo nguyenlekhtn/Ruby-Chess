@@ -1,10 +1,11 @@
 require_relative '../moving_in_directions.rb'
 
-class DiagonalLineGenerator
-  include MovingInDirection
+class DiagonalLineGenerator < LineGenerator
+  def directions
+    [[1, 1], [1, -1], [-1, 1], [-1, -1]]
+  end
 
-  def cells(origin)
-    directions = [[1, 1], [1, -1], [-1, 1], [-1, -1]]
-    directions.map { |(row_step, col_step)| cells_from_moving_in_one_direction(origin:, row_step:, col_step:)}.flatten
+  def no_piece_between_2_cells?(start_pos, end_pos)
+    board.no_piece_in_diagonal_line_between_2_cells?(start_pos, end_pos)
   end
 end
