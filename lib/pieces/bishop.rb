@@ -41,4 +41,8 @@ class Bishop < Piece
       pos.jump(row_step: row_step, col_step: col_step)
     end.compact
   end
+
+  def neighbor_generator
+    DiagonalLineGenerator.new(board:)
+  end
 end

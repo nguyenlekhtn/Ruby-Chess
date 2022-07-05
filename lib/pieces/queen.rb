@@ -24,4 +24,8 @@ class Queen < Piece
   def validators_class
     [VerticalValidator, HorizontalValidator, DiagonalValidator]
   end
+
+  def neighbor_generator
+    ComposedGenerator.new(VerticalLineGenerator.new(board:), HorizontalLineGenerator.new(board:), VerticalLineGenerator.new(board:))
+  end
 end

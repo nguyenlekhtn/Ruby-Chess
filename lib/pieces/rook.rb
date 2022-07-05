@@ -24,4 +24,8 @@ class Rook < Piece
   def validators_class
     [HorizontalValidator, VerticalValidator]
   end
+
+  def neighbor_generator
+    ComposedGenerator.new(HorizontalLineGenerator.new(board:), VerticalLineGenerator.new(board:))
+  end
 end
