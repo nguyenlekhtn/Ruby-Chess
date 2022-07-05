@@ -1,9 +1,12 @@
 require_relative '../../lib/library'
+require_relative '../generator_interface_spec'
 
 describe DiagonalLineGenerator do
   subject(:generator) { described_class.new }
 
   describe '#cells' do
+    include_examples 'implement the generator interface'
+
     it 'should return all cells same diagonal lines with given cell' do
       result = generator.cells(Cell.new(2, 3))
       expected = [

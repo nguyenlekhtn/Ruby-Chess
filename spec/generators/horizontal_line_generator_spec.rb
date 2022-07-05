@@ -1,9 +1,17 @@
 require_relative '../../lib/library'
+require_relative '../generator_interface_spec'
 
 describe HorizontalLineGenerator do
-  subject(:generator) { described_class.new(board: board) }
+
+
+  context 'when the subject acts as a generator' do
+    subject(:generator) { described_class.new(board:) }
+    let(:board) { Board.for }
+    include_examples 'implement the generator interface'
+  end
 
   describe '#cells' do
+    subject(:generator) { described_class.new(board: board) }
     let(:board) { Board.for('8/8/8/8/8/N5N1/8/8') }
 
     it 'should return all cells same diagonal lines with given cell, that has no pieces in between' do
