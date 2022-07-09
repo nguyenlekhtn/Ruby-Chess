@@ -25,7 +25,8 @@ class Knight < Piece
     [KnightMoveValidator]
   end
 
-  def neighbor_generator(board)
+  def neighbor_generator(ops)
+    ops => { board: }
     KnightMoveGenerator.new(board:)
   end
 end

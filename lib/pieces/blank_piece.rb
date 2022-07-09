@@ -17,7 +17,7 @@ class BlankPiece < Piece
     []
   end
 
-  def neighbor_generator(_board)
+  def neighbor_generator(_ops)
     BlankGenerator.new
   end
 end

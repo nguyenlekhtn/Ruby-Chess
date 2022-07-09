@@ -25,7 +25,8 @@ class Queen < Piece
     [VerticalValidator, HorizontalValidator, DiagonalValidator]
   end
 
-  def neighbor_generator
+  def neighbor_generator(ops)
+    ops => { board: }
     ComposedGenerator.new(VerticalLineGenerator.new(board:), HorizontalLineGenerator.new(board:), VerticalLineGenerator.new(board:))
   end
 end
