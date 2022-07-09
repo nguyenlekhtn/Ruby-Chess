@@ -42,7 +42,7 @@ class Bishop < Piece
     end.compact
   end
 
-  def neighbor_generator
+  def neighbor_generator(board)
     DiagonalLineGenerator.new(board:)
   end
 end

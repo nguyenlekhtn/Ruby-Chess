@@ -24,4 +24,8 @@ class Knight < Piece
   def validators_class
     [KnightMoveValidator]
   end
+
+  def neighbor_generator(board)
+    KnightMoveGenerator.new(board:)
+  end
 end

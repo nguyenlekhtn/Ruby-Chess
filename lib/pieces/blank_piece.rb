@@ -16,4 +16,8 @@ class BlankPiece < Piece
   def validators_class
     []
   end
+
+  def neighbor_generator(_board)
+    BlankGenerator.new
+  end
 end

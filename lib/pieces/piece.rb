@@ -43,4 +43,8 @@ class Piece
       symbol
     end.on_light_cyan
   end
+
+  def neighbor_generator
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+  end
 end

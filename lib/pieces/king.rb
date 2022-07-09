@@ -41,4 +41,8 @@ class King < Piece
       pos.jump(row_step: row_step, col_step: col_step)
     end.compact
   end
+
+  def reachable_cells(origin)
+    
+  end
 end
