@@ -42,7 +42,7 @@ class King < Piece
     end.compact
   end
 
-  def reachable_cells(origin)
-    
+  def neighbor_generator(ops)
+    ops => { board: }
   end
 end
