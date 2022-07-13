@@ -47,4 +47,9 @@ class Piece
   def neighbor_generator
     raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
+
+  def neighbors
+    neighbor_generator.cells
+  end
+  
 end
