@@ -1,7 +1,7 @@
 require_relative '../lib/library'
 
 describe Navigator do
-  describe '#cells' do
+  describe '#neighbors_of_a_piece' do
     subject(:navigator) { Navigator.new(board:) }
 
     context 'given C51 Evans Gambit board' do
@@ -18,7 +18,7 @@ describe Navigator do
           Cell.for('B6'),
           Cell.for('B4'),
         ]
-        result = navigator.cells(Cell.for('C5'))
+        result = navigator.neighbors_of_a_piece(Cell.for('C5'))
         expect(result).to match_array expected
       end
     end
