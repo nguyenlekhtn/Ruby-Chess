@@ -4,7 +4,7 @@ class BoardDisplay
   
 
   def initialize(board_obj)
-    @board = board_obj.board
+    @board = board_obj.gridboard
     @notation_convertor = Cell
   end
 

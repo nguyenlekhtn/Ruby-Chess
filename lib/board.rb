@@ -5,16 +5,20 @@ class Board
     new(builder.build(notation))
   end
 
-  attr_reader :board, :display
+  attr_reader :grid, :display
 
   # def initialize(board = default_builder.whole('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'))
   #   @board = board
   # end
 
-  def initialize(board)
-    @board = board
+  def initialize(grid)
+    @grid = grid
     @piece_class = Piece
     @display = BoardDisplay.new(self)
+  end
+
+  def board
+    grid
   end
 
   def default_builder

@@ -4,7 +4,7 @@ class Game
   attr_reader :active_color, :board, :checkmate_checker, :piece_move_validator
 
   def initialize(**opts)
-    @board = opts[:board] || Board.new
+    @board = opts[:board] || Board.for
     @active_color = opts[:color] || Color::WHITE
     @checkmate_checker = CheckmateChecker.new(board)
     @piece_move_validator = PieceTypeMoveValidator.new(board)
