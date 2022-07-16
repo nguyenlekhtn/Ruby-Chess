@@ -2,7 +2,8 @@ require_relative '../../lib/library'
 require_relative '../generator_interface_spec'
 
 describe DiagonalLineGenerator do
-  subject(:generator) { described_class.new(board:) }
+  subject(:generator) { described_class.new(game) }
+  let(:game) { Game.new(board:) }
 
   describe '#cells' do
     context 'when the subject acts as a generator' do

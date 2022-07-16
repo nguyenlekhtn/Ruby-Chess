@@ -1,8 +1,8 @@
 class Generator
   attr_reader :board
 
-  def initialize(board:)
-    @board = board
+  def initialize(game)
+    @board = game.board
   end
 
   def cells(origin)
