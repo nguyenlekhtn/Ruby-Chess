@@ -32,9 +32,9 @@ describe KingMoveGenerator  do
     end
 
     context 'if there are oppsite pieces can attack one of its neighbors' do
-      let(:board) { Board.for('8/6b1/8/8/3K4/8/8/8') }
+      let(:board) { Board.for('6b1/8/8/8/3K4/8/8/8') }
 
-      xit 'can not move to that cell' do
+      it 'can not move to that cell' do
         expected = [
           Cell.for('C3'),
           Cell.for('C5'),
