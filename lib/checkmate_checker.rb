@@ -8,7 +8,7 @@ class CheckmateChecker
   def checkmated?(active_color)
     king_position = board.get_king_position(active_color)
 
-    opposite_cells = board.get_all_cells_have_color(active_color.opposite)
+    opposite_cells = board.all_cells_have_color(active_color.opposite)
 
     king_in_check?(king_position:, opposite_cells:) && king_not_movable?(king_position:, opposite_cells:)
   end

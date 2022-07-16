@@ -92,7 +92,7 @@ class Board
     get_piece_at(cell).color == color
   end
 
-  def get_all_cells_have_color(color)
+  def all_cells_have_color(color)
     all_cells.filter { |cell| get_color_at(cell) == color }
   end
 
@@ -110,6 +110,7 @@ class Board
       get_color_at(cell) == color && get_piece_name_at(cell) == 'king'
     end
   end
+
 
   private
 

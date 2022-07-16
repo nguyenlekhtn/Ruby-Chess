@@ -29,7 +29,7 @@ class KingMoveValidator < Validator
     king_color = board.get_color_at(king_pos)
     opposite_color = king_color.opposite
 
-    opposite_cells = board.get_all_cells_have_color(opposite_color)
+    opposite_cells = board.all_cells_have_color(opposite_color)
     opposite_cells.any? do |opposite_cell|
       valid_move?(opposite_cell, end_pos)
     end
