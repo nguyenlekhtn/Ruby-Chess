@@ -1,12 +1,12 @@
 class Navigator
   attr_reader :board
 
-  def initialize(game:)
-    @game = game
+  def initialize(game)
+    @board = game.board
   end
 
-  def cells_from_a_piece(origin)
+  def neighbors_of_a_piece(origin)
     piece = board.get_piece_at(origin)
-    piece.neighbors.reject { |neighbor| board.same_color_between_two_positions?(origin, neighbor) }
+    piece.neighbors(game:, origin:).reject { |neighbor| board.same_color_between_two_positions?(origin, neighbor) }
   end
 end
