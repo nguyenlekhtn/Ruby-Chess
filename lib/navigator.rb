@@ -1,7 +1,8 @@
 class Navigator
-  attr_reader :board
+  attr_reader :board, :game
 
   def initialize(game)
+    @game = game
     @board = game.board
   end
 
