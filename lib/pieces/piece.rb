@@ -49,7 +49,7 @@ class Piece
   end
 
   def neighbors(game:, origin:)
-    neighbor_generator(game.board).cells(origin)
+    neighbor_generator(game).cells(origin)
   end
   
 end
