@@ -43,5 +43,6 @@ class King < Piece
   end
 
   def neighbor_generator(game)
+    KingMoveGenerator.new(game)
   end
 end
