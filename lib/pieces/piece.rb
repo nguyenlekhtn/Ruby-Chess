@@ -44,12 +44,12 @@ class Piece
     end.on_light_cyan
   end
 
-  def neighbor_generator
+  def neighbor_generator(_game)
     raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
 
-  def neighbors
-    neighbor_generator.cells
+  def neighbors(game:, origin:)
+    neighbor_generator(game.board).cells(origin)
   end
   
 end

@@ -42,7 +42,5 @@ class King < Piece
     end.compact
   end
 
-  def neighbor_generator(ops)
-    ops => { board: }
-  end
+  subject(:generator) { described_class.new(game) }  end
 end

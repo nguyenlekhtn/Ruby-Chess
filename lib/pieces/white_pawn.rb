@@ -17,8 +17,7 @@ class WhitePawn < Piece
     [WhitePawnCaptureMoveValidator, WhitePawnPeaceMoveValidator]
   end
 
-  def neighbor_generator(ops)
-    ops => { board: }
-    ComposedGenerator.new([WhitePawnCaptureMoveGenerator.new(board:), WhitePawnPeaceMoveGenerator.new(board:)])
+  def neighbor_generator(game)
+    ComposedGenerator.new([WhitePawnCaptureMoveGenerator.new(game), WhitePawnPeaceMoveGenerator.new(game)])
   end
 end
