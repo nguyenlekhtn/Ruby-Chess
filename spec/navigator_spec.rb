@@ -1,8 +1,9 @@
 require_relative '../lib/library'
 
-describe Navigator do
+describe Navigator do\
+  subject(:navigator) { Navigator.new(game) }
+
   describe '#neighbors_of_a_piece' do
-    subject(:navigator) { Navigator.new(game) }
     let(:game) { Game.new(board:) }
 
     context 'given C51 Evans Gambit board' do
@@ -20,6 +21,32 @@ describe Navigator do
           Cell.for('B4'),
         ]
         result = navigator.neighbors_of_a_piece(Cell.for('C5'))
+        expect(result).to match_array expected
+      end
+    end
+  end
+
+  describe '#legal_moves_of_a_player' do
+    let(:game) { Game.new(board:) }
+
+
+    context 'given a simple board with white only has only king and bishop' do
+      let(:board) { Board.for('K7/8/8/8/3p4/8/5B2/7k') }
+
+      it 'should return all legal moves by white player' do
+        expected = [
+          Cell.for('D4'),
+          Cell.for('E3'),
+          Cell.for('E1'),
+          Cell.for('G3'),
+          Cell.for('G1'),
+          Cell.for('H4'),
+          Cell.for('A7'),
+          Cell.for('B8'),
+          Cell.for('B7'),
+        ]
+
+        result = navigator.legal_moves_of_a_player(Color::WHITE)
         expect(result).to match_array expected
       end
     end
