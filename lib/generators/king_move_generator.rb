@@ -25,7 +25,7 @@ class KingMoveGenerator < Generator
   end
 
   def be_attackable_by_opposite_player_at_position?(color:, position:)
-    navigator.legal_moves_of_a_player(color.opposite).include?(position)
+    navigator.theoretical_moves_of_a_player(color.opposite).include?(position)
   end
 end
 

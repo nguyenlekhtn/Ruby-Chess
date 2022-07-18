@@ -51,5 +51,8 @@ class Piece
   def neighbors(game:, origin:)
     neighbor_generator(game).cells(origin)
   end
-  
+
+  def theoretical_neighbors(game:, origin:)
+    neighbors(game:, origin:)
+  end
 end
