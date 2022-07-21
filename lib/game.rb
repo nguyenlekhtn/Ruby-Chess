@@ -46,6 +46,47 @@ class Game
     move_piece(start_pos, end_pos)
   end
 
+  def play
+    puts "#{active_color}'s turn"
+    puts board
+    
+    # move_piece(start_pos, end_pos)
+  end
+
+  def valid_start_position
+    loop do
+      puts 'Enter start position'
+      input = player_input
+      start_position = Cell.for(input)
+      unless start_position
+        puts "Wrong format"
+        next
+      end
+      unless board.same_color_at_cell?(start_position, active_color)
+        puts "Start position has no owner's pieces" 
+        next
+      end
+
+      legal_moves = Navigator.new(self).neighbors_of_a_piece(start_position)
+      unless legal_moves.length != 0
+        puts 'Piece at start position can\'t move to anywhere'
+        next
+      end
+
+      puts "Possible moves: #{legal_moves.map { |move| move.to_notation } }"
+      return start_position
+    end
+  end
+
+  def get_start_position(input = gets.chomp)
+    start_position = Cell.for(input)
+    unless start_position
+      puts "wrong format"
+      return nil
+    end
+  end
+
+
   def move_from_player
     loop do
       move = get_move
