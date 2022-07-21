@@ -55,37 +55,37 @@ class Game
 
   def valid_start_position
     loop do
-      puts 'Enter start position'
-      input = player_input
-      start_position = Cell.for(input)
-      unless start_position
-        puts "Wrong format"
-        next
-      end
-      unless board.same_color_at_cell?(start_position, active_color)
-        puts "Start position has no owner's pieces" 
-        next
-      end
+      valid_result = retrieve_start_position
 
-      legal_moves = Navigator.new(self).neighbors_of_a_piece(start_position)
-      unless legal_moves.length != 0
-        puts 'Piece at start position can\'t move to anywhere'
-        next
-      end
-
-      puts "Possible moves: #{legal_moves.map { |move| move.to_notation } }"
-      return start_position
+      return valid_result if valid_result
     end
   end
 
-  def get_start_position(input = gets.chomp)
-    start_position = Cell.for(input)
-    unless start_position
-      puts "wrong format"
-      return nil
-    end
+  private def position_from_input(input = gets.chomp)
+    position = Cell.for(input)
+
+    return positon if position
+
+    puts "Wrong format"
   end
 
+  private def position_if_piece_at_it_belongs_to_active_player(position)
+    return position if board.same_color_at_cell?(position, active_color)
+    
+    puts "Start position has no owner's pieces" 
+  end
+
+  private def start_position_if_player_piece_at_it_is_movable(start_position)
+    legal_moves = Navigator.new(self).neighbors_of_a_piece(start_position)
+    return start_position unless legal_moves.length == 0
+
+    'Piece at start position can\'t move to anywhere'
+  end
+
+  def retrieve_start_position
+    return position_from_input.then do { |position| check_if_owner_piece?(position) }
+                       &.then { |position| start_position_if_player_piece_at_it_is_movable(position) }
+  end
 
   def move_from_player
     loop do
