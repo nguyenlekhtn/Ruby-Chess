@@ -55,9 +55,10 @@ class Game
 
   def valid_start_position
     loop do
-      valid_result = retrieve_start_position
-
-      return valid_result if valid_result
+      puts 'Enter start position'
+      input = player_input
+      start_position = Cell.for(input)
+      return start_position if validate(start_position)
     end
   end
 
@@ -69,22 +70,23 @@ class Game
     puts "Wrong format"
   end
 
-  private def position_if_piece_at_it_belongs_to_active_player(position)
-    return position if board.same_color_at_cell?(position, active_color)
-    
-    puts "Start position has no owner's pieces" 
+  private def player_input
+    gets.chomp
   end
 
-  private def start_position_if_player_piece_at_it_is_movable(start_position)
-    legal_moves = Navigator.new(self).neighbors_of_a_piece(start_position)
-    return start_position unless legal_moves.length == 0
+  def validate_start_position(start_position)
+    if start_position.nil?
+      put "Wrong format"
+      return false
+    elsif board.same_color_at_cell?(start_position, active_color)
+      puts "Start position has no owner's piece"
+      return false
+    elsif Navigator.new(self).neighbors_of_a_piece(start_position).none?
+      puts 'Piece at start position can\'t move to anywhere'
+      return false
+    end
 
-    'Piece at start position can\'t move to anywhere'
-  end
-
-  def retrieve_start_position
-    return position_from_input.then do { |position| check_if_owner_piece?(position) }
-                       &.then { |position| start_position_if_player_piece_at_it_is_movable(position) }
+    true
   end
 
   def move_from_player
