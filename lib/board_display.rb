@@ -36,9 +36,9 @@ class BoardDisplay
   end
 
   def board_content
-    board.reverse.map.with_index do |board_row, row_index|
+    board.map.with_index do |board_row, row_index|
       row(board_row, row_index)
-    end.join("\n")
+    end.reverse.join("\n")
   end
 
   def col_notations

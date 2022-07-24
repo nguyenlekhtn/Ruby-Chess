@@ -12,7 +12,7 @@ class Cell
   end
 
   def self.row_to_notation(row)
-    (8 - row).to_s
+    (row + 1).to_s
   end
 
   def self.col_to_notation(col)
