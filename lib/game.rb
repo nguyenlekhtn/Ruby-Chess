@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Game
-  attr_reader :active_color, :board, :checkmate_checker, :piece_move_validator, :navigator
+  attr_reader :active_color, :board, :checkmate_checker, :navigator
 
   def initialize(**opts)
     @board = opts[:board] || Board.for
