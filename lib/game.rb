@@ -102,10 +102,6 @@ class Game
     checkmate_checker.checkmated?(active_color)
   end
 
-  def any_opposite_piece_can_attack_king?
-    
-  end
-
   def get_positions_from_input(input)
     format = /[A-H][1-8][A-H][1-8]/i
     return nil unless input.match(format)
