@@ -7,7 +7,6 @@ class Game
     @board = opts[:board] || Board.for
     @active_color = opts[:color] || Color::WHITE
     @checkmate_checker = CheckmateChecker.new(board)
-    @piece_move_validator = PieceTypeMoveValidator.new(board)
     @navigator = Navigator.new(self)
   end
 
