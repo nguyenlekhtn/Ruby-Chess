@@ -106,14 +106,6 @@ class Game
     
   end
 
-  def move_valid?(start_pos, end_pos)
-    piece = board.get_piece_at(start_pos)
-
-    return false if board.same_color_between_two_positions?(start_pos, end_pos)
-
-    piece_move_validator.valid?(start_pos, end_pos)
-  end
-
   def get_positions_from_input(input)
     format = /[A-H][1-8][A-H][1-8]/i
     return nil unless input.match(format)
