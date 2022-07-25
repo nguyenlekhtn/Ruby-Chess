@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class Game
-  attr_reader :active_color, :board, :checkmate_checker, :navigator
+  attr_reader :active_color, :board, :checkmate_checker, :navigator, :castling_avail
 
   def initialize(**opts)
     @board = opts[:board] || Board.for
     @active_color = opts[:color] || Color::WHITE
     @checkmate_checker = CheckmateChecker.new(board)
     @navigator = Navigator.new(self)
+    @castling_avail = opst[:castling_avail] || { Color::WHITE => { "king side": true, "queen side": true }, Color::BLACK => { "king side": true, "queen side": true }}
   end
 
   def end_game_condition
