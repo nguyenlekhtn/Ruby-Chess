@@ -11,27 +11,6 @@ class Game
     @navigator = Navigator.new(self)
   end
 
-  # def legal_move?(piece, start, goal)
-
-  # end
-
-  def play
-    # until checkmated? || staledmate? || draw_declared?
-    loop do
-      # player_turn
-      puts "#{active_color}'s turn"
-      puts board
-      result = end_game_condition
-      if result
-        puts result
-        break
-      end
-      start_pos, end_pos = move_from_player
-      move_piece(start_pos, end_pos)
-      switch_active_color
-    end
-  end
-
   def end_game_condition
     if checkmated?
       return "Checkmate. Player #{active_color} won"
@@ -57,7 +36,7 @@ class Game
       end_position = get_valid_end_position(start_position)
       puts start_position, end_position
       move_piece(start_position, end_position)
-      switch_active_color
+      sw
     end
   end
 
