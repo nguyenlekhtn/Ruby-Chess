@@ -35,7 +35,6 @@ class Game
       end_position = get_valid_end_position(start_position)
       puts start_position, end_position
       move_piece(start_position, end_position)
-      sw
     end
   end
 
