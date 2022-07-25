@@ -98,30 +98,6 @@ class Game
     end
   end
 
-  def get_move
-    puts 'Enter start and end position (A1D2)'
-    input = player_input
-    positions = get_positions_from_input(input)
-    if positions.nil?
-      puts 'Wrong input format'
-      return nil
-    end
-
-    start_pos, end_pos = positions
-    if board.empty_at?(start_pos) || board.get_piece_at(start_pos).color != active_color
-      puts "Start position has no owner's pieces"
-      return nil
-    end
-
-    unless move_valid?(start_pos, end_pos)
-      piece = board.get_piece_at(start_pos)
-      puts "#{piece} can't move from #{start_pos} to #{end_pos}"
-      return nil
-    end
-
-    [start_pos, end_pos]
-  end
-
   def checkmated?
     checkmate_checker.checkmated?(active_color)
   end
