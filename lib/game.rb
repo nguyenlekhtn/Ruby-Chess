@@ -48,14 +48,17 @@ class Game
   end
 
   def play
-    puts "#{active_color}'s turn"
-    puts board
-    start_position = get_valid_start_position
-    legal_moves = navigator.neighbors_of_a_piece(start_position)
-    puts "Legal moves: #{legal_moves.map { |it| it.to_s }}"
-    end_position = get_valid_end_position(start_position)
-    puts start_position, end_position
-    # move_piece(start_pos, end_pos)
+    loop do
+      puts "#{active_color}'s turn"
+      puts board
+      start_position = get_valid_start_position
+      legal_moves = navigator.neighbors_of_a_piece(start_position)
+      puts "Legal moves: #{legal_moves.map { |it| it.to_s }}"
+      end_position = get_valid_end_position(start_position)
+      puts start_position, end_position
+      move_piece(start_position, end_position)
+      switch_active_color
+    end
   end
 
   def get_valid_start_position
