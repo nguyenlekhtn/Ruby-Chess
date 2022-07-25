@@ -138,10 +138,6 @@ class Game
     piece_move_validator.valid?(start_pos, end_pos)
   end
 
-  def player_input
-    gets.chomp
-  end
-
   def get_positions_from_input(input)
     format = /[A-H][1-8][A-H][1-8]/i
     return nil unless input.match(format)
