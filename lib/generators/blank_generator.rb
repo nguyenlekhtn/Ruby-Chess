@@ -1,5 +1,5 @@
 class BlankGenerator
-  def cells(origin)
+  def cells(_origin)
     []
   end
 end

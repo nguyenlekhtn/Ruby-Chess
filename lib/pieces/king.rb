@@ -27,18 +27,18 @@ class King < Piece
 
   def possible_neighbors(pos)
     pairs = [
-      [0,1],
-      [0,-1],
-      [-1,0],
-      [1,0],
-      [-1,-1],
-      [-1,1],
-      [1,-1],
-      [1,1]
+      [0, 1],
+      [0, -1],
+      [-1, 0],
+      [1, 0],
+      [-1, -1],
+      [-1, 1],
+      [1, -1],
+      [1, 1]
     ].freeze
 
     pairs.map do |(row_step, col_step)|
-      pos.jump(row_step: row_step, col_step: col_step)
+      pos.jump(row_step:, col_step:)
     end.compact
   end
 

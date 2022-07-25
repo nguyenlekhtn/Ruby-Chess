@@ -12,12 +12,12 @@ describe VerticalLineGenerator do
 
   describe '#cells' do
     let(:board) { Board.for('8/3R4/8/8/8/3Q4/8/8') }
-    
+
     it 'should return all cells same vertical lines with given cell' do
       result = generator.cells(Cell.new(2, 3))
       expected = [
-        [0, 3], [1, 3],[3, 3], [4, 3], [5, 3], [6, 3]
-      ].map { |(row, col)| Cell.new(row, col)}
+        [0, 3], [1, 3], [3, 3], [4, 3], [5, 3], [6, 3]
+      ].map { |(row, col)| Cell.new(row, col) }
       expect(result).to match_array expected
     end
   end

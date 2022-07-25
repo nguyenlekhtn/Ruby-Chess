@@ -11,9 +11,7 @@ class Game
   end
 
   def end_game_condition
-    if checkmated?
-      return "Checkmate. Player #{active_color} won"
-    end
+    return "Checkmate. Player #{active_color} won" if checkmated?
 
     nil
   end
@@ -54,7 +52,6 @@ class Game
     end
   end
 
-
   private def player_input
     gets.chomp
   end
@@ -74,7 +71,7 @@ class Game
   def validate_end_position(start_position, end_position)
     legal_moves = navigator.neighbors_of_a_piece(start_position)
 
-    if !legal_moves.include? end_position
+    unless legal_moves.include? end_position
       puts 'Piece at start position can\'t move to end position'
       return false
     end
@@ -85,9 +82,9 @@ class Game
   def position_from_input
     loop do
       position = Cell.for(player_input)
-      return position if position  
+      return position if position
 
-      puts "Invalid position input"
+      puts 'Invalid position input'
     end
   end
 

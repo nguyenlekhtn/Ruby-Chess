@@ -35,7 +35,6 @@ describe Game do
   end
 
   describe '#move_valid?' do
-
     context 'when the board is at starting position and the move is D2 to D3' do
       subject(:game) { described_class.new(board: Board.for('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')) }
 

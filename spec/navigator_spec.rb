@@ -1,6 +1,6 @@
 require_relative '../lib/library'
 
-describe Navigator do\
+describe Navigator do \
   subject(:navigator) { Navigator.new(game) }
 
   describe '#neighbors_of_a_piece' do
@@ -18,7 +18,7 @@ describe Navigator do\
           Cell.for('E7'),
           Cell.for('D6'),
           Cell.for('B6'),
-          Cell.for('B4'),
+          Cell.for('B4')
         ]
         result = navigator.neighbors_of_a_piece(Cell.for('C5'))
         expect(result).to match_array expected
@@ -28,7 +28,6 @@ describe Navigator do\
 
   describe '#legal_moves_of_a_player' do
     let(:game) { Game.new(board:) }
-
 
     context 'given a simple board with white only has only king and bishop' do
       let(:board) { Board.for('K7/8/8/8/3p4/8/5B2/7k') }
@@ -43,7 +42,7 @@ describe Navigator do\
           Cell.for('H4'),
           Cell.for('A7'),
           Cell.for('B8'),
-          Cell.for('B7'),
+          Cell.for('B7')
         ]
 
         result = navigator.legal_moves_of_a_player(Color::WHITE)

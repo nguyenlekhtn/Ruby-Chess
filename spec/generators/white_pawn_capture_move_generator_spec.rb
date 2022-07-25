@@ -13,7 +13,7 @@ describe WhitePawnCaptureMoveGenerator do
   describe '#cells' do
     context 'if 2 forward diagonal cells both have oppopsite pieces' do
       let(:board) { Board.for('8/8/8/8/8/3b1b2/4P3/8') }
-      it 'should return them' do  
+      it 'should return them' do
         expected = [Cell.for('D3'), Cell.for('F3')]
         result = generator.cells(Cell.for('E2'))
         expect(result).to match_array expected
@@ -22,11 +22,10 @@ describe WhitePawnCaptureMoveGenerator do
 
     context 'if 2 forward diagonal cells none have oppopsite pieces' do
       let(:board) { Board.for('8/8/8/8/8/8/4P3/8') }
-      it 'should return empty array' do  
+      it 'should return empty array' do
         expected = []
         result = generator.cells(Cell.for('E2'))
         expect(result).to match_array expected
-
       end
     end
   end

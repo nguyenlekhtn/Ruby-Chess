@@ -28,7 +28,7 @@ describe DiagonalLineGenerator do
           [3, 2],
           [4, 1],
           [5, 0]
-        ].map { |(row, col)| Cell.new(row, col)}
+        ].map { |(row, col)| Cell.new(row, col) }
         expect(result).to match_array expected
       end
     end
@@ -48,10 +48,9 @@ describe DiagonalLineGenerator do
           [3, 2],
           [4, 1],
           [5, 0]
-        ].map { |(row, col)| Cell.new(row, col)}
+        ].map { |(row, col)| Cell.new(row, col) }
         expect(result).to match_array expected
       end
     end
-
   end
 end

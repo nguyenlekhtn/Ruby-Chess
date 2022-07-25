@@ -131,7 +131,7 @@ describe Board do
   end
 
   describe '#no_piece_in_horizontal_line_between_2_cells?' do
-    subject(:board_horizontal) { described_class.for('8/8/8/8/8/1K1Q2B1/8/8')}
+    subject(:board_horizontal) { described_class.for('8/8/8/8/8/1K1Q2B1/8/8') }
     context 'when there are pieces in between' do
       it 'should return false' do
         result = board_horizontal.no_piece_in_horizontal_line_between_2_cells?(Cell.for('B3'), Cell.for('G3'))
@@ -148,7 +148,7 @@ describe Board do
   end
 
   describe '#no_piece_in_vertical_line_between_2_cells?' do
-    subject(:board_vertical) { described_class.for('8/8/8/8/8/1K1Q2B1/8/8')}
+    subject(:board_vertical) { described_class.for('8/8/8/8/8/1K1Q2B1/8/8') }
     context 'when there are pieces in between' do
       it 'should return false' do
         result = board_vertical.no_piece_in_vertical_line_between_2_cells?(Cell.for('D1'), Cell.for('D7'))
@@ -166,7 +166,7 @@ describe Board do
 
   describe '#no_piece_in_diagonal_line_between_2_cells?' do
     context 'when there are pieces in between anti diagonal' do
-      subject(:board_diagonal) { described_class.for('8/6K1/8/8/3B1Q2/8/1B6/8')}
+      subject(:board_diagonal) { described_class.for('8/6K1/8/8/3B1Q2/8/1B6/8') }
 
       it 'should return false' do
         result = board_diagonal.no_piece_in_diagonal_line_between_2_cells?(Cell.for('B2'), Cell.for('G7'))
@@ -175,7 +175,7 @@ describe Board do
     end
 
     context 'when there are pieces in between diagonal' do
-      subject(:board_diagonal) { described_class.for('8/1B6/8/3B4/4Q3/8/6K1/8')}
+      subject(:board_diagonal) { described_class.for('8/1B6/8/3B4/4Q3/8/6K1/8') }
 
       it 'should return false' do
         result = board_diagonal.no_piece_in_diagonal_line_between_2_cells?(Cell.for('B7'), Cell.for('G2'))
@@ -184,7 +184,7 @@ describe Board do
     end
 
     context 'when there is no piece in between' do
-      subject(:board_diagonal) { described_class.for('8/6K1/8/8/3B1Q2/8/1B6/8')}
+      subject(:board_diagonal) { described_class.for('8/6K1/8/8/3B1Q2/8/1B6/8') }
 
       it 'should return true' do
         result = board_diagonal.no_piece_in_vertical_line_between_2_cells?(Cell.for('D4'), Cell.for('G7'))

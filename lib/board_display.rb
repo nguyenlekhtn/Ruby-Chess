@@ -1,8 +1,6 @@
 class BoardDisplay
   attr_reader :board, :notation_convertor
 
-  
-
   def initialize(board_obj)
     @board = board_obj.grid
     @notation_convertor = Cell
@@ -13,7 +11,7 @@ class BoardDisplay
   end
 
   def background_color(row_index, col_index)
-    if (row_index + col_index) % 2 == 0
+    if (row_index + col_index).even?
       :green
     else
       :white
@@ -21,7 +19,7 @@ class BoardDisplay
   end
 
   def cell(piece, row_index, col_index)
-    cell_content(piece).colorize(:background => background_color(row_index, col_index))
+    cell_content(piece).colorize(background: background_color(row_index, col_index))
   end
 
   def row_content(board_row, row_index)

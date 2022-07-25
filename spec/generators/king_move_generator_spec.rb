@@ -1,7 +1,7 @@
 require_relative '../../lib/library'
 require_relative '../generator_interface_spec'
 
-describe KingMoveGenerator  do
+describe KingMoveGenerator do
   subject(:generator) { described_class.new(game) }
   let(:game) { Game.new(board:) }
 
@@ -9,7 +9,6 @@ describe KingMoveGenerator  do
     let(:board) { Board.for }
     include_examples 'implement the generator interface'
   end
-
 
   describe '#cells' do
     context 'if no oppsite piece can attack its neighbors' do

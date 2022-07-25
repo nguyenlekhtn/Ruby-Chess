@@ -16,7 +16,7 @@ describe KnightMoveGenerator do
         Cell.for('E6'),
         Cell.for('F5'),
         Cell.for('F3'),
-        Cell.for('E2'),
+        Cell.for('E2')
       ]
       result = generator.cells(Cell.for('D4'))
       expect(result).to match_array expected

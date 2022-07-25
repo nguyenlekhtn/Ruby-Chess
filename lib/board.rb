@@ -111,7 +111,6 @@ class Board
     end
   end
 
-
   private
 
   attr_reader :piece_class

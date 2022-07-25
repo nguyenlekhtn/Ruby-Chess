@@ -1,4 +1,4 @@
-require_relative '../moving_in_directions.rb'
+require_relative '../moving_in_directions'
 
 class LineGenerator < Generator
   def cells(origin)
@@ -6,7 +6,7 @@ class LineGenerator < Generator
   end
 
   def cells_in_line(origin)
-    directions.map { |(row_step, col_step)| cells_from_moving_in_one_direction(origin:, row_step:, col_step:)}.flatten
+    directions.map { |(row_step, col_step)| cells_from_moving_in_one_direction(origin:, row_step:, col_step:) }.flatten
   end
 
   def directions

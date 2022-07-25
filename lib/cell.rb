@@ -109,5 +109,5 @@ class Cell
     to_notation
   end
 
-  alias_method :==, :eql?
+  alias == eql?
 end

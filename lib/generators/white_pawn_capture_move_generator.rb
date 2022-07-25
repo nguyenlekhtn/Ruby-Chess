@@ -1,5 +1,4 @@
 class WhitePawnCaptureMoveGenerator < Generator
-
   def cells(origin)
     neighbors(origin).filter { |neighbor| valid?(origin, neighbor) }
   end

@@ -13,11 +13,11 @@ module Color
     def opposite
       return Value.new('black') if @value == 'white'
       return Value.new('white') if @value == 'black'
-      
+
       self
     end
 
-    alias_method :to_s, :value
+    alias to_s value
   end
 
   BLACK = Value.new('black')

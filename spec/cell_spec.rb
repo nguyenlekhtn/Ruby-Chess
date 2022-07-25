@@ -109,7 +109,7 @@ describe Cell do
     context 'when the cell is at 0, 0 and the other is at 0, 3' do
       it 'has (0,1) (0,2) cell in betrween' do
         result = cell_horizontal.cells_in_between_horizontal_line_from_cell(described_class.new(0, 3))
-        expected = [Cell.new(0,1), Cell.new(0, 2)]
+        expected = [Cell.new(0, 1), Cell.new(0, 2)]
         expect(result).to match_array(expected)
       end
     end
@@ -175,7 +175,7 @@ describe Cell do
 
   describe 'to_s' do
     context 'if the cell is at row 0, col 0' do
-      subject(:cell)  { described_class.new(0, 0) }
+      subject(:cell) { described_class.new(0, 0) }
 
       it 'should be print as A1' do
         result = cell.to_s
@@ -184,7 +184,7 @@ describe Cell do
     end
 
     context 'if the cell is at row 7, col 7' do
-      subject(:cell)  { described_class.new(7, 7) }
+      subject(:cell) { described_class.new(7, 7) }
 
       it 'should be print as H8' do
         result = cell.to_s
@@ -193,7 +193,7 @@ describe Cell do
     end
 
     context 'if the cell is at row 4, col 4' do
-      subject(:cell)  { described_class.new(4, 4) }
+      subject(:cell) { described_class.new(4, 4) }
 
       it 'should be print as E5' do
         result = cell.to_s

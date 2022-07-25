@@ -1,4 +1,4 @@
-require_relative '../moving_in_directions.rb'
+require_relative '../moving_in_directions'
 
 class DiagonalLineGenerator < LineGenerator
   def directions
