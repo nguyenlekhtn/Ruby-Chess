@@ -40,12 +40,24 @@ class Board
 
   def set_piece_at(cell, piece)
     row, col = cell.position
-    board[row][col] = piece
+    grid[row][col] = piece
   end
+
+  def board_after_clear_piece_at(cell)
+    board_after_set_piece_at(cell, piece_class.for(''))
+  end
+
+  def board_after_set_piece_at(cell, piece)
+    row, col = cell.position
+    new_grid = Marshal.load(Marshal.dump(grid))
+    new_grid[row][col] = piece
+    Board.new(new_grid)
+  end
+
 
   def clear_piece_at(cell)
     row, col = cell.position
-    board[row][col] = piece_class.for('')
+    grid[row][col] = piece_class.for('')
   end
 
   def empty_at?(cell)
