@@ -54,7 +54,6 @@ class Board
     Board.new(new_grid)
   end
 
-
   def clear_piece_at(cell)
     row, col = cell.position
     grid[row][col] = piece_class.for('')
