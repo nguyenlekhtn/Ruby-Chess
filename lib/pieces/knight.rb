@@ -25,7 +25,7 @@ class Knight < Piece
     [KnightMoveValidator]
   end
 
-  def neighbor_generator(game)
-    KnightMoveGenerator.new(game)
+  def neighbor_generator(_game)
+    KnightMoveGenerator.new
   end
 end
