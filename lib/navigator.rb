@@ -8,7 +8,13 @@ class Navigator
 
   def neighbors_of_a_piece(origin)
     piece = board.get_piece_at(origin)
-    piece.neighbors(game:, origin:).reject { |neighbor| board.same_color_between_two_positions?(origin, neighbor) }
+    piece.neighbors(game:, origin:)
+         .reject { |neighbor| board.same_color_between_two_positions?(origin, neighbor) }
+         .reject { |neighbor| king_in_check_after_move?(origin, neighbor) }
+  end
+
+  def king_in_check_after_move?(origin, target)
+    Analyst.new(game).king_in_check_after_move?(origin, target)
   end
 
   def theoretical_neighbors_of_a_piece(origin)

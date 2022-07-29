@@ -24,6 +24,23 @@ describe Navigator do \
         expect(result).to match_array expected
       end
     end
+
+    context 'when white rook is blocking black rook from checking white king' do
+      let(:board) { Board.for('k5qr/8/2n4R/p1P5/P7/8/8/7K') }
+
+      it 'white rook can only move vertically' do
+        expected = [
+          Cell.for('H2'),
+          Cell.for('H3'),
+          Cell.for('H4'),
+          Cell.for('H5'),
+          Cell.for('H7'),
+          Cell.for('H8')
+        ]
+        result = navigator.neighbors_of_a_piece(Cell.for('H6'))
+        expect(result).to match_array expected
+      end
+    end
   end
 
   describe '#legal_moves_of_a_player' do
