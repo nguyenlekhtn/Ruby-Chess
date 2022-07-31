@@ -1,10 +1,7 @@
 class KingMoveGenerator < Generator
   attr_reader :navigator
 
-  def initialize(game)
-    super
-    @navigator = Navigator.new(game)
-  end
+  include NormalMove
 
   def cells(origin)
     color = board.get_color_at(origin)

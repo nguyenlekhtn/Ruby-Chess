@@ -1,6 +1,8 @@
 require_relative '../moving_in_directions'
 
 class LineGenerator < Generator
+  include NormalMove
+
   def cells(origin)
     cells_in_line(origin)
   end

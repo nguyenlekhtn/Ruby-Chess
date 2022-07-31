@@ -1,4 +1,6 @@
 class BlackPawnCaptureMoveGenerator < Generator
+  include NormalMove
+
   def cells(origin)
     neighbors(origin).filter { |neighbor| valid?(origin, neighbor) }
   end

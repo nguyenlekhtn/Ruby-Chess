@@ -1,8 +1,9 @@
 class Generator
-  attr_reader :board
+  attr_reader :board, :game
 
   def initialize(game)
     @board = game.board
+    @game = game
   end
 
   def cells(origin)
@@ -11,5 +12,9 @@ class Generator
 
   def moves(origin)
     cells(origin).map { |cell| { cell:, generator: self }}
+  end
+
+  def move_piece(origin, target)
+    
   end
 end

@@ -1,4 +1,6 @@
 class KnightMoveGenerator
+  include NormalMove
+
   def cells(origin)
     neighbors(origin)
   end
