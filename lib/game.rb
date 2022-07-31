@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class Game
-  attr_reader :active_color, :board, :checkmate_checker, :navigator
+  attr_reader :active_color, :checkmate_checker, :navigator
+  attr_accessor :board
 
   def initialize(**opts)
     @board = opts[:board] || Board.for
     @active_color = opts[:color] || Color::WHITE
     @checkmate_checker = CheckmateChecker.new(board)
-    @navigator = Navigator.new(self)
+    @navigator = Analyst.new(self)
   end
 
   def end_game_condition
@@ -22,17 +23,18 @@ class Game
     start_pos, end_pos = move_from_player
     move_piece(start_pos, end_pos)
   end
-
+  
   def play
     loop do
       puts "#{active_color}'s turn"
       puts board
       start_position = get_valid_start_position
-      legal_moves = navigator.neighbors_of_a_piece(start_position)
-      puts "Legal moves: #{legal_moves.map { |it| it.to_s }}"
-      end_position = get_valid_end_position(start_position)
+      legal_moves = navigator.legal_moves_of_a_piece(start_position)
+      puts "Legal moves: #{legal_moves.map { |it| it.fetch(:cell).to_s }}"
+      move = get_valid_move(start_position)
+      move => { cell: end_position,  generator: }
       puts start_position, end_position
-      move_piece(start_position, end_position)
+      generator.move_piece(start_position, end_position)
     end
   end
 
@@ -49,6 +51,15 @@ class Game
       puts 'Enter end position'
       end_position = position_from_input
       return end_position if validate_end_position(start_position, end_position)
+    end
+  end
+
+  def get_valid_move(start_position)
+    loop do
+      puts 'Enter end position'
+      end_position = position_from_input
+      move = validate_move(start_position, end_position)
+      return move if move
     end
   end
 
@@ -79,6 +90,18 @@ class Game
     true
   end
 
+  def validate_move(start_position, end_position)
+    legal_moves = navigator.legal_moves_of_a_piece(start_position)
+    move = legal_moves.find { |lm| lm.fetch(:cell) == end_position }
+
+    if move.nil?
+      puts 'Piece at start position can\'t move to end position'
+      return nil
+    end
+
+    move
+  end
+
   def position_from_input
     loop do
       position = Cell.for(player_input)
@@ -106,10 +129,14 @@ class Game
     [Cell.for(input[0..1]), Cell.for(input[2..3])]
   end
 
-  def move_piece(start_pos, end_pos)
+  def move_piece(start_pos, end_pos)\
+    #if normal piece
     piece = board.get_piece_at(start_pos)
     board.clear_piece_at(start_pos)
     board.set_piece_at(end_pos, piece)
+
+    # if king
+    
   end
 
   def switch_active_color
