@@ -4,7 +4,9 @@ require_relative '../generator_interface_spec'
 describe KnightMoveGenerator do
   subject(:generator) { described_class.new }
 
-  include_examples 'implement the generator interface'
+  context 'when the subject acts as a generator' do
+    include_examples 'implement the generator interface'
+  end
 
   describe '#cells' do
     it 'generates all valid neighbours cells from origin' do
