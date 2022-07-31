@@ -34,7 +34,9 @@ class Game
       move = get_valid_move(start_position)
       move => { cell: end_position,  generator: }
       puts start_position, end_position
-      generator.move_piece(start_position, end_position)
+      board_after_move = generator.move_piece(start_position, end_position)
+      @board = board_after_move
+      switch_active_color
     end
   end
 
@@ -71,7 +73,7 @@ class Game
     if !board.same_color_at_cell?(start_position, active_color)
       puts "Start position has no owner's piece"
       return false
-    elsif Navigator.new(self).neighbors_of_a_piece(start_position).none?
+    elsif navigator.neighbors_of_a_piece(start_position).none?
       puts 'Piece at start position can\'t move to anywhere'
       return false
     end
