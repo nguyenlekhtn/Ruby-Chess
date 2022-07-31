@@ -45,8 +45,4 @@ class King < Piece
   def neighbor_generator(game)
     KingMoveGenerator.new(game)
   end
-
-  def theoretical_neighbors(game:, origin:)
-    possible_neighbors(origin)
-  end
 end
