@@ -11,11 +11,21 @@ class Navigator
   end
 
   def theoretical_neighbors_of_a_piece(origin)
+    theoretical_moves_of_a_piece(origin).map { |move| move.fetch(:cell) }
+  end
+
+  def theoretical_moves_of_a_piece(origin)
     piece = board.get_piece_at(origin)
-    piece.neighbors(game:, origin:).reject do |neighbor|
-      board.same_color_between_two_positions?(origin, neighbor)
+    piece.moves(game:, origin:).reject do |move|
+      board.same_color_between_two_positions?(origin,  move.fetch(:cell))
     end
   end
+
+  def legal_moves_of_a_piece(origin)
+    theoretical_moves_of_a_piece(origin).reject do |move|
+      king_in_check_after_move?(origin, move.fetch(:cell))
+    end
+  end 
 
   def coordinates_of_all_pieces_by_a_player(color)
     board.all_cells_have_color(color)
