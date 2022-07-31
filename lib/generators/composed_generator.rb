@@ -8,6 +8,12 @@ class ComposedGenerator
   def cells(origin)
     generators.map do |generator|
       generator.cells(origin)
-    end.flatten.uniq
+    end.flatten
+  end
+
+  def moves(origin)
+    generators.map do |generator|
+      generator.moves(origin)
+    end.flatten
   end
 end
