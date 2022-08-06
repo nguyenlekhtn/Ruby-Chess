@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class Game
-  attr_reader :active_color, :checkmate_checker, :navigator
+  attr_reader :active_color, :checkmate_checker, :analyst
   attr_accessor :board
 
   def initialize(**opts)
     @board = opts[:board] || Board.for
     @active_color = opts[:color] || Color::WHITE
     @checkmate_checker = CheckmateChecker.new(board)
-    @navigator = Analyst.new(self)
+    @analyst = Analyst.new(self)
   end
 
   def end_game_condition
@@ -29,7 +29,7 @@ class Game
       puts "#{active_color}'s turn"
       puts board
       start_position = get_valid_start_position
-      legal_moves = navigator.legal_moves_of_a_piece(start_position)
+      legal_moves = analyst.legal_moves_of_a_piece(start_position)
       puts "Legal moves: #{legal_moves.map { |it| it.fetch(:cell).to_s }}"
       move = get_valid_move(start_position)
       move => { cell: end_position,  generator: }
@@ -73,7 +73,7 @@ class Game
     if !board.same_color_at_cell?(start_position, active_color)
       puts "Start position has no owner's piece"
       return false
-    elsif navigator.neighbors_of_a_piece(start_position).none?
+    elsif analyst.neighbors_of_a_piece(start_position).none?
       puts 'Piece at start position can\'t move to anywhere'
       return false
     end
@@ -82,7 +82,7 @@ class Game
   end
 
   def validate_end_position(start_position, end_position)
-    legal_moves = navigator.neighbors_of_a_piece(start_position)
+    legal_moves = analyst.neighbors_of_a_piece(start_position)
 
     unless legal_moves.include? end_position
       puts 'Piece at start position can\'t move to end position'
@@ -93,7 +93,7 @@ class Game
   end
 
   def validate_move(start_position, end_position)
-    legal_moves = navigator.legal_moves_of_a_piece(start_position)
+    legal_moves = analyst.legal_moves_of_a_piece(start_position)
     move = legal_moves.find { |lm| lm.fetch(:cell) == end_position }
 
     if move.nil?
