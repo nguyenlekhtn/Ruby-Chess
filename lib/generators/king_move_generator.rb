@@ -1,10 +1,7 @@
 class KingMoveGenerator < Generator
-  attr_reader :navigator
-
   include NormalMove
 
   def cells(origin)
-    color = board.get_color_at(origin)
     neighbors(origin)
   end
 
