@@ -1,9 +1,12 @@
 class Analyst
-  attr_reader :board, :game
+  attr_reader :game
 
   def initialize(game)
     @game = game
-    @board = game.board
+  end
+
+  def board
+    game.board
   end
 
   def king_in_check_after_move?(origin, move)
