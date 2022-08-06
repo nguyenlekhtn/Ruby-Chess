@@ -11,11 +11,15 @@ class Analyst
 
   def king_in_check_after_move?(origin, move)
     color = board.get_color_at(origin)
-    king_position = board.get_king_position(color)
     target = move[:cell]
     generator = move[:generator]
     board_after_move = generator.move_piece(origin, target)
-    Analyst.new(Game.new(board: board_after_move)).theoretical_moves_of_a_player(color.opposite).include?(king_position)
+    Analyst.new(Game.new(board: board_after_move)).king_in_check?(color)
+  end
+
+  def king_in_check?(color)
+    king_position = board.get_king_position(color)
+    theoretical_moves_of_a_player(color.opposite).include?(king_position)
   end
 
   def neighbors_of_a_piece(origin)

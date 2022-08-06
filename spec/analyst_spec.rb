@@ -87,4 +87,18 @@ describe Analyst do
       end
     end
   end
+
+  describe '#king_in_check?' do
+    let(:game) { Game.new(board:) }
+    
+    context 'when black king can be taken by white rook' do
+      let(:board) { Board.for('4k3/8/8/8/4R3/8/8/4K3') }
+
+      it 'black king is in check' do
+        result = analyst.king_in_check?(Color::BLACK)
+
+        expect(result).to be true
+      end
+    end
+  end
 end
