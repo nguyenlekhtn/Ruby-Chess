@@ -8,7 +8,7 @@ class Game
     @board = opts[:board] || Board.for
     @active_color = opts[:color] || Color::WHITE
     @checkmate_checker = CheckmateChecker.new(board)
-    @castle = opts[:castle] || { Color::BLACK => { queen_side: true, king_side: true }, Color::WHITE => { queen_side: true, king_side: true } }
+    @castle = opts[:castle] || { Color::BLACK => { queenside: true, kingside: true }, Color::WHITE => { queenside: true, kingside: true } }
     @analyst = Analyst.new(self)
   end
 
@@ -32,5 +32,13 @@ class Game
 
   def switch_active_color
     @active_color = @active_color.opposite
+  end
+
+  def player_can_castle?(color:, side:)
+    castle[color][side]
+  end
+
+  def player_can_castle_kingside?(color)
+    player_can_castle?(color:, side: :kingside)
   end
 end
