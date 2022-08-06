@@ -109,11 +109,4 @@ class Controller
   def checkmated?
     checkmate_checker.checkmated?(active_color)
   end
-
-  def get_positions_from_input(input)
-    format = /[A-H][1-8][A-H][1-8]/i
-    return nil unless input.match(format)
-
-    [Cell.for(input[0..1]), Cell.for(input[2..3])]
-  end
 end
