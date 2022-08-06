@@ -11,10 +11,8 @@ class Generator
   end
 
   def moves(origin)
-    cells(origin).map { |cell| { cell:, generator: self }}
+    cells(origin).map { |cell| { cell:, generator: self } }
   end
 
-  def move_piece(origin, target)
-    
-  end
+  def move_piece(origin, target); end
 end

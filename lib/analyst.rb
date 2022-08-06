@@ -38,7 +38,7 @@ class Analyst
       theoretical_neighbors_of_a_piece(coordinate)
     end.flatten
   end
-  
+
   def coordinates_of_all_pieces_by_a_player(color)
     board.all_cells_have_color(color)
   end
@@ -47,5 +47,5 @@ class Analyst
     theoretical_moves_of_a_piece(origin).reject do |move|
       king_in_check_after_move?(origin, move)
     end
-  end 
+  end
 end

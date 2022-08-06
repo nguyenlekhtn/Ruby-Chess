@@ -23,7 +23,7 @@ class Game
     start_pos, end_pos = move_from_player
     move_piece(start_pos, end_pos)
   end
-  
+
   def play
     loop do
       puts "#{active_color}'s turn"
@@ -32,7 +32,7 @@ class Game
       legal_moves = analyst.legal_moves_of_a_piece(start_position)
       puts "Legal moves: #{legal_moves.map { |it| it.fetch(:cell).to_s }}"
       move = get_valid_move(start_position)
-      move => { cell: end_position,  generator: }
+      move => { cell: end_position, generator: }
       puts start_position, end_position
       board_after_move = generator.move_piece(start_position, end_position)
       @board = board_after_move
@@ -131,14 +131,13 @@ class Game
     [Cell.for(input[0..1]), Cell.for(input[2..3])]
   end
 
-  def move_piece(start_pos, end_pos)\
-    #if normal piece
+  def move_piece(start_pos, end_pos) \
+    # if normal piece
     piece = board.get_piece_at(start_pos)
     board.clear_piece_at(start_pos)
     board.set_piece_at(end_pos, piece)
 
     # if king
-    
   end
 
   def switch_active_color

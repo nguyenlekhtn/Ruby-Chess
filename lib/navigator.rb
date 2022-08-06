@@ -17,7 +17,7 @@ class Navigator
   def theoretical_moves_of_a_piece(origin)
     piece = board.get_piece_at(origin)
     piece.moves(game:, origin:).reject do |move|
-      board.same_color_between_two_positions?(origin,  move.fetch(:cell))
+      board.same_color_between_two_positions?(origin, move.fetch(:cell))
     end
   end
 
@@ -25,7 +25,7 @@ class Navigator
     theoretical_moves_of_a_piece(origin).reject do |move|
       king_in_check_after_move?(origin, move.fetch(:cell))
     end
-  end 
+  end
 
   def coordinates_of_all_pieces_by_a_player(color)
     board.all_cells_have_color(color)
