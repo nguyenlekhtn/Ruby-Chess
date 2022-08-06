@@ -19,7 +19,11 @@ class Analyst
 
   def king_in_check?(color)
     king_position = board.get_king_position(color)
-    theoretical_moves_of_a_player(color.opposite).include?(king_position)
+    position_attackable_by_player(position: king_position, color: color.opposite)
+  end
+
+  def position_attackable_by_player(position:, color:)
+    theoretical_moves_of_a_player(color).include?(position)
   end
 
   def current_king_in_check?
