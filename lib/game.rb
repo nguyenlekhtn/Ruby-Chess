@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Game
-  attr_reader :active_color, :checkmate_checker, :analyst
+  attr_reader :active_color, :checkmate_checker, :analyst, :castling_avail
   attr_accessor :board
 
   def initialize(**opts)
