@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class Game
-  attr_reader :active_color, :checkmate_checker, :analyst, :castling_avail
+  attr_reader :active_color, :checkmate_checker, :analyst, :castle
   attr_accessor :board
 
   def initialize(**opts)
     @board = opts[:board] || Board.for
     @active_color = opts[:color] || Color::WHITE
     @checkmate_checker = CheckmateChecker.new(board)
-    @castling_avail = opts[:castling_avail] || { Color::BLACK => { queen_side: true, king_side: true }, Color::WHITE => { queen_side: true, king_side: true } }
+    @castle = opts[:castle] || { Color::BLACK => { queen_side: true, king_side: true }, Color::WHITE => { queen_side: true, king_side: true } }
     @analyst = Analyst.new(self)
   end
 
