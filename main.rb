@@ -2,4 +2,4 @@
 
 require_relative 'lib/library'
 
-Game.new.play
+Controller.new.play
