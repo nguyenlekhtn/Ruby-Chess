@@ -37,6 +37,26 @@ describe WhiteKingsideCastlingGenerator do
       end
     end
 
+    context 'if there is a square in between that is attacked by an enemy piece' do
+      let(:board) { Board.for('4k3/8/b7/8/3PP3/5N2/PPP2PPP/RNBQK2R') }
+
+      it 'is not able to castle' do
+        result = generator.able_to_castle?
+
+        expect(result).to be false
+      end
+    end
+
+    context 'when any piece between rook and king is not empty' do
+      let(:board) { Board.for('4k3/4n3/8/8/2BP4/2N5/PPP1QPPP/R3K1NR') }
+
+      it 'is not able to castle kingside' do
+        result = generator.able_to_castle?
+
+        expect(result).to be false
+      end
+    end
+
     context 'when all conditions are satisfied' do
       let(:board) { Board.for('4k3/4n3/8/8/2BP4/2N2N2/PPP1QPPP/R3K2R') }
 
