@@ -1,9 +1,12 @@
 class Generator
-  attr_reader :board, :game
+  attr_reader :game
 
   def initialize(game)
-    @board = game.board
     @game = game
+  end
+
+  def board
+    game.board
   end
 
   def cells(origin)
