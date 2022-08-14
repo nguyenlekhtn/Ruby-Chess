@@ -105,6 +105,14 @@ class Cell
     first_char + second_char
   end
 
+  def jump_horizontail(step)
+    jump(row_step: step)
+  end
+
+  def jump_vertical(step)
+    jump(col_step: step)
+  end
+
   def to_s
     to_notation
   end
