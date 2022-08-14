@@ -21,6 +21,12 @@ class Board
     grid
   end
 
+  def eql?(other)
+    other.class == self.class && other.grid == @grid
+  end
+
+  alias == eql?
+
   def default_builder
     BoardBuilder.new
   end

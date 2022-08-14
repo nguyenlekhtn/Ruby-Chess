@@ -323,4 +323,26 @@ describe Board do
       end
     end
   end
+
+  describe '#==' do
+    subject(:board) { described_class.for }
+
+    context 'when 2 board have same grid' do
+      let(:board2) { Board.for('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR') }
+
+      it 'they should be equal' do
+        result = board == board2
+        expect(result).to be true
+      end
+    end
+
+    context 'when 2 board not have same grid' do
+      let(:board2) { Board.for('rnbqkbnr/pppppppp/8/8/8/5P2/PPPPP1PP/RNBQKBNR') }
+
+      it 'they should not be equal' do
+        result = board == board2
+        expect(result).to be false
+      end
+    end
+  end
 end
