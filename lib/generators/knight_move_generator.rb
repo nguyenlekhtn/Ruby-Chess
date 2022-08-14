@@ -1,4 +1,4 @@
-class KnightMoveGenerator
+class KnightMoveGenerator < Generator
   include NormalMove
 
   def cells(origin)

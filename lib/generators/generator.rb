@@ -16,6 +16,4 @@ class Generator
   def moves(origin)
     cells(origin).map { |cell| { cell:, generator: self } }
   end
-
-  def move_piece(origin, target); end
 end

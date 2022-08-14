@@ -53,6 +53,6 @@ class Piece
   end
 
   def moves(game:, origin:)
-    neighbor_generator(game).moves(origin)
+    neighbor_generator(game).generate_moves(origin)
   end
 end

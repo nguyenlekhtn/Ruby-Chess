@@ -1,6 +1,5 @@
 module NormalMove
-  def move_piece(origin, target)
-    piece = board.get_piece_at(origin)
-    board.board_after_clear_piece_at(origin).board_after_set_piece_at(target, piece)
+  def generate_moves(origin)
+    cells(origin).map { |target| Move.new(origin:, target:, board:) }
   end
 end

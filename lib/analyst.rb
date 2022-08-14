@@ -9,11 +9,9 @@ class Analyst
     game.board
   end
 
-  def king_in_check_after_move?(origin, move)
-    color = board.get_color_at(origin)
-    target = move[:cell]
-    generator = move[:generator]
-    board_after_move = generator.move_piece(origin, target)
+  def king_in_check_after_move?(move)
+    color = board.get_color_at(move.origin)
+    board_after_move = move.board_after_move
     Analyst.new(Game.new(board: board_after_move)).king_in_check?(color)
   end
 
@@ -31,17 +29,17 @@ class Analyst
   end
 
   def neighbors_of_a_piece(origin)
-    legal_moves_of_a_piece(origin).map { |move| move[:cell] }
+    legal_moves_of_a_piece(origin).map { |move| move.target }
   end
 
   def theoretical_neighbors_of_a_piece(origin)
-    theoretical_moves_of_a_piece(origin).map { |move| move[:cell] }
+    theoretical_moves_of_a_piece(origin).map { |move| move.target }
   end
 
   def theoretical_moves_of_a_piece(origin)
     piece = board.get_piece_at(origin)
     piece.moves(game:, origin:).reject do |move|
-      board.same_color_between_two_positions?(origin, move[:cell])
+      board.same_color_between_two_positions?(origin, move.target)
     end
   end
 
@@ -57,7 +55,7 @@ class Analyst
 
   def legal_moves_of_a_piece(origin)
     theoretical_moves_of_a_piece(origin).reject do |move|
-      king_in_check_after_move?(origin, move)
+      king_in_check_after_move?(move)
     end
   end
 end
