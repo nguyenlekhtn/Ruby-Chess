@@ -4,8 +4,13 @@ require_relative '../generator_interface_spec'
 describe WhiteKingsideCastlingGenerator do
 
   describe '#able_to_castle?' do
-    let(:generator) { described_class.new(game) }
+    subject(:generator) { described_class.new(game) }
     let(:game) { Game.new(board:)}
+
+    context 'when the subject acts as a generator' do
+      let(:board) { Board.for }
+      include_examples 'implement the generator interface'
+    end  
 
     context 'if white king is not in default position' do
       let(:board) { Board.for('2k5/8/8/8/8/2B1N3/PPP1KPPP/RNBQ3R') }
