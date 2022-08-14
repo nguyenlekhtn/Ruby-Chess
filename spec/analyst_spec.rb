@@ -10,13 +10,13 @@ describe Analyst do
       let(:board) { Board.for('k5qr/8/2n4R/p1P5/P7/8/8/7K') }
 
       it 'king is in-check if rook moves horizontal' do
-        result = analyst.king_in_check_after_move?(Move.new(origin: Cell.for('H6'), target: Cell.for('G6'), board: ))
+        result = analyst.king_in_check_after_move?(Move.new(origin: Cell.for('H6'), target: Cell.for('G6')))
 
         expect(result).to be true
       end
 
       it 'king is not in-check if rook moves vertical' do
-        result = analyst.king_in_check_after_move?(Move.new(origin: Cell.for('H6'), target: Cell.for('H7'), board: ))
+        result = analyst.king_in_check_after_move?(Move.new(origin: Cell.for('H6'), target: Cell.for('H7')))
 
         expect(result).to be false
       end

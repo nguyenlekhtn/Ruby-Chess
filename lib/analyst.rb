@@ -11,7 +11,7 @@ class Analyst
 
   def king_in_check_after_move?(move)
     color = board.get_color_at(move.origin)
-    board_after_move = move.board_after_move
+    board_after_move = move.board_after_move(board)
     Analyst.new(Game.new(board: board_after_move)).king_in_check?(color)
   end
 
