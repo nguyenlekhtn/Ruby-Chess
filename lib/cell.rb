@@ -105,7 +105,7 @@ class Cell
     first_char + second_char
   end
 
-  def jump_horizontail(step)
+  def jump_horizontal(step)
     jump(row_step: step)
   end
 

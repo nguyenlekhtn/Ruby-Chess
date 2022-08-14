@@ -27,7 +27,7 @@ class CastlingGenerator < Generator
   end
   
   def neighbor
-    default_king_position.jump_horizontail(king_jump_step)
+    default_king_position.jump_horizontal(king_jump_step)
   end
 
   def able_to_castle?
