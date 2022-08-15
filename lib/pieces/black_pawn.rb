@@ -10,7 +10,7 @@ class BlackPawn < Piece
   end
 
   def type_notation
-    'B'
+    'P'
   end
 
   def neighbor_generator(game)
