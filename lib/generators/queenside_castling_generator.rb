@@ -10,4 +10,8 @@ class QueensideCastlingGenerator < CastlingGenerator
   def default_rook_column
     0
   end
+
+  def rook_new_position
+    neighbor.jump_horizontal(1)
+  end
 end
