@@ -6,15 +6,15 @@ class BlankPiece < Piece
   end
 
   def symbol
-    'P'
+    ' '
   end
 
   def to_s
     symbol
   end
 
-  def validators_class
-    []
+  def type_notation
+    ''
   end
 
   def neighbor_generator(_game)
