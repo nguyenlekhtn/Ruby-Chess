@@ -6,7 +6,7 @@ class BlankPiece < Piece
   end
 
   def symbol
-    ' '
+    'P'
   end
 
   def to_s

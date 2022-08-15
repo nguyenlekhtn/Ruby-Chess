@@ -9,12 +9,8 @@ class BlackPawn < Piece
     '♟'
   end
 
-  # def to_s
-  #   '♟'
-  # end
-
-  def validators_class
-    [BlackPawnCaptureMoveValidator, BlackPawnPeaceMoveValidator]
+  def type_notation
+    'B'
   end
 
   def neighbor_generator(game)

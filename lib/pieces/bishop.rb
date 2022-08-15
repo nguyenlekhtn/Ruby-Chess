@@ -13,16 +13,8 @@ class Bishop < Piece
     end
   end
 
-  # def to_s
-  #   if color == Color::BLACK
-  #     '♝'
-  #   else
-  #     '♗'
-  #   end
-  # end
-
-  def validators_class
-    [DiagonalValidator]
+  def type_notation
+    'b'
   end
 
   def possible_neighbors

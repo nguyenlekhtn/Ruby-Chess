@@ -13,16 +13,8 @@ class King < Piece
     end
   end
 
-  # def to_s
-  #   if color == Color::BLACK
-  #     '♚'
-  #   else
-  #     '♔'
-  #   end
-  # end
-
-  def validators_class
-    [KingMoveValidator]
+  def type_notation
+    'K'
   end
 
   def possible_neighbors(pos)

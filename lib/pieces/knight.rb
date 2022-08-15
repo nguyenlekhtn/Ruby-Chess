@@ -13,16 +13,8 @@ class Knight < Piece
     end
   end
 
-  # def to_s
-  #   if color == Color::BLACK
-  #     '♞'
-  #   else
-  #     '♘'
-  #   end
-  # end
-
-  def validators_class
-    [KnightMoveValidator]
+  def type_notation
+    'N'
   end
 
   def neighbor_generator(game)

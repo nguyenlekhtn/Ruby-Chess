@@ -13,16 +13,8 @@ class Queen < Piece
     end
   end
 
-  # def to_s
-  #   if color == Color::BLACK
-  #     '♛'
-  #   else
-  #     '♕'
-  #   end
-  # end
-
-  def validators_class
-    [VerticalValidator, HorizontalValidator, DiagonalValidator]
+  def type_notation
+    'Q'
   end
 
   def neighbor_generator(game)

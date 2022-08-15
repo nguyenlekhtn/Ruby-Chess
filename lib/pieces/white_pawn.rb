@@ -9,12 +9,8 @@ class WhitePawn < Piece
     '♙'
   end
 
-  # def to_s
-  #   '♙'
-  # end
-
-  def validators_class
-    [WhitePawnCaptureMoveValidator, WhitePawnPeaceMoveValidator]
+  def type_notation
+    'P'
   end
 
   def neighbor_generator(game)

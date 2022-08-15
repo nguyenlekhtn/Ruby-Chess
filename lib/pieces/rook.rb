@@ -13,16 +13,8 @@ class Rook < Piece
     end
   end
 
-  # def to_s
-  #   if color == Color::BLACK
-  #     '♜'
-  #   else
-  #     '♖'
-  #   end
-  # end
-
-  def validators_class
-    [HorizontalValidator, VerticalValidator]
+  def type_notation
+    'R'
   end
 
   def neighbor_generator(game)
