@@ -128,6 +128,10 @@ class Board
     end
   end
 
+  def to_notation
+    
+  end
+
   private
 
   attr_reader :piece_class

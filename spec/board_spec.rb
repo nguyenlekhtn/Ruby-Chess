@@ -331,8 +331,7 @@ describe Board do
       let(:board2) { Board.for('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR') }
 
       it 'they should be equal' do
-        result = board == board2
-        expect(result).to be true
+        expect(board).to eq board2
       end
     end
 
@@ -344,5 +343,20 @@ describe Board do
         expect(result).to be false
       end
     end
+  end
+
+  describe '#to_notation' do
+    subject(:board) { described_class.for }
+
+    context 'when the board is the default one' do
+
+      it 'should return correct string' do
+        result = board.to_notation
+        expected = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'
+
+        expect(result).to eq expected
+      end
+    end
+
   end
 end
