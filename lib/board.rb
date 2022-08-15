@@ -129,7 +129,26 @@ class Board
   end
 
   def to_notation
-    
+    grid.map { |grid_row| row_to_notation_string(grid_row) }.reverse.join('/')
+  end
+
+  def row_to_notation_arr(grid_row)
+    grid_row.each_with_object([]) do |piece, notation_arr|
+      notation = piece.notation
+      if notation == ''
+        if notation_arr.last.is_a? Numeric
+          notation_arr[notation_arr.length - 1] += 1
+        else
+          notation_arr.push(1)
+        end
+      else
+        notation_arr.push(notation)
+      end
+    end
+  end
+
+  def row_to_notation_string(grid_row)
+    row_to_notation_arr(grid_row).join
   end
 
   private
