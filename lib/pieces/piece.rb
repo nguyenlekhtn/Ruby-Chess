@@ -55,4 +55,12 @@ class Piece
   def moves(game:, origin:)
     neighbor_generator(game).generate_moves(origin)
   end
+
+  def notation
+    if color == Color::WHITE
+      type_notation.upcase
+    else
+      type_notation.downcase
+    end
+  end
 end
