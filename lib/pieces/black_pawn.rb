@@ -14,6 +14,6 @@ class BlackPawn < Piece
   end
 
   def neighbor_generator(game)
-    ComposedGenerator.new([BlackPawnCaptureMoveGenerator.new(game), BlackPawnPeaceMoveGenerator.new(game)])
+    ComposedGenerator.new([BlackPawnCaptureMoveGenerator.new(game), BlackPawnPeaceMoveGenerator.new(game), KingsideCastlingGenerator.new(game, BlackSide.new), QueensideCastlingGenerator.new(game, BlackSide.new)])
   end
 end
