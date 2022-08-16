@@ -4,7 +4,7 @@ require_relative '../generator_interface_spec'
 describe KingsideCastlingGenerator do
 
   describe '#able_to_castle?' do
-    subject(:generator) { described_class.new(game) }
+    subject(:generator) { described_class.new(game, WhiteSide.new) }
     let(:game) { Game.new(board:)}
 
     context 'when the subject acts as a generator' do

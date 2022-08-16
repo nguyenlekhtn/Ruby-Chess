@@ -4,7 +4,7 @@ require_relative '../generator_interface_spec'
 describe QueensideCastlingGenerator do
 
   describe '#able_to_castle?' do
-    subject(:generator) { described_class.new(game) }
+    subject(:generator) { described_class.new(game, BlackSide.new) }
     let(:game) { Game.new(board:)}
 
     context 'when the subject acts as a generator' do
@@ -63,7 +63,7 @@ describe QueensideCastlingGenerator do
     end
 
     context 'when all conditions are satisfied' do
-      let(:board) { Board.for('4k3/4n3/8/8/2BP4/2N2N2/PPP1QPPP/R3K2R') }
+      let(:board) { Board.for('r3k2r/pppq1ppp/8/8/8/2B1N3/PPP1KPPP/RNBQ3R') }
 
       it 'is able to castle queenside' do
         result = generator.able_to_castle?

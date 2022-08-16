@@ -1,7 +1,7 @@
 class CastlingGenerator < Generator
   attr_reader :side
 
-  def initialize(game, side = WhiteSide.new)
+  def initialize(game, side)
     super(game)
     @side = side
   end
