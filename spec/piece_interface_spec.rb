@@ -1,6 +1,6 @@
 shared_examples 'has piece interface' do
-  it 'responds to validators_class' do
-    expect(subject).to respond_to(:validators_class)
+  it 'responds to piece_notation' do
+    expect(subject).to respond_to(:type_notation)
   end
 
   it 'responds to to_s' do
