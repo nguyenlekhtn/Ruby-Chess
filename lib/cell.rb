@@ -106,11 +106,11 @@ class Cell
   end
 
   def jump_horizontal(step)
-    jump(row_step: step)
+    jump(col_step: step)
   end
 
   def jump_vertical(step)
-    jump(col_step: step)
+    jump(row_step: step)
   end
 
   def to_s

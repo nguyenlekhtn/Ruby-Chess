@@ -201,4 +201,44 @@ describe Cell do
       end
     end
   end
+
+  describe '#jump_horizontal' do
+    context 'when Cell E1 jump horizontal 2 steps' do
+      it 'should be Cell G1' do
+        result = Cell.for('E1').jump_horizontal(2)
+        expected = Cell.for('G1')
+
+        expect(result).to eq(expected)
+      end
+    end
+
+    context 'when Cell E1 jump horizontal -2 steps' do
+      it 'should be Cell G1' do
+        result = Cell.for('E1').jump_horizontal(-2)
+        expected = Cell.for('C1')
+
+        expect(result).to eq expected
+      end
+    end
+  end
+
+  describe '#jump_vertical' do
+    context 'when Cell C3 jump vertically 2 steps' do
+      it 'should be Cell C5' do
+        result = Cell.for('C3').jump_vertical(2)
+        expected = Cell.for('C5')
+
+        expect(result).to eq(expected)
+      end
+    end
+
+    context 'when Cell C3 jump vertically -2 steps' do
+      it 'should be Cell C1' do
+        result = Cell.for('C3').jump_vertical(-2)
+        expected = Cell.for('C1')
+
+        expect(result).to eq(expected)
+      end
+    end
+  end
 end
