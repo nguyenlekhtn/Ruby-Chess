@@ -19,6 +19,6 @@ class Queen < Piece
 
   def neighbor_generator(game)
     ComposedGenerator.new([VerticalLineGenerator.new(game), HorizontalLineGenerator.new(game),
-                           VerticalLineGenerator.new(game)])
+                           DiagonalLineGenerator.new(game)])
   end
 end
