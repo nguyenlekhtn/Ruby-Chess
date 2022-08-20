@@ -65,7 +65,7 @@ class Controller
     if !game.position_has_piece_with_active_color?(start_position)
       puts "Start position has no owner's piece"
       return false
-    elsif analyst.neighbors_of_a_piece(start_position).none?
+    elsif analyst.legal_moves_of_a_piece(start_position).none?
       puts 'Piece at start position can\'t move to anywhere'
       return false
     end

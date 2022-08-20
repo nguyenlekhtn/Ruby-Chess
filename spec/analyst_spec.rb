@@ -1,5 +1,11 @@
 require_relative '../lib/library'
 
+class Analyst
+  def neighbors_of_a_piece(origin)
+    legal_moves_of_a_piece(origin).map { |move| move.target }
+  end
+end
+
 describe Analyst do
   subject(:analyst) { described_class.new(game) }
 

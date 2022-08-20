@@ -31,10 +31,6 @@ class Analyst
     king_in_check?(game.active_color)
   end
 
-  def neighbors_of_a_piece(origin)
-    legal_moves_of_a_piece(origin).map { |move| move.target }
-  end
-
   def theoretical_neighbors_of_a_piece(origin)
     theoretical_moves_of_a_piece(origin).map { |move| move.target }
   end
