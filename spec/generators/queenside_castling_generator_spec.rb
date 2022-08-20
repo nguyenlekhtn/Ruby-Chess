@@ -6,10 +6,12 @@ require_relative '../generator_interface_spec'
 describe QueensideCastlingGenerator do
   describe '#able_to_castle?' do
     subject(:generator) { described_class.new(game, BlackSide.new) }
+
     let(:game) { Game.new(board:) }
 
     context 'when the subject acts as a generator' do
       let(:board) { Board.for }
+
       include_examples 'implement the generator interface'
     end
 

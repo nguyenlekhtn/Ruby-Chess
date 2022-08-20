@@ -108,6 +108,7 @@ describe Board do
 
   describe '#same_color_between_two_positions?' do
     subject(:board_color) { described_class.for }
+
     context 'when two cells have same color' do
       it 'returns true' do
         result = board_color.same_color_between_two_positions?(Cell.for('A1'), Cell.for('B1'))
@@ -132,15 +133,16 @@ describe Board do
 
   describe '#no_piece_in_horizontal_line_between_2_cells?' do
     subject(:board_horizontal) { described_class.for('8/8/8/8/8/1K1Q2B1/8/8') }
+
     context 'when there are pieces in between' do
-      it 'should return false' do
+      it 'returns false' do
         result = board_horizontal.no_piece_in_horizontal_line_between_2_cells?(Cell.for('B3'), Cell.for('G3'))
         expect(result).to be false
       end
     end
 
     context 'when there is no piece in between' do
-      it 'should return true' do
+      it 'returns true' do
         result = board_horizontal.no_piece_in_horizontal_line_between_2_cells?(Cell.for('B3'), Cell.for('D3'))
         expect(result).to be true
       end
@@ -149,15 +151,16 @@ describe Board do
 
   describe '#no_piece_in_vertical_line_between_2_cells?' do
     subject(:board_vertical) { described_class.for('8/8/8/8/8/1K1Q2B1/8/8') }
+
     context 'when there are pieces in between' do
-      it 'should return false' do
+      it 'returns false' do
         result = board_vertical.no_piece_in_vertical_line_between_2_cells?(Cell.for('D1'), Cell.for('D7'))
         expect(result).to be false
       end
     end
 
     context 'when there is no piece in between' do
-      it 'should return true' do
+      it 'returns true' do
         result = board_vertical.no_piece_in_vertical_line_between_2_cells?(Cell.for('D1'), Cell.for('D3'))
         expect(result).to be true
       end
@@ -168,7 +171,7 @@ describe Board do
     context 'when there are pieces in between anti diagonal' do
       subject(:board_diagonal) { described_class.for('8/6K1/8/8/3B1Q2/8/1B6/8') }
 
-      it 'should return false' do
+      it 'returns false' do
         result = board_diagonal.no_piece_in_diagonal_line_between_2_cells?(Cell.for('B2'), Cell.for('G7'))
         expect(result).to be false
       end
@@ -177,7 +180,7 @@ describe Board do
     context 'when there are pieces in between diagonal' do
       subject(:board_diagonal) { described_class.for('8/1B6/8/3B4/4Q3/8/6K1/8') }
 
-      it 'should return false' do
+      it 'returns false' do
         result = board_diagonal.no_piece_in_diagonal_line_between_2_cells?(Cell.for('B7'), Cell.for('G2'))
         expect(result).to be false
       end
@@ -186,7 +189,7 @@ describe Board do
     context 'when there is no piece in between' do
       subject(:board_diagonal) { described_class.for('8/6K1/8/8/3B1Q2/8/1B6/8') }
 
-      it 'should return true' do
+      it 'returns true' do
         result = board_diagonal.no_piece_in_vertical_line_between_2_cells?(Cell.for('D4'), Cell.for('G7'))
         expect(result).to be true
       end
@@ -197,7 +200,7 @@ describe Board do
     context 'when one cell has white piece and the other has black piece' do
       subject(:board) { described_class.for('8/8/8/2Q1n3/8/8/8/8') }
 
-      it 'should return true' do
+      it 'returns true' do
         result = board.opposite_color_between_2_cells?(Cell.for('C5'), Cell.for('E5'))
         expect(result).to be true
       end
@@ -206,7 +209,7 @@ describe Board do
     context 'when one cell has black piece and the other has white piece' do
       subject(:board) { described_class.for('8/8/8/5N2/2r5/8/8/8') }
 
-      it 'should return true' do
+      it 'returns true' do
         result = board.opposite_color_between_2_cells?(Cell.for('C4'), Cell.for('F5'))
         expect(result).to be true
       end
@@ -215,7 +218,7 @@ describe Board do
     context 'when one cell has black piece and the other has white piece' do
       subject(:board) { described_class.for('8/8/8/5N2/2r5/8/8/8') }
 
-      it 'should return true' do
+      it 'returns true' do
         result = board.opposite_color_between_2_cells?(Cell.for('C4'), Cell.for('F5'))
         expect(result).to be true
       end
@@ -224,7 +227,7 @@ describe Board do
     context 'when one cell has black piece and the other has black piece' do
       subject(:board) { described_class.for('8/8/8/2q2n2/8/8/8/8') }
 
-      it 'should return false' do
+      it 'returns false' do
         result = board.opposite_color_between_2_cells?(Cell.for('C5'), Cell.for('F5'))
         expect(result).to be false
       end
@@ -233,7 +236,7 @@ describe Board do
     context 'when one cell has black piece and the other has blank piece' do
       subject(:board) { described_class.for('8/8/8/2q2n2/8/8/8/8') }
 
-      it 'should return false' do
+      it 'returns false' do
         result = board.opposite_color_between_2_cells?(Cell.for('C5'), Cell.for('E5'))
         expect(result).to be false
       end
@@ -244,42 +247,42 @@ describe Board do
     subject(:board) { described_class.for('8/8/3K4/5n2/8/2N1n3/8/8') }
 
     context 'when the piece at cell has color white and the comparing color is white' do
-      it 'should return true' do
+      it 'returns true' do
         result = board.same_color_at_cell?(Cell.for('C3'), Color::WHITE)
         expect(result).to be true
       end
     end
 
     context 'when the piece at cell has color white and the comparing color is black' do
-      it 'should return false' do
+      it 'returns false' do
         result = board.same_color_at_cell?(Cell.for('C3'), Color::BLACK)
         expect(result).to be false
       end
     end
 
     context 'when the piece at cell has color black and the comparing color is white' do
-      it 'should return false' do
+      it 'returns false' do
         result = board.same_color_at_cell?(Cell.for('E3'), Color::WHITE)
         expect(result).to be false
       end
     end
 
     context 'when the piece at cell has color black and the comparing color is black' do
-      it 'should return true' do
+      it 'returns true' do
         result = board.same_color_at_cell?(Cell.for('E3'), Color::BLACK)
         expect(result).to be true
       end
     end
 
     context 'when there is no piece and the comparing color is black' do
-      it 'should return false' do
+      it 'returns false' do
         result = board.same_color_at_cell?(Cell.for('D3'), Color::BLACK)
         expect(result).to be false
       end
     end
 
     context 'when there is no piece and the comparing color is black' do
-      it 'should return false' do
+      it 'returns false' do
         result = board.same_color_at_cell?(Cell.for('D3'), Color::WHITE)
         expect(result).to be false
       end
@@ -289,7 +292,7 @@ describe Board do
   describe '#all_cells_have_color' do
     subject(:board) { described_class.for('8/8/1b6/4B3/8/2Q5/5N2/8') }
 
-    it 'should return all cells have same color' do
+    it 'returns all cells have same color' do
       result = board.all_cells_have_color(Color::WHITE)
       expected = [Cell.for('C3'), Cell.for('E5'), Cell.for('F2')]
 
@@ -319,7 +322,7 @@ describe Board do
 
       it 'returns nil' do
         result = board_king.get_king_position(Color::WHITE)
-        expect(result).to eq(nil)
+        expect(result).to be_nil
       end
     end
   end
@@ -349,7 +352,7 @@ describe Board do
     subject(:board) { described_class.for }
 
     context 'when the board is the default one' do
-      it 'should return correct string' do
+      it 'returns correct string' do
         result = board.to_notation
         expected = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'
 

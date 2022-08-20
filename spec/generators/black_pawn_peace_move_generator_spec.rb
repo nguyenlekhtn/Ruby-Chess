@@ -5,10 +5,12 @@ require_relative '../generator_interface_spec'
 
 describe BlackPawnPeaceMoveGenerator do
   subject(:generator) { described_class.new(game) }
+
   let(:game) { Game.new(board:) }
 
   context 'when the subject acts as a generator' do
     let(:board) { Board.for }
+
     include_examples 'implement the generator interface'
   end
 
@@ -16,7 +18,7 @@ describe BlackPawnPeaceMoveGenerator do
     context "if piece hasn't move and no piece in its path" do
       let(:board) { Board.for('8/1p6/8/8/8/8/8/8') }
 
-      it 'should return them' do
+      it 'returns them' do
         expected = [Cell.for('B6'), Cell.for('B5')]
         result = generator.cells(Cell.for('B7'))
         expect(result).to match_array expected

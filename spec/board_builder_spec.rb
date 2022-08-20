@@ -37,8 +37,9 @@ describe BoardBuilder do
   end
 
   describe '#whole' do
-    let(:board) { double('board') }
     subject(:builder) { BoardBuilder.new }
+
+    let(:board) { double('board') }
 
     context 'when give the initial board string "string"' do
       it 'returns the initial board array' do

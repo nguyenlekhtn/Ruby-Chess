@@ -5,18 +5,20 @@ require_relative '../generator_interface_spec'
 
 describe DiagonalLineGenerator do
   subject(:generator) { described_class.new(game) }
+
   let(:game) { Game.new(board:) }
 
   describe '#cells' do
     context 'when the subject acts as a generator' do
       let(:board) { Board.for }
+
       include_examples 'implement the generator interface'
     end
 
     context 'if there is no piece interupting in its diagonal lines' do
       let(:board) { Board.for('8/8/8/8/8/3B4/8/8') }
 
-      it 'should return all cells same diagonal lines with given cell' do
+      it 'returns all cells same diagonal lines with given cell' do
         result = generator.cells(Cell.new(2, 3))
         expected = [
           [0, 1],

@@ -26,7 +26,7 @@ describe Cell do
       it 'returns nil' do
         result = Cell.for('A9')
 
-        expect(result).to eq nil
+        expect(result).to be_nil
       end
     end
   end
@@ -155,7 +155,7 @@ describe Cell do
     subject(:cell) { described_class.new(3, 4) }
 
     context 'when the cell jump in-range' do
-      it 'should return a new cell' do
+      it 'returns a new cell' do
         result = cell.jump(row_step: 2, col_step: -2)
         expected = described_class.new(5, 2)
 
@@ -164,7 +164,7 @@ describe Cell do
     end
 
     context 'when the cell jump out-range' do
-      it 'should return nil' do
+      it 'returns nil' do
         result = cell.jump(row_step: 5, col_step: -2)
         expected = nil
 
@@ -177,7 +177,7 @@ describe Cell do
     context 'if the cell is at row 0, col 0' do
       subject(:cell) { described_class.new(0, 0) }
 
-      it 'should be print as A1' do
+      it 'is print as A1' do
         result = cell.to_s
         expect(result).to eq 'A1'
       end
@@ -186,7 +186,7 @@ describe Cell do
     context 'if the cell is at row 7, col 7' do
       subject(:cell) { described_class.new(7, 7) }
 
-      it 'should be print as H8' do
+      it 'is print as H8' do
         result = cell.to_s
         expect(result).to eq 'H8'
       end
@@ -195,7 +195,7 @@ describe Cell do
     context 'if the cell is at row 4, col 4' do
       subject(:cell) { described_class.new(4, 4) }
 
-      it 'should be print as E5' do
+      it 'is print as E5' do
         result = cell.to_s
         expect(result).to eq 'E5'
       end
@@ -204,7 +204,7 @@ describe Cell do
 
   describe '#jump_horizontal' do
     context 'when Cell E1 jump horizontal 2 steps' do
-      it 'should be Cell G1' do
+      it 'is Cell G1' do
         result = Cell.for('E1').jump_horizontal(2)
         expected = Cell.for('G1')
 
@@ -213,7 +213,7 @@ describe Cell do
     end
 
     context 'when Cell E1 jump horizontal -2 steps' do
-      it 'should be Cell G1' do
+      it 'is Cell G1' do
         result = Cell.for('E1').jump_horizontal(-2)
         expected = Cell.for('C1')
 
@@ -224,7 +224,7 @@ describe Cell do
 
   describe '#jump_vertical' do
     context 'when Cell C3 jump vertically 2 steps' do
-      it 'should be Cell C5' do
+      it 'is Cell C5' do
         result = Cell.for('C3').jump_vertical(2)
         expected = Cell.for('C5')
 
@@ -233,7 +233,7 @@ describe Cell do
     end
 
     context 'when Cell C3 jump vertically -2 steps' do
-      it 'should be Cell C1' do
+      it 'is Cell C1' do
         result = Cell.for('C3').jump_vertical(-2)
         expected = Cell.for('C1')
 

@@ -4,8 +4,9 @@ require_relative '../../lib/library'
 require_relative '../piece_interface_spec'
 
 describe Bishop do
-  let(:board) { double('board') }
   subject(:piece) { described_class.new(Color::WHITE) }
+
+  let(:board) { double('board') }
 
   context 'when Bishop is a child of Piece' do
     include_examples 'has piece interface'

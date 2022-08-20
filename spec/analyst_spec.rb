@@ -37,7 +37,7 @@ describe Analyst do
     context 'given C51 Evans Gambit board' do
       let(:board) { Board.for('r1bqk1nr/pppp1ppp/2n5/2b1p3/1PB1P3/5N2/P1PP1PPP/RNBQK2R') }
 
-      it 'should return all neighbors from C5' do
+      it 'returns all neighbors from C5' do
         expected = [
           Cell.for('F2'),
           Cell.for('E3'),

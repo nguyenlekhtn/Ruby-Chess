@@ -5,6 +5,7 @@ require_relative '../generator_interface_spec'
 
 describe KnightMoveGenerator do
   subject(:generator) { described_class.new(game) }
+
   let(:game) { Game.new(board:) }
 
   context 'when the subject acts as a generator' do

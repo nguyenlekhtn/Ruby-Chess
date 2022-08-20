@@ -6,7 +6,7 @@ describe CheckmateChecker do
   describe '#checkmated?' do
     subject(:checker) { described_class.new(board) }
 
-    context 'when black is checkmated, ' do
+    context 'when black is checkmated,' do
       let(:color) { Color::BLACK }
       let(:board) { Board.for('rnbqkbnr/ppppp2p/8/5ppQ/4P3/2N5/PPPP1PPP/R1B1KBNR') }
 

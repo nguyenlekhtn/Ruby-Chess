@@ -5,10 +5,11 @@ require_relative '../lib/library'
 describe Piece do
   describe '#self.for' do
     subject(:piece_class) { described_class }
+
     let(:board) { double('board') }
 
     context 'when given the notation and the board' do
-      it 'should return the corresponding instance object of its subclasses' do
+      it 'returns the corresponding instance object of its subclasses' do
         expect(piece_class.for('r')).to eq Rook.new(Color::BLACK)
         expect(piece_class.for('b')).to eq Bishop.new(Color::BLACK)
         expect(piece_class.for('n')).to eq Knight.new(Color::BLACK)

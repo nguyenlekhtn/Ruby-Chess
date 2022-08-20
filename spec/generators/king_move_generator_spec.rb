@@ -5,13 +5,15 @@ require_relative '../generator_interface_spec'
 
 describe KingMoveGenerator do
   subject(:generator) { described_class.new(game) }
+
   let(:game) { Game.new(board:) }
 
   context 'when the subject acts as a generator' do
     let(:board) { Board.for }
+
     include_examples 'implement the generator interface'
   end
-  
+
   describe '#generate_moves' do
     context 'if no oppsite piece can attack its neighbors' do
       let(:board) { Board.for('8/8/8/8/3K4/8/8/8') }
