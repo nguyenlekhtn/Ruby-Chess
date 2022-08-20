@@ -10,4 +10,8 @@ class Move
     piece = board.get_piece_at(origin)
     board.board_after_clear_piece_at(origin).board_after_set_piece_at(target, piece)
   end
+
+  def name
+    'normal'
+  end
 end
