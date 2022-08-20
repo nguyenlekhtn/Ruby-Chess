@@ -48,12 +48,20 @@ class Piece
     raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
 
+  def capturable_move_generator(game)
+    neighbor_generator(game)
+  end
+
   def neighbors(game:, origin:)
     neighbor_generator(game).cells(origin)
   end
 
   def moves(game:, origin:)
     neighbor_generator(game).generate_moves(origin)
+  end
+
+  def capturable_moves(game:, origin:)
+    capturable_move_generator(game).generate_moves(origin)
   end
 
   def notation
