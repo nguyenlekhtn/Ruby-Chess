@@ -63,30 +63,30 @@ describe Analyst do
     end
   end
 
-  describe '#theoretical_moves_of_a_player' do
-    let(:game) { Game.new(board:) }
+  # describe '#theoretical_moves_of_a_player' do
+  #   let(:game) { Game.new(board:) }
 
-    context 'given a simple board with white only has only king and bishop' do
-      let(:board) { Board.for('K7/8/8/8/3p4/8/5B2/7k') }
+  #   context 'given a simple board with white only has only king and bishop' do
+  #     let(:board) { Board.for('K7/8/8/8/3p4/8/5B2/7k') }
 
-      it 'should return all theoretical moves by white player' do
-        expected = [
-          Cell.for('D4'),
-          Cell.for('E3'),
-          Cell.for('E1'),
-          Cell.for('G3'),
-          Cell.for('G1'),
-          Cell.for('H4'),
-          Cell.for('A7'),
-          Cell.for('B8'),
-          Cell.for('B7')
-        ]
+  #     it 'should return all theoretical moves by white player' do
+  #       expected = [
+  #         Cell.for('D4'),
+  #         Cell.for('E3'),
+  #         Cell.for('E1'),
+  #         Cell.for('G3'),
+  #         Cell.for('G1'),
+  #         Cell.for('H4'),
+  #         Cell.for('A7'),
+  #         Cell.for('B8'),
+  #         Cell.for('B7')
+  #       ]
 
-        result = analyst.theoretical_moves_of_a_player(Color::WHITE)
-        expect(result).to match_array expected
-      end
-    end
-  end
+  #       result = analyst.theoretical_moves_of_a_player(Color::WHITE)
+  #       expect(result).to match_array expected
+  #     end
+  #   end
+  # end
 
   describe '#king_in_check?' do
     let(:game) { Game.new(board:) }
@@ -97,6 +97,19 @@ describe Analyst do
       it 'black king is in check' do
         result = analyst.king_in_check?(Color::BLACK)
 
+        expect(result).to be true
+      end
+    end
+  end
+
+  describe '#position_attackable_by_player?' do
+    let(:game) { Game.new(board:) }
+
+    context 'when a postion is attackable by a piece of a player' do
+      let(:board) { Board.for('k7/8/3n4/8/8/8/8/K7') }
+      
+      it 'returns true' do
+        result = analyst.position_attackable_by_player?(position: Cell.for('E4'), color: Color::BLACK)
         expect(result).to be true
       end
     end
