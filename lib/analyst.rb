@@ -39,11 +39,8 @@ class Analyst
 
   def capture_moves_of_a_piece(origin)
     piece = board.get_piece_at(origin)
-    capturable_moves = piece.capturable_moves(game:, origin:).reject do |move|
+    piece.capturable_moves(game:, origin:).reject do |move|
       board.same_color_between_two_positions?(origin, move.target)
-    end
-    capturable_moves.select do |move|
-      board.get_color_at(move.target) == board.get_color_at(move.origin).opposite
     end
   end
 
