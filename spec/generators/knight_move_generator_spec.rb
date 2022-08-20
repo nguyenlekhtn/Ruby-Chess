@@ -4,13 +4,18 @@ require_relative '../../lib/library'
 require_relative '../generator_interface_spec'
 
 describe KnightMoveGenerator do
-  subject(:generator) { described_class.new }
+  subject(:generator) { described_class.new(game) }
+  let(:game) { Game.new(board:) }
 
   context 'when the subject acts as a generator' do
+    let(:board) { instance_double(Board) }
+
     include_examples 'implement the generator interface'
   end
 
   describe '#cells' do
+    let(:board) { Board.for }
+
     it 'generates all valid neighbours cells from origin' do
       expected = [
         Cell.for('C2'),

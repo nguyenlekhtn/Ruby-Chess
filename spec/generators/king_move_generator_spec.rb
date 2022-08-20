@@ -11,8 +11,8 @@ describe KingMoveGenerator do
     let(:board) { Board.for }
     include_examples 'implement the generator interface'
   end
-
-  describe '#cells' do
+  
+  describe '#generate_moves' do
     context 'if no oppsite piece can attack its neighbors' do
       let(:board) { Board.for('8/8/8/8/3K4/8/8/8') }
 
@@ -27,24 +27,7 @@ describe KingMoveGenerator do
           Cell.for('D5'),
           Cell.for('D3')
         ]
-        result = generator.cells(Cell.for('D4'))
-        expect(result).to match_array expected
-      end
-    end
-
-    context 'if there are oppsite pieces can attack one of its neighbors' do
-      let(:board) { Board.for('6b1/8/8/8/3K4/8/8/8') }
-
-      it 'can not move to that cell' do
-        expected = [
-          Cell.for('C3'),
-          Cell.for('C5'),
-          Cell.for('E3'),
-          Cell.for('E4'),
-          Cell.for('E5'),
-          Cell.for('D3')
-        ]
-        result = generator.cells(Cell.for('D4'))
+        result = generator.generate_moves(Cell.for('D4')).map { _1.target }
         expect(result).to match_array expected
       end
     end

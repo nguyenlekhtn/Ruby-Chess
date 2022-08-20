@@ -12,7 +12,7 @@ class Generator
   end
 
   def cells(origin)
-    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+    generate_moves(origin).map { _1.target }
   end
 
   def moves(origin)
