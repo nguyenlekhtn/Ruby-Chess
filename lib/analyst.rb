@@ -30,11 +30,7 @@ class Analyst
   def current_king_in_check?
     king_in_check?(game.active_color)
   end
-
-  def theoretical_neighbors_of_a_piece(origin)
-    theoretical_moves_of_a_piece(origin).map { |move| move.target }
-  end
-
+  
   def theoretical_moves_of_a_piece(origin)
     piece = board.get_piece_at(origin)
     piece.moves(game:, origin:).reject do |move|
@@ -44,9 +40,10 @@ class Analyst
 
   def capture_moves_of_a_piece(origin)
     piece = board.get_piece_at(origin)
-    piece.capturable_moves(game:, origin:).reject do |move|
+    capturable_moves = piece.capturable_moves(game:, origin:).reject do |move|
       board.same_color_between_two_positions?(origin, move.target)
-    end.select do |move|
+    end
+    capturable_moves.select do |move|
       board.get_color_at(move.target) == board.get_color_at(move.origin).opposite
     end
   end
