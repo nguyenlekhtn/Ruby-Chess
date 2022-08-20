@@ -58,10 +58,6 @@ class Analyst
 
   def theoretical_moves_of_a_player(color)
     player_coords = coordinates_of_all_pieces_by_a_player(color)
-    # player_theoretical_moves = player_coords.map do |coordinate|
-    #   theoretical_moves_of_a_piece(coordinate)
-    # end
-    # player_theoretical_moves.flatten
     player_coords.each_with_object([]) do |coord, arr|
       moves = theoretical_moves_of_a_piece(coord)
       arr.concat(moves)
@@ -70,10 +66,6 @@ class Analyst
 
   def capture_moves_of_a_player(color)
     player_coords = coordinates_of_all_pieces_by_a_player(color)
-    # player_theoretical_moves = player_coords.map do |coordinate|
-    #   theoretical_moves_of_a_piece(coordinate)
-    # end
-    # player_theoretical_moves.flatten
     player_coords.each_with_object([]) do |coord, arr|
       moves = capture_moves_of_a_piece(coord)
       arr.concat(moves)
