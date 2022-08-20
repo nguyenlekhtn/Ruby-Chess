@@ -10,6 +10,9 @@ class Analyst
   end
 
   def king_in_check_after_move?(move)
+    if move.name == 'castling'
+      return false
+    end
     color = board.get_color_at(move.origin)
     board_after_move = move.board_after_move(board)
     Analyst.new(Game.new(board: board_after_move)).king_in_check?(color)
@@ -17,11 +20,11 @@ class Analyst
 
   def king_in_check?(color)
     king_position = board.get_king_position(color)
-    position_attackable_by_player(position: king_position, color: color.opposite)
+    position_attackable_by_player?(position: king_position, color: color.opposite)
   end
 
-  def position_attackable_by_player(position:, color:)
-    theoretical_moves_of_a_player(color).include?(position)
+  def position_attackable_by_player?(position:, color:)
+    capture_moves_of_a_player(color).any? { |move| move.target == position }
   end
 
   def current_king_in_check?
@@ -43,10 +46,38 @@ class Analyst
     end
   end
 
+  def capture_moves_of_a_piece(origin)
+    piece = board.get_piece_at(origin)
+    piece.capturable_moves(game:, origin:).reject do |move|
+      board.same_color_between_two_positions?(origin, move.target)
+    end.select do |move|
+      board.get_color_at(move.target) == board.get_color_at(move.origin).opposite
+    end
+  end
+
+
   def theoretical_moves_of_a_player(color)
-    coordinates_of_all_pieces_by_a_player(color).map do |coordinate|
-      theoretical_neighbors_of_a_piece(coordinate)
-    end.flatten
+    player_coords = coordinates_of_all_pieces_by_a_player(color)
+    # player_theoretical_moves = player_coords.map do |coordinate|
+    #   theoretical_moves_of_a_piece(coordinate)
+    # end
+    # player_theoretical_moves.flatten
+    player_coords.each_with_object([]) do |coord, arr|
+      moves = theoretical_moves_of_a_piece(coord)
+      arr.concat(moves)
+    end
+  end
+
+  def capture_moves_of_a_player(color)
+    player_coords = coordinates_of_all_pieces_by_a_player(color)
+    # player_theoretical_moves = player_coords.map do |coordinate|
+    #   theoretical_moves_of_a_piece(coordinate)
+    # end
+    # player_theoretical_moves.flatten
+    player_coords.each_with_object([]) do |coord, arr|
+      moves = capture_moves_of_a_piece(coord)
+      arr.concat(moves)
+    end
   end
 
   def coordinates_of_all_pieces_by_a_player(color)
