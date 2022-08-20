@@ -41,4 +41,8 @@ class Game
   def player_can_castle_kingside?(color)
     player_can_castle?(color:, side: :kingside)
   end
+
+  def change_board_by_move(move)
+    @board = move.board_after_move(board)
+  end
 end
