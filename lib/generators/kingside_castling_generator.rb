@@ -14,4 +14,8 @@ class KingsideCastlingGenerator < CastlingGenerator
   def rook_new_position
     neighbor.jump_horizontal(-1)
   end
+
+  def generate_moves(origin)
+    cells(origin).map { |_target| CastlingMove.new(self) }
+  end
 end
