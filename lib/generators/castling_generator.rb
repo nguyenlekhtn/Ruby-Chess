@@ -37,7 +37,7 @@ class CastlingGenerator < Generator
     return false unless game.player_can_castle_kingside?(color)
     return false unless positions_betwen_king_and_rook.all? { |position| board.empty_at?(position) }
     return false if Analyst.new(game).king_in_check?(color)
-    return false if positions_betwen_king_and_rook.any? { |position| Analyst.new(game).position_attackable_by_player(position:, color: color.opposite) }
+    return false if positions_betwen_king_and_rook.any? { |position| Analyst.new(game).position_attackable_by_player?(position:, color: color.opposite) }
 
     true
   end
@@ -56,5 +56,9 @@ class CastlingGenerator < Generator
 
   def color
     side.color
+  end
+
+  def generate_capturable_move?
+    false
   end
 end
