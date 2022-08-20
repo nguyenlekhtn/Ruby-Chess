@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Color
   class Value
     attr_reader :value

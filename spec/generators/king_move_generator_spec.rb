@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../lib/library'
 require_relative '../generator_interface_spec'
 

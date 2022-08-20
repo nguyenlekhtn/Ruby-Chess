@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BoardDisplay
   attr_reader :board, :notation_convertor
 

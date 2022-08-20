@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CastlingMove < Move
   attr_reader :generator
 

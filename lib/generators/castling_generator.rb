@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CastlingGenerator < Generator
   attr_reader :side
 

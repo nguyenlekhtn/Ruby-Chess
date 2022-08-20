@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'has piece interface' do
   it 'responds to piece_notation' do
     expect(subject).to respond_to(:type_notation)

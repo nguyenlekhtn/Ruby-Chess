@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require_relative '../lib/library'
 
 class Analyst
   def neighbors_of_a_piece(origin)
-    legal_moves_of_a_piece(origin).map { |move| move.target }
+    legal_moves_of_a_piece(origin).map(&:target)
   end
 end
 

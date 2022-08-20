@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class KingsideCastlingGenerator < CastlingGenerator
   def king_jump_step
     2

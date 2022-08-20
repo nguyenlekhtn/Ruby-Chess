@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../moving_in_directions'
 
 class VerticalLineGenerator < LineGenerator
