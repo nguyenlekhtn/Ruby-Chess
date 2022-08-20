@@ -3,7 +3,11 @@ shared_examples 'implement the generator interface' do
     expect(subject).to respond_to(:cells).with(1).arguments
   end
 
-  it 'responds to moves' do
-    expect(subject).to respond_to(:moves).with(1).arguments
+  it 'responds to generate_moves' do
+    expect(subject).to respond_to(:generate_moves).with(1).arguments
+  end
+
+  it 'responds to generate_capturable_move?' do
+    expect(subject).to respond_to(:generate_capturable_move?)
   end
 end
