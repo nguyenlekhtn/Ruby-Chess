@@ -42,4 +42,8 @@ class King < Piece
     end
     ComposedGenerator.new([KingMoveGenerator.new(game), *castling_moves])
   end
+
+  def capturable_move_generator(game)
+    KingMoveGenerator.new(game)
+  end
 end
