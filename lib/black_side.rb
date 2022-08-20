@@ -1,5 +1,4 @@
 class BlackSide
-
   def default_king_position
     Cell.new(default_king_row, default_king_column)
   end

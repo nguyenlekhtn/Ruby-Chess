@@ -8,7 +8,8 @@ class Game
     @board = opts[:board] || Board.for
     @active_color = opts[:color] || Color::WHITE
     @checkmate_checker = CheckmateChecker.new(board)
-    @castle = opts[:castle] || { Color::BLACK => { queenside: true, kingside: true }, Color::WHITE => { queenside: true, kingside: true } }
+    @castle = opts[:castle] || { Color::BLACK => { queenside: true, kingside: true },
+                                 Color::WHITE => { queenside: true, kingside: true } }
     @analyst = Analyst.new(self)
   end
 

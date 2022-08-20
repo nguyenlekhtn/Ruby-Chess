@@ -25,19 +25,22 @@ class CastlingGenerator < Generator
   def king_jump_step
     raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
-  
+
   def neighbor
     default_king_position.jump_horizontal(king_jump_step)
   end
 
   def able_to_castle?
+    unless board.get_piece_at(default_king_position) == King.new(color) && board.get_piece_at(default_rook_position) == Rook.new(color)
+      return false
+    end
 
-    return false unless board.get_piece_at(default_king_position) == King.new(color) && board.get_piece_at(default_rook_position) == Rook.new(color)
-    
     return false unless game.player_can_castle_kingside?(color)
     return false unless positions_betwen_king_and_rook.all? { |position| board.empty_at?(position) }
     return false if Analyst.new(game).king_in_check?(color)
-    return false if positions_betwen_king_and_rook.any? { |position| Analyst.new(game).position_attackable_by_player?(position:, color: color.opposite) }
+    return false if positions_betwen_king_and_rook.any? do |position|
+                      Analyst.new(game).position_attackable_by_player?(position:, color: color.opposite)
+                    end
 
     true
   end

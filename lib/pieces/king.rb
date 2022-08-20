@@ -36,10 +36,12 @@ class King < Piece
 
   def neighbor_generator(game)
     castling_moves = if color == Color::WHITE
-      [KingsideCastlingGenerator.new(game, WhiteSide.new), QueensideCastlingGenerator.new(game, WhiteSide.new)]
-    else
-      [KingsideCastlingGenerator.new(game, BlackSide.new), QueensideCastlingGenerator.new(game, BlackSide.new)]
-    end
+                       [KingsideCastlingGenerator.new(game, WhiteSide.new),
+                        QueensideCastlingGenerator.new(game, WhiteSide.new)]
+                     else
+                       [KingsideCastlingGenerator.new(game, BlackSide.new),
+                        QueensideCastlingGenerator.new(game, BlackSide.new)]
+                     end
     ComposedGenerator.new([KingMoveGenerator.new(game), *castling_moves])
   end
 

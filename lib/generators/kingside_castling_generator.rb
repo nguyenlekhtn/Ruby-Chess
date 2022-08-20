@@ -4,7 +4,7 @@ class KingsideCastlingGenerator < CastlingGenerator
   end
 
   def positions_betwen_king_and_rook
-    (default_king_column + 1).upto(default_rook_column  - 1).map { |col| Cell.new(default_king_row, col)}
+    (default_king_column + 1).upto(default_rook_column - 1).map { |col| Cell.new(default_king_row, col) }
   end
 
   def default_rook_column

@@ -349,7 +349,6 @@ describe Board do
     subject(:board) { described_class.for }
 
     context 'when the board is the default one' do
-
       it 'should return correct string' do
         result = board.to_notation
         expected = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'
@@ -357,6 +356,5 @@ describe Board do
         expect(result).to eq expected
       end
     end
-
   end
 end

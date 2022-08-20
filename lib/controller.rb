@@ -16,7 +16,7 @@ class Controller
 
     nil
   end
-  
+
   def play
     loop do
       puts "#{game.active_color}'s turn"
@@ -88,9 +88,7 @@ class Controller
     legal_moves = analyst.legal_moves_of_a_piece(start_position)
     move = legal_moves.find { |lm| lm.target == end_position }
 
-    if move.nil?
-      puts 'Piece at start position can\'t move to end position'
-    end
+    puts 'Piece at start position can\'t move to end position' if move.nil?
 
     move
   end

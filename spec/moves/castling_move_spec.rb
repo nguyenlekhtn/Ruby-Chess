@@ -6,7 +6,7 @@ describe CastlingMove do
     let(:game) { Game.new(board:) }
 
     context 'when white kingside castling happened' do
-      let(:board) { Board.for('4k3/8/8/8/8/8/8/4K2R')}
+      let(:board) { Board.for('4k3/8/8/8/8/8/8/4K2R') }
 
       it 'should move king and rook to correct positon' do
         result = move.board_after_move(board)

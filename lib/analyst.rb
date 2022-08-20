@@ -10,9 +10,8 @@ class Analyst
   end
 
   def king_in_check_after_move?(move)
-    if move.name == 'castling'
-      return false
-    end
+    return false if move.name == 'castling'
+
     color = board.get_color_at(move.origin)
     board_after_move = move.board_after_move(board)
     Analyst.new(Game.new(board: board_after_move)).king_in_check?(color)
@@ -30,7 +29,7 @@ class Analyst
   def current_king_in_check?
     king_in_check?(game.active_color)
   end
-  
+
   def theoretical_moves_of_a_piece(origin)
     piece = board.get_piece_at(origin)
     piece.moves(game:, origin:).reject do |move|
@@ -47,7 +46,6 @@ class Analyst
       board.get_color_at(move.target) == board.get_color_at(move.origin).opposite
     end
   end
-
 
   def theoretical_moves_of_a_player(color)
     player_coords = coordinates_of_all_pieces_by_a_player(color)

@@ -96,7 +96,7 @@ describe Analyst do
 
   describe '#king_in_check?' do
     let(:game) { Game.new(board:) }
-    
+
     context 'when black king can be taken by white rook' do
       let(:board) { Board.for('4k3/8/8/8/4R3/8/8/4K3') }
 
@@ -113,7 +113,7 @@ describe Analyst do
 
     context 'when a postion is attackable by a piece of a player' do
       let(:board) { Board.for('k7/8/3n4/8/8/8/8/K7') }
-      
+
       it 'returns true' do
         result = analyst.position_attackable_by_player?(position: Cell.for('E4'), color: Color::BLACK)
         expect(result).to be true
