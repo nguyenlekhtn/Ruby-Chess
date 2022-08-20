@@ -15,7 +15,7 @@ describe QueensideCastlingGenerator do
       include_examples 'implement the generator interface'
     end
 
-    context 'if black king is not in default position' do
+    context 'when black king is not in default position' do
       let(:board) { Board.for('r6r/pppqkppp/8/8/8/2B1N3/PPP1KPPP/RNBQ3R') }
 
       it 'is not able to castle queenside' do
@@ -25,7 +25,7 @@ describe QueensideCastlingGenerator do
       end
     end
 
-    context 'if white rook is not in default position' do
+    context 'when white rook is not in default position' do
       let(:board) { Board.for('1r2k2r/pppq1ppp/8/8/8/2B1N3/PPP1KPPP/RNBQ3R') }
 
       it 'is not able to castle queenside' do
@@ -35,7 +35,7 @@ describe QueensideCastlingGenerator do
       end
     end
 
-    context 'if white king is in check' do
+    context 'when white king is in check' do
       let(:board) { Board.for('r3k2r/pppq1ppp/5N2/8/8/2B5/PPP1KPPP/RNBQ3R') }
 
       it 'is not able to castle' do
@@ -45,7 +45,7 @@ describe QueensideCastlingGenerator do
       end
     end
 
-    context 'if there is a square in between that is attacked by an enemy piece' do
+    context 'when there is a square in between that is attacked by an enemy piece' do
       let(:board) { Board.for('r3k2r/pppqNppp/8/8/8/2B5/PPP1KPPP/RNBQ3R') }
 
       it 'is not able to castle' do

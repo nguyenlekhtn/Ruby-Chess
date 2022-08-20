@@ -15,7 +15,7 @@ describe WhitePawnPeaceMoveGenerator do
   end
 
   describe '#cells' do
-    context "if piece hasn't move and no piece in its path" do
+    context "when piece hasn't move and no piece in its path" do
       let(:board) { Board.for('8/8/8/8/8/8/1P6/8') }
 
       it 'returns them' do
@@ -25,7 +25,7 @@ describe WhitePawnPeaceMoveGenerator do
       end
     end
 
-    context "if piece hasn't move and there is a piece in front of it" do
+    context "when piece hasn't move and there is a piece in front of it" do
       let(:board) { Board.for('8/8/8/8/8/1p6/1P6/8') }
 
       it 'can not move' do
@@ -35,7 +35,7 @@ describe WhitePawnPeaceMoveGenerator do
       end
     end
 
-    context 'if piece moved' do
+    context 'when piece moved' do
       let(:board) { Board.for('8/8/8/8/8/1P6/8/8') }
 
       it 'can only one step at a time' do

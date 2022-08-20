@@ -214,16 +214,7 @@ describe Board do
         expect(result).to be true
       end
     end
-
-    context 'when one cell has black piece and the other has white piece' do
-      subject(:board) { described_class.for('8/8/8/5N2/2r5/8/8/8') }
-
-      it 'returns true' do
-        result = board.opposite_color_between_2_cells?(Cell.for('C4'), Cell.for('F5'))
-        expect(result).to be true
-      end
-    end
-
+    
     context 'when one cell has black piece and the other has black piece' do
       subject(:board) { described_class.for('8/8/8/2q2n2/8/8/8/8') }
 
@@ -281,7 +272,7 @@ describe Board do
       end
     end
 
-    context 'when there is no piece and the comparing color is black' do
+    context 'when there is no piece and the comparing color is white' do
       it 'returns false' do
         result = board.same_color_at_cell?(Cell.for('D3'), Color::WHITE)
         expect(result).to be false
@@ -301,7 +292,7 @@ describe Board do
   end
 
   describe '#get_king_position' do
-    context 'if the king is still alive' do
+    context 'when the king is still alive' do
       subject(:board_king) { described_class.for('8/2k5/8/8/8/8/3K4/8') }
 
       it 'returns the correct postion if black color is given as argument' do
@@ -331,7 +322,7 @@ describe Board do
     subject(:board) { described_class.for }
 
     context 'when 2 board have same grid' do
-      let(:board2) { Board.for('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR') }
+      let(:board2) { described_class.for('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR') }
 
       it 'they should be equal' do
         expect(board).to eq board2
@@ -339,7 +330,7 @@ describe Board do
     end
 
     context 'when 2 board not have same grid' do
-      let(:board2) { Board.for('rnbqkbnr/pppppppp/8/8/8/5P2/PPPPP1PP/RNBQKBNR') }
+      let(:board2) { described_class.for('rnbqkbnr/pppppppp/8/8/8/5P2/PPPPP1PP/RNBQKBNR') }
 
       it 'they should not be equal' do
         result = board == board2

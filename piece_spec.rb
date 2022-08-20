@@ -6,7 +6,7 @@ describe Piece do
   describe 'self.for' do
     context 'when give "R"' do
       it 'returns white rook' do
-        result = Piece.for('R')
+        result = described_class.for('R')
 
         expect(result).to eq Rook.new(Color::WHITE)
       end
@@ -14,7 +14,7 @@ describe Piece do
 
     context 'when give "p"' do
       it 'returns black pawm' do
-        result = Piece.for('p')
+        result = described_class.for('p')
 
         expect(result).to eq BlackPawn.new
       end
@@ -22,7 +22,7 @@ describe Piece do
 
     context 'when give empty string' do
       it 'return blank piece' do
-        result = Piece.for('')
+        result = described_class.for('')
 
         expect(result).to eq BlankPiece.new
       end

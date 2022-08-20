@@ -6,7 +6,7 @@ describe Piece do
   describe '#self.for' do
     subject(:piece_class) { described_class }
 
-    let(:board) { double('board') }
+    let(:board) { instance_double(Board) }
 
     context 'when given the notation and the board' do
       it 'returns the corresponding instance object of its subclasses' do

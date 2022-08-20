@@ -15,7 +15,7 @@ describe WhitePawnCaptureMoveGenerator do
   end
 
   describe '#cells' do
-    context 'if 2 forward diagonal cells both have oppopsite pieces' do
+    context 'when 2 forward diagonal cells both have oppopsite pieces' do
       let(:board) { Board.for('8/8/8/8/8/3b1b2/4P3/8') }
 
       it 'returns them' do
@@ -25,7 +25,7 @@ describe WhitePawnCaptureMoveGenerator do
       end
     end
 
-    context 'if 2 forward diagonal cells none have oppopsite pieces' do
+    context 'when 2 forward diagonal cells none have oppopsite pieces' do
       let(:board) { Board.for('8/8/8/8/8/8/4P3/8') }
 
       it 'returns empty array' do

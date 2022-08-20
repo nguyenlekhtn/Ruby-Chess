@@ -15,7 +15,7 @@ describe DiagonalLineGenerator do
       include_examples 'implement the generator interface'
     end
 
-    context 'if there is no piece interupting in its diagonal lines' do
+    context 'when there is no piece interupting in its diagonal lines' do
       let(:board) { Board.for('8/8/8/8/8/3B4/8/8') }
 
       it 'returns all cells same diagonal lines with given cell' do
@@ -37,7 +37,7 @@ describe DiagonalLineGenerator do
       end
     end
 
-    context 'if there is a piece interupting in its diagonal lines' do
+    context 'when there is a piece interupting in its diagonal lines' do
       let(:board) { Board.for('8/8/8/5p2/8/3B4/8/8') }
 
       it 'excludes that cell and all cells from it' do

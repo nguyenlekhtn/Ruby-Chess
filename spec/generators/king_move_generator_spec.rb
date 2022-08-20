@@ -15,7 +15,7 @@ describe KingMoveGenerator do
   end
 
   describe '#generate_moves' do
-    context 'if no oppsite piece can attack its neighbors' do
+    context 'when no oppsite piece can attack its neighbors' do
       let(:board) { Board.for('8/8/8/8/3K4/8/8/8') }
 
       it 'generates all valid neighbours cells from origin' do
@@ -29,7 +29,7 @@ describe KingMoveGenerator do
           Cell.for('D5'),
           Cell.for('D3')
         ]
-        result = generator.generate_moves(Cell.for('D4')).map { _1.target }
+        result = generator.generate_moves(Cell.for('D4')).map(&:target)
         expect(result).to match_array expected
       end
     end

@@ -12,7 +12,7 @@ class Generator
   end
 
   def cells(origin)
-    generate_moves(origin).map { _1.target }
+    generate_moves(origin).map(&:target)
   end
 
   def moves(origin)

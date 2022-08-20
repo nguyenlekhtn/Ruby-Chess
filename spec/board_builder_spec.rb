@@ -4,7 +4,7 @@ require_relative '../lib/library'
 
 describe BoardBuilder do
   describe '#row' do
-    subject(:builder) { BoardBuilder.new }
+    subject(:builder) { described_class.new }
 
     context 'give the number 8 only' do
       it 'return an array of blank pieces' do
@@ -37,9 +37,9 @@ describe BoardBuilder do
   end
 
   describe '#whole' do
-    subject(:builder) { BoardBuilder.new }
+    subject(:builder) { described_class.new }
 
-    let(:board) { double('board') }
+    let(:board) { instance_double(Board) }
 
     context 'when give the initial board string "string"' do
       it 'returns the initial board array' do

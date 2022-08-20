@@ -22,6 +22,6 @@ class ComposedGenerator
   def generate_moves(origin)
     generators.map do |generator|
       generator.generate_moves(origin)
-    end.flatten
+    end.flatten.uniq
   end
 end
