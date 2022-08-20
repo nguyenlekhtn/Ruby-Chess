@@ -3,8 +3,8 @@
 class Controller
   attr_reader :game
 
-  def initialize
-    @game = Game.new
+  def initialize(game = Game.new)
+    @game = game
   end
 
   def analyst
@@ -23,12 +23,11 @@ class Controller
       puts game.board
       start_position = get_valid_start_position
       legal_moves = analyst.legal_moves_of_a_piece(start_position)
-      puts "Legal moves: #{legal_moves.map { |it| it.fetch(:cell).to_s }}"
+      puts "Legal moves: #{legal_moves.map { |lm| lm.target.to_s }}"
       move = get_valid_move(start_position)
-      move => { cell: end_position, generator: }
-      puts start_position, end_position
-      board_after_move = generator.move_piece(start_position, end_position)
-      game.board = board_after_move
+      # move => { cell: end_position, generator: }
+      # puts start_position, end_position
+      game.change_board_by_move(move)
       game.switch_active_color
     end
   end
@@ -87,11 +86,10 @@ class Controller
 
   def validate_move(start_position, end_position)
     legal_moves = analyst.legal_moves_of_a_piece(start_position)
-    move = legal_moves.find { |lm| lm.fetch(:cell) == end_position }
+    move = legal_moves.find { |lm| lm.target == end_position }
 
     if move.nil?
       puts 'Piece at start position can\'t move to end position'
-      return nil
     end
 
     move
