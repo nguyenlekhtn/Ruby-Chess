@@ -8,7 +8,8 @@ class Analyst
   end
 
   def checkmated?
-    
+    color = game.active_color
+    king_in_check?(color) && moves_of_a_player(color, 'legal').none?
   end
 
   def board

@@ -126,13 +126,23 @@ describe Analyst do
   describe '#checkmated?' do
     let(:game) { Game.new(board:, color:) }
 
-    context "when current player's king is in check and he can't make any move" do
+    context "when current player's king is in check and the player can't make any move" do
       let(:board) { Board.for('2k4R/5R2/8/8/8/2K5/7p/8') }
       let(:color) { Color::BLACK }
 
       it 'he is checkmated' do
         result = analyst.checkmated?
         expect(result).to be true
+      end
+    end
+
+    context "when current player's king is in check but the player can make a move" do
+      let(:board) { Board.for('2k4R/8/5R2/8/8/2K5/7p/8') }
+      let(:color) { Color::BLACK }
+
+      it 'he is not checkmated' do
+        result = analyst.checkmated?
+        expect(result).to be false
       end
     end
   end
