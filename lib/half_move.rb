@@ -4,6 +4,7 @@ class HalfMove
   def initialize(game)
     @game = game
   end
+
   def play
     return 'checkmated' if analyst.checkmated?
     return 'stalemated' if analyst.stalemated?
@@ -15,6 +16,7 @@ class HalfMove
     puts "Legal moves: #{legal_moves.map { |lm| lm.target.to_s }}"
     move = get_valid_move(start_position)
     game.change_board_by_move(move)
+    'continue'
   end
 
   def analyst
@@ -48,6 +50,24 @@ class HalfMove
     end
 
     true
+  end
+
+  def get_valid_move(start_position)
+    loop do
+      puts 'Enter end position'
+      end_position = position_from_input
+      move = validate_move(start_position, end_position)
+      return move if move
+    end
+  end
+
+  def validate_move(start_position, end_position)
+    legal_moves = analyst.legal_moves_of_a_piece(start_position)
+    move = legal_moves.find { |lm| lm.target == end_position }
+
+    puts 'Piece at start position can\'t move to end position' if move.nil?
+
+    move
   end
 
   private

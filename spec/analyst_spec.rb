@@ -160,6 +160,16 @@ describe Analyst do
       end
     end
 
+    context 'when the game just starts' do
+      let(:board) { Board.for('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR') }
+      let(:color) { Color::WHITE }
+
+      it 'it is not stalemated' do
+        result = analyst.stalemated?
+        expect(result).to be false
+      end
+    end
+
     context 'when Black has no legal moves and his king is not in check' do
       let(:board) { Board.for('8/1R6/8/8/p3P3/k4K2/3R4/8') }
       let(:color) { Color::BLACK }

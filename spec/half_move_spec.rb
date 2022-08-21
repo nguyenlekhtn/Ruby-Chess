@@ -45,11 +45,12 @@ describe HalfMove do
     end
 
     context 'when the current player made a move' do
-      let(:board) { Board.for('8/8/8/8/8/8/8/8') }
+      let(:board) { Board.for('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR') }
       let(:color) { Color::WHITE }
 
       before do
         allow(half_move).to receive(:gets).and_return('E2', 'E4')
+        allow(half_move).to receive(:puts)
       end
 
       it "returns 'continue'" do
