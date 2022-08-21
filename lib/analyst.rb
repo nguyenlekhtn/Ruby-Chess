@@ -12,6 +12,10 @@ class Analyst
     king_in_check?(color) && moves_of_a_player(color, 'legal').none?
   end
 
+  def stalemated?
+    
+  end
+
   def board
     game.board
   end
