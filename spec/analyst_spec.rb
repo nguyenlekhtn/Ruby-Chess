@@ -146,4 +146,28 @@ describe Analyst do
       end
     end
   end
+
+  describe '#stalemated?' do
+    let(:game) { Game.new(board:, color:) }
+
+    context "when Black has legal moves and his king is not in check" do
+      let(:board) { Board.for('8/1R6/8/8/p3P1K1/k4r2/3R4/8') }
+      let(:color) { Color::BLACK }
+
+      it 'he is not stalemated' do
+        result = analyst.stalemated?
+        expect(result).to be false
+      end
+    end
+
+    context "when Black has no legal moves and his king is not in check" do
+      let(:board) { Board.for('8/1R6/8/8/p3P3/k4K2/3R4/8') }
+      let(:color) { Color::BLACK }
+
+      it 'he is stalemated' do
+        result = analyst.stalemated?
+        expect(result).to be true
+      end
+    end
+  end
 end
