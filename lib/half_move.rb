@@ -6,8 +6,8 @@ class HalfMove
   end
 
   def play
-    return 'checkmated' if analyst.checkmated?
-    return 'stalemated' if analyst.stalemated?
+    return :checkmated if analyst.checkmated?
+    return :stalemated if analyst.stalemated?
     
     puts "#{game.active_color}'s turn"
     puts game.board
@@ -16,7 +16,7 @@ class HalfMove
     puts "Legal moves: #{legal_moves.map { |lm| lm.target.to_s }}"
     move = get_valid_move(start_position)
     game.change_board_by_move(move)
-    'continue'
+    :continue
   end
 
   def analyst

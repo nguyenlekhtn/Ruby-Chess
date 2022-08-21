@@ -12,21 +12,9 @@ describe HalfMove do
       let(:board) { Board.for('2k4R/5R2/8/8/8/2K5/7p/8') }
       let(:color) { Color::BLACK }
 
-      it "returns 'checkmated'" do
+      it "returns :checkmated" do
         result = half_move.play
-        expected = 'checkmated'
-
-        expect(result).to eq expected
-      end
-    end
-
-    context 'when the current player is checkmated' do
-      let(:board) { Board.for('2k4R/5R2/8/8/8/2K5/7p/8') }
-      let(:color) { Color::BLACK }
-
-      it "returns 'checkmated'" do
-        result = half_move.play
-        expected = 'checkmated'
+        expected = :checkmated
 
         expect(result).to eq expected
       end
@@ -36,9 +24,9 @@ describe HalfMove do
       let(:board) { Board.for('8/1R6/8/8/p3P3/k4K2/3R4/8') }
       let(:color) { Color::BLACK }
 
-      it "returns 'stalemated'" do
+      it "returns ':stalemated" do
         result = half_move.play
-        expected = 'stalemated'
+        expected = :stalemated
 
         expect(result).to eq expected
       end
@@ -53,9 +41,9 @@ describe HalfMove do
         allow(half_move).to receive(:puts)
       end
 
-      it "returns 'continue'" do
+      it "returns :continue" do
         result = half_move.play
-        expected = 'continue'
+        expected = :continue
 
         expect(result).to eq expected
       end
