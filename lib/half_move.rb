@@ -5,6 +5,9 @@ class HalfMove
     @game = game
   end
   def play
+    return 'checkmated' if analyst.checkmated?
+    return 'stalemated' if analyst.stalemated?
+    
     puts "#{game.active_color}'s turn"
     puts game.board
     start_position = get_valid_start_position
@@ -24,5 +27,32 @@ class HalfMove
       position = position_from_input
       return position if validate_start_position(position)
     end
+  end
+
+  def position_from_input
+    loop do
+      position = Cell.for(player_input)
+      return position if position
+
+      puts 'Invalid position input'
+    end
+  end
+
+  def validate_start_position(start_position)
+    if !game.position_has_piece_with_active_color?(start_position)
+      puts "Start position has no owner's piece"
+      return false
+    elsif analyst.legal_moves_of_a_piece(start_position).none?
+      puts 'Piece at start position can\'t move to anywhere'
+      return false
+    end
+
+    true
+  end
+
+  private
+
+  def player_input
+    gets.chomp
   end
 end

@@ -19,5 +19,45 @@ describe HalfMove do
         expect(result).to eq expected
       end
     end
+
+    context 'when the current player is checkmated' do
+      let(:board) { Board.for('2k4R/5R2/8/8/8/2K5/7p/8') }
+      let(:color) { Color::BLACK }
+
+      it "returns 'checkmated'" do
+        result = half_move.play
+        expected = 'checkmated'
+
+        expect(result).to eq expected
+      end
+    end
+
+    context 'when the current player is stalemated' do
+      let(:board) { Board.for('8/1R6/8/8/p3P3/k4K2/3R4/8') }
+      let(:color) { Color::BLACK }
+
+      it "returns 'stalemated'" do
+        result = half_move.play
+        expected = 'stalemated'
+
+        expect(result).to eq expected
+      end
+    end
+
+    context 'when the current player made a move' do
+      let(:board) { Board.for('8/8/8/8/8/8/8/8') }
+      let(:color) { Color::WHITE }
+
+      before do
+        allow(half_move).to receive(:gets).and_return('E2', 'E4')
+      end
+
+      it "returns 'continue'" do
+        result = half_move.play
+        expected = 'continue'
+
+        expect(result).to eq expected
+      end
+    end
   end
 end
