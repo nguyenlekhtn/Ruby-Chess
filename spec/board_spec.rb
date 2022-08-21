@@ -214,7 +214,7 @@ describe Board do
         expect(result).to be true
       end
     end
-    
+
     context 'when one cell has black piece and the other has black piece' do
       subject(:board) { described_class.for('8/8/8/2q2n2/8/8/8/8') }
 
