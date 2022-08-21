@@ -7,6 +7,10 @@ class Analyst
     @game = game
   end
 
+  def checkmated?
+    
+  end
+
   def board
     game.board
   end

@@ -11,7 +11,7 @@ end
 describe Analyst do
   subject(:analyst) { described_class.new(game) }
 
-  describe '#ing_in_check_after_move?' do
+  describe '#king_in_check_after_move?' do
     let(:game) { Game.new(board:) }
 
     context 'when white rook is blocking black rook from checking white king' do
@@ -118,6 +118,20 @@ describe Analyst do
 
       it 'returns true' do
         result = analyst.position_attackable_by_player?(position: Cell.for('E4'), color: Color::BLACK)
+        expect(result).to be true
+      end
+    end
+  end
+
+  describe '#checkmated?' do
+    let(:game) { Game.new(board:, color:) }
+
+    context "when current player's king is in check and he can't make any move" do
+      let(:board) { Board.for('2k4R/5R2/8/8/8/2K5/7p/8') }
+      let(:color) { Color::BLACK }
+
+      it 'he is checkmated' do
+        result = analyst.checkmated?
         expect(result).to be true
       end
     end
