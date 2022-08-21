@@ -75,4 +75,25 @@ class Analyst
       king_in_check_after_move?(move)
     end
   end
+
+  def moves_of_a_piece(origin, type)
+    case type
+    when 'legal'
+      legal_moves_of_a_piece(origin)
+    when 'theory'
+      theoretical_moves_of_a_piece(origin)
+    when 'capture'
+      capture_moves_of_a_piece(origin)
+    else
+      throw 'Invalid piece move type'
+    end
+  end
+
+  def moves_of_a_player(color, type)
+    player_coords = coordinates_of_all_pieces_by_a_player(color)
+    player_coords.each_with_object([]) do |coord, arr|
+      moves = moves_of_a_piece(coord, type)
+      arr.concat(moves)
+    end
+  end
 end
