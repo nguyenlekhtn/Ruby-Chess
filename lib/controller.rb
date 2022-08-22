@@ -19,18 +19,20 @@ class Controller
 
   def play
     loop do
-      puts "#{game.active_color}'s turn"
-      puts game.board
-      start_position = get_valid_start_position
-      legal_moves = analyst.legal_moves_of_a_piece(start_position)
-      puts "Legal moves: #{legal_moves.map { |lm| lm.target.to_s }}"
-      move = get_valid_move(start_position)
-      # move => { cell: end_position, generator: }
-      # puts start_position, end_position
-      game.change_board_by_move(move)
+      half_move = HalfMove.new(game)
+      move_result = half_move.play
+      case move_result
+      when :checkmated
+        puts "#{color.opposite} won"
+        return
+      when :stalemated
+        puts "Game draw"
+        return
+      end
       game.switch_active_color
     end
   end
+
 
   def get_valid_start_position
     loop do
