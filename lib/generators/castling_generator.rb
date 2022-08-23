@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
+require_relative '../reversable_range'
+
 class CastlingGenerator < Generator
+  include ReversableRange
+
   attr_reader :side
 
   def initialize(game, side)
@@ -21,7 +25,15 @@ class CastlingGenerator < Generator
   end
 
   def positions_betwen_king_and_rook
-    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+    positions_from_king_to_rook.reject { |position| [default_king_position, default_rook_position].include? position }
+  end
+
+  def positions_from_king_to_rook
+    range(default_king_column, default_rook_column).map { |col| Cell.new(default_king_row, col) }
+  end
+
+  def positions_king_moves_over
+    range(default_king_column, neighbor.col).map { |col| Cell.new(default_king_row, col) }
   end
 
   def king_jump_step
@@ -33,18 +45,35 @@ class CastlingGenerator < Generator
   end
 
   def able_to_castle?
-    unless board.get_piece_at(default_king_position) == King.new(color) && board.get_piece_at(default_rook_position) == Rook.new(color)
-      return false
-    end
-
+    return false unless king_and_rook_at_default_positions?
     return false unless game.player_can_castle_kingside?(color)
-    return false unless positions_betwen_king_and_rook.all? { |position| board.empty_at?(position) }
-    return false if Analyst.new(game).king_in_check?(color)
-    return false if positions_betwen_king_and_rook.any? do |position|
-                      Analyst.new(game).position_attackable_by_player?(position:, color: color.opposite)
-                    end
+    return false unless all_postions_between_king_and_rook_empty?
+    return false if king_in_check?
+    return false if any_positions_king_moves_over_put_it_in_check?
 
     true
+  end
+
+  def player_can_castle?
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+  end
+
+  def all_postions_between_king_and_rook_empty?
+    positions_betwen_king_and_rook.all? { |position| board.empty_at?(position) }
+  end
+
+  def king_in_check?
+    Analyst.new(game).king_in_check?(color)
+  end
+
+  def king_and_rook_at_default_positions?
+    board.get_piece_at(default_king_position) == King.new(color) && board.get_piece_at(default_rook_position) == Rook.new(color)
+  end
+
+  def any_positions_king_moves_over_put_it_in_check?
+    positions_king_moves_over.any? do |position|
+      Analyst.new(game).position_attackable_by_player?(position:, color: color.opposite)
+    end
   end
 
   def default_king_position
