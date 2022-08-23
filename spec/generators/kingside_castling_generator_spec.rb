@@ -68,7 +68,18 @@ describe KingsideCastlingGenerator do
     context 'when all conditions are satisfied' do
       let(:board) { Board.for('4k3/4n3/8/8/2BP4/2N2N2/PPP1QPPP/R3K2R') }
 
-      it 'is able to castle kingside' do
+      it 'white player is able to castle kingside' do
+        result = generator.able_to_castle?
+
+        expect(result).to be true
+      end
+    end
+
+    context 'when all conditions are satisfied' do
+      subject(:generator) { described_class.new(game, BlackSide.new) }
+      let(:board) { Board.for('4k2r/pppppppp/8/8/8/8/8/4K3') }
+
+      it 'black player is able to castle kingside' do
         result = generator.able_to_castle?
 
         expect(result).to be true
