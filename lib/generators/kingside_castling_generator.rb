@@ -20,4 +20,8 @@ class KingsideCastlingGenerator < CastlingGenerator
   def generate_moves(origin)
     cells(origin).map { |_target| CastlingMove.new(self) }
   end
+
+  def player_can_castle?
+    game.player_can_castle?(color:, side: kingside)
+  end
 end
