@@ -46,7 +46,7 @@ class CastlingGenerator < Generator
 
   def able_to_castle?
     return false unless king_and_rook_at_default_positions?
-    return false unless game.player_can_castle_kingside?(color)
+    return false unless player_can_castle?
     return false unless all_postions_between_king_and_rook_empty?
     return false if king_in_check?
     return false if any_positions_king_moves_over_put_it_in_check?
