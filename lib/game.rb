@@ -13,22 +13,8 @@ class Game
     @analyst = Analyst.new(self)
   end
 
-  def end_game_condition
-    return "Checkmate. Player #{active_color} won" if checkmated?
-
-    nil
-  end
-
   def position_has_piece_with_active_color?(position)
     board.same_color_at_cell?(position, active_color)
-  end
-
-  private def player_input
-    gets.chomp
-  end
-
-  def checkmated?
-    checkmate_checker.checkmated?(active_color)
   end
 
   def switch_active_color
