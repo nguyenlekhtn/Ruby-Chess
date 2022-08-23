@@ -22,6 +22,6 @@ class KingsideCastlingGenerator < CastlingGenerator
   end
 
   def player_can_castle?
-    game.player_can_castle?(color:, side: kingside)
+    game.player_can_castle?(color:, side: :kingside)
   end
 end
