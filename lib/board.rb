@@ -151,6 +151,17 @@ class Board
     row_to_notation_arr(grid_row).join
   end
 
+  def to_json(*arg)
+    {
+      JSON.create_id => self.class.name,
+      'notation'     => to_notation
+    }.to_json(*args)
+  end
+
+  def self.json_create(object)
+    Board.for(object['notation'])
+  end
+
   private
 
   attr_reader :piece_class
