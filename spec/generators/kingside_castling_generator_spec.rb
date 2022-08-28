@@ -65,7 +65,7 @@ describe KingsideCastlingGenerator do
       end
     end
 
-    context 'when all conditions are satisfied' do
+    context 'when all conditions for white are satisfied' do
       let(:board) { Board.for('4k3/4n3/8/8/2BP4/2N2N2/PPP1QPPP/R3K2R') }
 
       it 'white player is able to castle kingside' do
@@ -75,7 +75,7 @@ describe KingsideCastlingGenerator do
       end
     end
 
-    context 'when all conditions are satisfied' do
+    context 'when all conditions for black are satisfied' do
       subject(:generator) { described_class.new(game, BlackSide.new) }
       let(:board) { Board.for('4k2r/pppppppp/8/8/8/8/8/4K3') }
 
