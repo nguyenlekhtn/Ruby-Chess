@@ -151,7 +151,7 @@ class Board
     row_to_notation_arr(grid_row).join
   end
 
-  def to_json(*arg)
+  def to_json(*args)
     {
       JSON.create_id => self.class.name,
       'notation'     => to_notation
