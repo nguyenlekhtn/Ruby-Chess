@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'colorize'
+require 'json'
 
 require_relative 'color'
 require_relative 'reversable_range'
@@ -43,3 +44,4 @@ require_relative 'controller'
 require_relative 'moves/move'
 require_relative 'moves/castling_move'
 require_relative 'half_move'
+require_relative './castle_status'
