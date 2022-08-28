@@ -3,12 +3,21 @@
 require_relative '../lib/library'
 
 describe Game do
-  describe '#player_can_castle_kingside?' do
-    subject(:game) { described_class.new(board: Board.for) }
+  describe '#player_can_castle?' do
+    subject(:game) { described_class.new(board: Board.for, castle: { 'black' => { queenside: true, kingside: true },
+                                                                     'white' => { queenside: true, kingside: false } }) }
 
-    context 'when white can castle kinngside' do
+    context 'when white can castle queenside' do
       it 'returns true' do
-        result = game.player_can_castle_kingside?(Color::WHITE)
+        result = game.player_can_castle_kingside?(Color::WHITE, true)
+
+        expect(result).to be true
+      end
+    end
+
+    context 'when black can not castle queenside' do
+      it 'returns true' do
+        result = game.player_can_castle_kingside?(Color::WHITE, true)
 
         expect(result).to be true
       end

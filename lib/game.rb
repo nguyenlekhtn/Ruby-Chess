@@ -7,8 +7,8 @@ class Game
   def initialize(**opts)
     @board = opts[:board] || Board.for
     @active_color = opts[:color] || Color::WHITE
-    @castle = opts[:castle] || { Color::BLACK => { queenside: true, kingside: true },
-                                 Color::WHITE => { queenside: true, kingside: true } }
+    @castle = opts[:castle] || { 'black' => { queenside: true, kingside: true },
+                                 'white' => { queenside: true, kingside: true } }
   end
 
   def position_has_piece_with_active_color?(position)
@@ -20,7 +20,7 @@ class Game
   end
 
   def player_can_castle?(color:, side:)
-    castle[color][side]
+    castle[color.value][side]
   end
 
   def player_can_castle_kingside?(color)
@@ -31,7 +31,7 @@ class Game
     @board = move.board_after_move(board)
   end
 
-  def to_json(*arg)
+  def to_json(*args)
     {
       JSON.create_id => self.class.name,
       'board'        => @board,
