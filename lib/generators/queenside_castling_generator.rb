@@ -22,6 +22,6 @@ class QueensideCastlingGenerator < CastlingGenerator
   end
 
   def player_can_castle?
-    game.player_can_castle?(color:, side: :queenside)
+    game.player_able_to_castle?(color, false)
   end
 end
