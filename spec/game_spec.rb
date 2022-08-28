@@ -9,7 +9,7 @@ describe Game do
 
     context 'when white can castle queenside' do
       it 'returns true' do
-        result = game.player_can_castle_kingside?(Color::WHITE, true)
+        result = game.player_can_castle?(color: Color::WHITE, side: :queenside)
 
         expect(result).to be true
       end
@@ -17,7 +17,7 @@ describe Game do
 
     context 'when black can not castle queenside' do
       it 'returns true' do
-        result = game.player_can_castle_kingside?(Color::WHITE, true)
+        result = game.player_can_castle?(color: Color::WHITE, side: :queenside)
 
         expect(result).to be true
       end
