@@ -13,6 +13,10 @@ class Move
     board.board_after_clear_piece_at(origin).board_after_set_piece_at(target, piece)
   end
 
+  def castle_status_after_move(castle_status)
+    castle_status
+  end
+
   def name
     'normal'
   end

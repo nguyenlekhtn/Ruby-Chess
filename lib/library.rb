@@ -45,3 +45,6 @@ require_relative 'moves/move'
 require_relative 'moves/castling_move'
 require_relative 'half_move'
 require_relative './castle_status'
+require_relative './moves/king_move'
+require_relative './moves/rook_move'
+
