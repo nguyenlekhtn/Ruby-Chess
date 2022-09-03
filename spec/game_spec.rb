@@ -3,23 +3,18 @@
 require_relative '../lib/library'
 
 describe Game do
-  describe '#player_can_castle?' do
-    subject(:game) { described_class.new(board: Board.for, castle: { 'black' => { queenside: true, kingside: true },
-                                                                     'white' => { queenside: true, kingside: false } }) }
+  describe '#player_able_to_castle?' do
+    subject(:game) { described_class.new(board: Board.for, castle: { 'black' => castle_black, 'white' => castle_white}) }
 
-    context 'when white can castle queenside' do
-      it 'returns true' do
-        result = game.player_can_castle?(color: Color::WHITE, side: :queenside)
+    let(:castle_black) { instance_double(CastleStatus) }
+    let(:castle_white) { instance_double(CastleStatus) }
 
-        expect(result).to be true
-      end
-    end
+    context 'when the method is called with color black argument' do
+      it "object at value 'black' should receive :able_to_castle_at_side? msg" do
+        allow(castle_black).to receive(:able_to_castle_at_side?)
+        game.player_able_to_castle?(Color::BLACK, true)
+        expect(castle_black).to have_received(:able_to_castle_at_side?)
 
-    context 'when black can not castle queenside' do
-      it 'returns true' do
-        result = game.player_can_castle?(color: Color::WHITE, side: :queenside)
-
-        expect(result).to be true
       end
     end
   end
