@@ -7,8 +7,7 @@ class Game
   def initialize(**opts)
     @board = opts[:board] || Board.for
     @active_color = opts[:color] || Color::WHITE
-    @castle = opts[:castle] || { 'black' => { queenside: true, kingside: true },
-                                 'white' => { queenside: true, kingside: true } }
+    @castle = opts[:castle] || { 'black' => CastleStatus.new(color: Color::BLACK), 'white' => CastleStatus.new(color: Color::WHITE)}
   end
 
   def position_has_piece_with_active_color?(position)
@@ -19,16 +18,18 @@ class Game
     @active_color = @active_color.opposite
   end
 
-  def player_can_castle?(color:, side:)
-    castle[color.value][side]
+  def player_able_to_castle?(color, is_kingside)
+    castle[color.value].able_to_castle_at_side?(is_kingside)
   end
 
-  def player_can_castle_kingside?(color)
-    player_can_castle?(color:, side: :kingside)
-  end
+  alias :castle :castle
 
   def change_board_by_move(move)
     @board = move.board_after_move(board)
+  end
+
+  def change_castle_status_by_move(move)
+    
   end
 
   def to_json(*args)
