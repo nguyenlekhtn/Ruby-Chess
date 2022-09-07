@@ -3,6 +3,8 @@
 class CastlingMove < Move
   attr_reader :generator
 
+  include RookData
+
   def initialize(castling_generator)
     origin = castling_generator.default_king_position
     target = origin.jump_horizontal(castling_generator.king_jump_step)
@@ -22,7 +24,7 @@ class CastlingMove < Move
                                                                                                  rook)
   end
 
-  def name
-    'castling'
+  def castle_status_after_move(castle_status)
+    mark_rook_move_by_side(castle_status).mark_king_moved
   end
 end
