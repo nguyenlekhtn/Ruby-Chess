@@ -3,5 +3,5 @@ class RookMove < Move
 
   def castle_status_after_move(castle_status)
     mark_rook_move_by_side(castle_status)
-  endd
+  end
 end
