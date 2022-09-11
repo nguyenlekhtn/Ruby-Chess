@@ -47,5 +47,15 @@ class CastleStatus
     other.class == self.class && other.color == @color && other.castle_avail == @castle_avail
   end
 
+  def to_notation
+    return castle_avail_notation if color == Color::WHITE
+
+    castle_avail_notation.downcase
+  end
+
+  def castle_avail_notation
+    ['K', 'Q'].map { |key| castle_avail[key] == true ? key : '' }.join
+  end
+
   alias == eql?
 end

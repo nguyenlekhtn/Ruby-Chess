@@ -94,4 +94,60 @@ describe CastleStatus do
       end
     end
   end
+
+  describe '#to_notation' do
+    context 'when the both is able to castle and color is white' do
+      subject(:cs_notation) { described_class.new(color: Color::WHITE, castle_avail: { 'Q' => true, 'K' => true }) }
+
+      it 'returns KQ' do
+        result = cs_notation.to_notation
+        expect(result).to eq 'KQ'
+      end
+    end
+
+    context 'when the both is able to castle and color is black' do
+      subject(:cs_notation) { described_class.new(color: Color::BLACK, castle_avail: { 'Q' => true, 'K' => true }) }
+
+      it 'returns kq' do
+        result = cs_notation.to_notation
+        expect(result).to eq 'kq'
+      end
+    end
+
+    context 'when only kingside is able to castle and color is white' do
+      subject(:cs_notation) { described_class.new(color: Color::WHITE, castle_avail: { 'Q' => false, 'K' => true }) }
+
+      it 'returns K' do
+        result = cs_notation.to_notation
+        expect(result).to eq 'K'
+      end
+    end
+
+    context 'when only queenside is able to castle and color is black' do
+      subject(:cs_notation) { described_class.new(color: Color::BLACK, castle_avail: { 'Q' => true, 'K' => false }) }
+
+      it 'returns q' do
+        result = cs_notation.to_notation
+        expect(result).to eq 'q'
+      end
+    end
+
+    context 'when no side is able to castle and color is white' do
+      subject(:cs_notation) { described_class.new(color: Color::WHITE, castle_avail: { 'Q' => false, 'K' => false }) }
+
+      it 'returns empty string' do
+        result = cs_notation.to_notation
+        expect(result).to eq ''
+      end
+    end
+
+    context 'when no side is able to castle and color is black' do
+      subject(:cs_notation) { described_class.new(color: Color::BLACK, castle_avail: { 'Q' => false, 'K' => false }) }
+
+      it 'returns empty string' do
+        result = cs_notation.to_notation
+        expect(result).to eq ''
+      end
+    end
+  end
 end
