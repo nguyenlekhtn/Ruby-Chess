@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CastleStatus
+class CastleStatusForColor
   attr_reader :color, :castle_avail
 
   def initialize(**opts)
@@ -18,11 +18,11 @@ class CastleStatus
   
   def mark_rook_moved(is_kingside)
     @castle_avail[side(is_kingside)] = false
-    CastleStatus.new(color:, castle_avail: { **@castle_avail, side(is_kingside) => false })
+    self.class.new(color:, castle_avail: { **@castle_avail, side(is_kingside) => false })
   end
 
   def mark_king_moved
-    CastleStatus.new(color:, castle_avail: { 'Q' => false, 'K' => false })
+    self.class.new(color:, castle_avail: { 'Q' => false, 'K' => false })
   end
 
   def side(is_kingside)

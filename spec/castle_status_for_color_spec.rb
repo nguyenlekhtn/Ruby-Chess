@@ -2,7 +2,7 @@
 
 require_relative '../lib/library'
 
-describe CastleStatus do
+describe CastleStatusForColor do
   subject(:castle) { described_class.new }
 
   describe '#mark_king_moved' do
