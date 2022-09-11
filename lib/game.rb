@@ -28,8 +28,14 @@ class Game
     @board = move.board_after_move(board)
   end
 
-  def change_castle_status_by_move(move)
-    
+  def change_castle_by_move(move)
+    color = board.get_color_at(move.origin)
+    @castle[color] = move.castle_status_after_move(@castle[color])
+  end
+
+  def change_state_by_move(move)
+    change_board_by_move(move)
+    change_castle_by_move(move)
   end
 
   def to_json(*args)
