@@ -69,4 +69,43 @@ describe CastleStatus do
     end
 
   end
+
+  describe '#get_status_by_color' do
+    subject(:cs_get) { described_class.new(black: black_status, white: white_status) }
+
+    let(:black_status) { double('status_color') }
+    let(:white_status) { double('status_color')  }
+
+    context 'when input color black' do
+      it 'returns black status' do
+        expect(cs_get.get_status_by_color(Color::BLACK)).to eq black_status
+      end
+    end
+
+    context 'when input color white' do
+      it 'returns white status' do
+        expect(cs_get.get_status_by_color(Color::WHITE)).to eq white_status
+      end
+    end
+  end
+
+  describe '#set_status_by_color' do
+    subject(:cs_set) { described_class.new }
+    let(:black_status) { instance_double(CastleStatusForColor, color: Color::BLACK) }
+    let(:white_status) { instance_double(CastleStatusForColor, color: Color::WHITE) }
+    
+    context 'when input a black status' do
+      it 'set black_side to this' do
+        cs_set.set_status_by_color(black_status)
+        expect(cs_set.black_side).to eql black_status
+      end
+    end
+
+    context 'when input a white status' do
+      it 'set white_side to this' do
+        cs_set.set_status_by_color(white_status)
+        expect(cs_set.white_side).to eql white_status
+      end
+    end
+  end
 end

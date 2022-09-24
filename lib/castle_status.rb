@@ -1,7 +1,20 @@
 class CastleStatus
+  attr_reader :black_side, :white_side
+
   def initialize(black: CastleStatusForColor.new, white: CastleStatusForColor.new)
     @black_side = black
     @white_side = white
+  end
+
+  def set_status_by_color(castle_status_by_color)
+    color = castle_status_by_color.color
+
+    case color
+    when Color::BLACK
+      @black_side = castle_status_by_color
+    when Color::WHITE
+      @white_side = castle_status_by_color
+    end
   end
 
   def able_to_castle?(color, is_kingside)
@@ -26,6 +39,15 @@ class CastleStatus
     "#{white_notation}#{black_notation.downcase}"
   end
 
+  def get_status_by_color(color)
+    case color
+    when Color::BLACK
+      black_side
+    when Color::WHITE
+      white_side
+    end
+  end
+
   private
 
   def color_side(color)
@@ -36,5 +58,11 @@ class CastleStatus
     end
   end
 
-  attr_reader :black_side, :white_side
+  def eql?(other)
+    other.class == self.class && other.black_side == @black_side && other.white_side == @white_side
+  end
+
+
+  private
+  attr_writer :black_side, :white_side
 end
