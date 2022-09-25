@@ -18,7 +18,7 @@ class CastleStatus
   end
 
   def able_to_castle?(color, is_kingside)
-    color_side(color).able_to_castle?(is_kingside)
+    color_side(color).able_to_castle_at_side?(is_kingside)
   end
 
   def mark_rook_moved(color, is_kingside)
