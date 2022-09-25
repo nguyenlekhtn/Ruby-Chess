@@ -30,4 +30,21 @@ describe Game do
       expect { game.change_board_by_move(move) }.to change(game, :board).to(new_board)
     end
   end
+
+  describe '#change_castle_status_by_move' do
+    subject(:game) { described_class.new(board:) }
+
+    let(:move) { instance_double(Move) }
+    let(:board) { instance_double(Board) }
+
+
+    it 'changes castle_status of corrresponding color to be same as move.castle_status_after_move' do
+      allow(board).to receive(:get_color_at).and_return(Color::BLACK)
+      new_cs = instance_double(CastleStatusForColor, color: Color::BLACK)
+      allow(move).to receive(:castle_status_after_move).and_return(new_cs)
+      allow(move).to receive(:origin)
+      game.change_castle_status_by_move(move)
+      expect(game.castle_status.get_status_by_color(Color::BLACK) ).to eql new_cs
+    end
+  end
 end
