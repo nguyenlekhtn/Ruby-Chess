@@ -30,6 +30,10 @@ module Color
       new(object['value'])
     end
 
+    def to_notation
+      value.first
+    end
+
     alias to_s value
   end
 
