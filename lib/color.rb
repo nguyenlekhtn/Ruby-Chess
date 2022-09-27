@@ -31,7 +31,7 @@ module Color
     end
 
     def to_notation
-      value.first
+      value[0]
     end
 
     alias to_s value
