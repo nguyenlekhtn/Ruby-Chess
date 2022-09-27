@@ -6,6 +6,7 @@ class HalfMove
   end
 
   def play
+    puts "Game states: #{game.to_notation}"
     return :checkmated if analyst.checkmated?
     return :stalemated if analyst.stalemated?
     
@@ -16,7 +17,7 @@ class HalfMove
     legal_moves = analyst.legal_moves_of_a_piece(start_position)
     puts "Legal moves: #{legal_moves.map { |lm| lm.target.to_s }}"
     move = get_valid_move(start_position)
-    game.change_board_by_move(move)
+    game.change_state_by_move(move)
     :continue
   end
 
