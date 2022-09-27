@@ -19,4 +19,8 @@ class KingMoveGenerator < Generator
       [1, 1]
     ].map { |row_step, col_step| origin.jump(row_step:, col_step:) }.compact
   end
+
+  def generate_moves(origin)
+    cells(origin).map { |target| KingMove.new(origin:, target:) }
+  end
 end
