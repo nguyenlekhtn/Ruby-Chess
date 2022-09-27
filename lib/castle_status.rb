@@ -1,7 +1,7 @@
 class CastleStatus
   attr_reader :black_side, :white_side
 
-  def initialize(black: CastleStatusForColor.new, white: CastleStatusForColor.new)
+  def initialize(black: CastleStatusForColor.new(color: Color::BLACK), white: CastleStatusForColor.new(color: Color::WHITE))
     @black_side = black
     @white_side = white
   end
@@ -46,6 +46,18 @@ class CastleStatus
     when Color::WHITE
       white_side
     end
+  end
+
+  def to_json(*args)
+    {
+      JSON.create_id => self.class.name,
+      'black side'        => @black_side,
+      'white side'        => @white_side,
+    }.to_json(*args)
+  end
+
+  def self.json_create(object)
+    new(black: object['black side'], white: object['white side'])
   end
 
   private
