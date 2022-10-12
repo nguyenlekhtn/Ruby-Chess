@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 require_relative '../../lib/library'
 
 describe RookMove do
   describe '#castle_status_after_move' do
     context 'when a white queenside rook is moved from its default position' do
       subject(:rook_move_castle) { described_class.new(origin: Cell.for('A1'), target: Cell.for('A2')) }
+
       let(:castle_status_white) { instance_double(CastleStatusForColor, color: Color::WHITE) }
 
       it "sends mark_rook_moved msg to the method's argument with argument false" do
@@ -16,6 +19,7 @@ describe RookMove do
 
     context 'when a black kingside rook is moved from its default position' do
       subject(:rook_move_castle) { described_class.new(origin: Cell.for('H8'), target: Cell.for('H7')) }
+
       let(:castle_status_black) { instance_double(CastleStatusForColor, color: Color::BLACK) }
 
       it "sends mark_rook_moved msg to the method's argument with argument false" do

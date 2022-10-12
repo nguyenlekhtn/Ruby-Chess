@@ -164,7 +164,7 @@ describe Analyst do
       let(:board) { Board.for('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR') }
       let(:color) { Color::WHITE }
 
-      it 'it is not stalemated' do
+      it 'is not stalemated' do
         result = analyst.stalemated?
         expect(result).to be false
       end

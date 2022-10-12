@@ -154,7 +154,7 @@ class Board
   def to_json(*args)
     {
       JSON.create_id => self.class.name,
-      'notation'     => to_notation
+      'notation' => to_notation
     }.to_json(*args)
   end
 

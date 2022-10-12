@@ -45,9 +45,9 @@ class Game
   def to_json(*args)
     {
       JSON.create_id => self.class.name,
-      'board'        => @board,
-      'color'        => @active_color,
-      'castle status'       => @castle_status 
+      'board' => @board,
+      'color' => @active_color,
+      'castle status' => @castle_status
     }.to_json(*args)
   end
 

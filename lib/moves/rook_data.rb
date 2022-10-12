@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RookData
   def mark_rook_move_by_side(castle_status)
     if origin == default_rook_postition_at_kingside(castle_status)

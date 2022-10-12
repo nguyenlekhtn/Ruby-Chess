@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 class CastleStatus
   attr_reader :black_side, :white_side
 
-  def initialize(black: CastleStatusForColor.new(color: Color::BLACK), white: CastleStatusForColor.new(color: Color::WHITE))
+  def initialize(black: CastleStatusForColor.new(color: Color::BLACK),
+                 white: CastleStatusForColor.new(color: Color::WHITE))
     @black_side = black
     @white_side = white
   end
@@ -24,7 +27,6 @@ class CastleStatus
   def mark_rook_moved(color, is_kingside)
     color_side(color).mark_rook_moved(is_kingside)
   end
-  
 
   def mark_king_moved(color)
     color_side(color).mark_king_moved
@@ -51,8 +53,8 @@ class CastleStatus
   def to_json(*args)
     {
       JSON.create_id => self.class.name,
-      'black side'        => @black_side,
-      'white side'        => @white_side,
+      'black side' => @black_side,
+      'white side' => @white_side
     }.to_json(*args)
   end
 
@@ -74,7 +76,5 @@ class CastleStatus
     other.class == self.class && other.black_side == @black_side && other.white_side == @white_side
   end
 
-
-  private
   attr_writer :black_side, :white_side
 end

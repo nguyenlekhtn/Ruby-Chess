@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HalfMove
   attr_reader :game
 
@@ -9,9 +11,9 @@ class HalfMove
     puts "Game states: #{game.to_notation}"
     return :checkmated if analyst.checkmated?
     return :stalemated if analyst.stalemated?
-    
+
     puts "#{game.active_color}'s turn"
-    puts "Your king is in check" if analyst.king_in_check?(game.active_color)
+    puts 'Your king is in check' if analyst.king_in_check?(game.active_color)
     puts game.board
     start_position = get_valid_start_position
     legal_moves = analyst.legal_moves_of_a_piece(start_position)

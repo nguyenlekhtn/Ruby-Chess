@@ -15,7 +15,7 @@ class CastleStatusForColor
   def able_to_castle_at_side?(is_kingside)
     @castle_avail[side(is_kingside)]
   end
-  
+
   def mark_rook_moved(is_kingside)
     @castle_avail[side(is_kingside)] = false
     self.class.new(color:, castle_avail: { **@castle_avail, side(is_kingside) => false })
@@ -34,7 +34,7 @@ class CastleStatusForColor
   def to_json(*args)
     {
       JSON.create_id => self.class.name,
-      'color'        => @color,
+      'color' => @color,
       'castle_avail' => @castle_avail
     }.to_json(*args)
   end
@@ -54,7 +54,7 @@ class CastleStatusForColor
   end
 
   def castle_avail_notation
-    ['K', 'Q'].map { |key| castle_avail[key] == true ? key : '' }.join
+    %w[K Q].map { |key| castle_avail[key] == true ? key : '' }.join
   end
 
   alias == eql?

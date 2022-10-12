@@ -22,10 +22,10 @@ module Color
     def to_json(*args)
       {
         JSON.create_id => self.class.name,
-        'value'     => @value
+        'value' => @value
       }.to_json(*args)
     end
-  
+
     def self.json_create(object)
       new(object['value'])
     end
