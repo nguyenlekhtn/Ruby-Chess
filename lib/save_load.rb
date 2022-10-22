@@ -1,5 +1,7 @@
+require 'fileutils'
+
 module SaveLoad
-  SAVE_PATH = "./save/".freeze
+  SAVE_PATH = "save/".freeze
   PREFIX = "save_".freeze
 
 
@@ -7,8 +9,9 @@ module SaveLoad
     puts 'Saving ...'
     file_name = create_save_name
     file_path = "#{SAVE_PATH}#{file_name}"
-    File.open(file_path, 'w') do |file|
-      JSON.dump(game)
+    FileUtils.mkdir_p(file_path)
+    File.open(file_path, 'w+') do |file|
+      JSON.dump(game, file)
     end
 
     puts "File saved successfully to #{file_path}"
@@ -17,7 +20,7 @@ module SaveLoad
   def create_save_name
     time = Time.new
     formatted_time = time.strftime("%Y:%m:%d %H:%M:%S")
-    "#{save_}#{formatted_time}"
+    "#{PREFIX}#{formatted_time}"
   end
 
   def load
@@ -35,8 +38,8 @@ module SaveLoad
   end
 
   def list_with_index(list)
-    list.map.with_index do |iltem, index|
-      "#{index + 1}: #{index}\n"
+    list.map.with_index do |item, index|
+      "#{index + 1}: #{item}\n"
     end.join
   end
 
