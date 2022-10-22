@@ -38,7 +38,7 @@ class HalfMove
 
   def position_from_input
     loop do
-      position = Cell.for(player_input)
+      position = Cell.for(player_input_with_save_ability)
       return position if position
 
       puts 'Invalid position input'
@@ -79,5 +79,14 @@ class HalfMove
 
   def player_input
     gets.chomp
+  end
+
+  def player_input_with_save_ability
+    puts 'You can enter 0 to save the current state of game'
+    while (input = player_input) == '0' && !observer.nil?
+       observer.save(game)
+    end
+
+    input
   end
 end

@@ -21,7 +21,7 @@ class Controller
 
   def play
     loop do
-      half_move = HalfMove.new(game)
+      half_move = HalfMove.new(game, self)
       move_result = half_move.play
       case move_result
       when :checkmated
