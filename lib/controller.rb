@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Controller
+  include SaveLoad
   attr_reader :game
 
   def initialize(game = Game.new)
@@ -32,4 +33,19 @@ class Controller
       game.switch_active_color
     end
   end
+
+  def start_game
+    puts "Welcome to chess game"
+    game_state = load
+    if game_state.nil?
+      puts "Loading save failed. Creating new game"
+      @game = Game.new
+    else
+      put "Loading save successfuling"
+      @game = game_state
+    end
+
+    play
+  end
+
 end
