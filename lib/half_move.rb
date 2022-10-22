@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class HalfMove
-  attr_reader :game
+  attr_reader :game, :observer
 
-  def initialize(game)
+  def initialize(game, observer = nil)
     @game = game
+    @observer = observer
   end
 
   def play
