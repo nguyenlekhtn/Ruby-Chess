@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require_relative './save_load'
 
 class Controller
   include SaveLoad
@@ -37,13 +38,7 @@ class Controller
   def start_game
     puts "Welcome to chess game"
     game_state = load
-    if game_state.nil?
-      puts "Loading save failed. Creating new game"
-      @game = Game.new
-    else
-      put "Loading save successfuling"
-      @game = game_state
-    end
+    @game = game_state || Game.new
 
     play
   end
