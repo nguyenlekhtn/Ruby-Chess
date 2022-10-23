@@ -1,9 +1,12 @@
 module BlackPawnGenerator
   def generate_moves(origin)
-    cells(origin).map do |target| 
-      return Move.new(origin:, target:) if target.row != 0
-
-      PromoteMove.new(origin:, target:)
+    promote_row = 0
+    cells(origin).map do |target|
+      if target.row == promote_row
+        PromoteMove.new(origin:, target:)
+      else
+        Move.new(origin:, target:)
+      end
     end
   end
 end
