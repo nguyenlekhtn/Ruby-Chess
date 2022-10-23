@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+require_relative '../moves/black_pawn_generator'
+
 class BlackPawnPeaceMoveGenerator < Generator
-  include NormalMove
+  include BlackPawnGenerator
 
   def cells(origin)
     neighbors(origin).filter { |neighbor| valid?(origin, neighbor) }
