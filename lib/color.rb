@@ -34,7 +34,9 @@ module Color
       value[0]
     end
 
-    alias to_s value
+    def to_s
+      value.upcase
+    end
   end
 
   BLACK = Value.new('black')

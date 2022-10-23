@@ -25,10 +25,10 @@ class Controller
       move_result = half_move.play
       case move_result
       when :checkmated
-        puts "Player #{game.active_color.opposite.upcase} won. Game ended"
+        puts "Player #{game.active_color.opposite} won. Game ended"
         return
       when :stalemated
-        puts "Player #{game.active_color.upcase} cant make any move. Game draw"
+        puts "Player #{game.active_color} cant make any move. Game draw"
         return
       end
       game.switch_active_color
