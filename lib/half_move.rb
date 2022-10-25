@@ -84,7 +84,7 @@ class HalfMove
   def player_input_with_save_ability
     puts 'You can enter 0 to save the current state of game'
     while (input = player_input) == '0' && !observer.nil?
-       observer.save(game)
+      observer.save(game)
     end
 
     input

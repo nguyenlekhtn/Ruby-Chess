@@ -3,5 +3,7 @@
 require_relative 'lib/library'
 
 # Controller.new.play
-Controller.new(Game.new(board: Board.for('rnbqk1nr/pppp2pp/3b1p2/4p3/4P3/3B1P2/PPPPN1PP/RNBQK2R'),
-                        color: Color::BLACK)).play
+# Controller.new(Game.new(board: Board.for('1k6/1p4R1/7R/1N6/8/8/8/K7'),
+#                         color: Color::WHITE)).play
+
+Controller.new.start_game

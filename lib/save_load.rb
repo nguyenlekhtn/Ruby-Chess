@@ -1,9 +1,8 @@
 require 'fileutils'
 
 module SaveLoad
-  SAVE_PATH = "save/".freeze
-  PREFIX = "save_".freeze
-
+  SAVE_PATH = 'save/'.freeze
+  PREFIX = 'save_'.freeze
 
   def save(game)
     puts 'Saving ...'
@@ -19,12 +18,12 @@ module SaveLoad
 
   def create_save_name
     time = Time.new
-    formatted_time = time.strftime("%Y:%m:%d %H:%M:%S")
+    formatted_time = time.strftime('%Y:%m:%d %H:%M:%S')
     "#{PREFIX}#{formatted_time}"
   end
 
   def load
-    puts "Getting all available save states"
+    puts 'Getting all available save states'
     save_files = Dir.glob("#{PREFIX}*", base: SAVE_PATH)
 
     if save_files.empty?
@@ -34,11 +33,11 @@ module SaveLoad
     puts list_with_index(save_files)
     file_name = get_file_name_from_list(save_files)
 
-    if file_name == "New game" 
-      puts "New game is ready"
+    if file_name == 'New game'
+      puts 'New game is ready'
       return
     end
-    
+
     load_path = "#{SAVE_PATH}#{file_name}"
     JSON.load_file(load_path, create_additions: true)
   end
@@ -50,16 +49,13 @@ module SaveLoad
   end
 
   def get_file_name_from_list(list)
-    puts "Please enter the number of the save state, or 0 to play new game"
+    puts 'Please enter the number of the save state, or 0 to play new game'
     loop do
       ordinal_number = gets.chomp.to_i
-      return "New game" if ordinal_number.zero?
+      return 'New game' if ordinal_number.zero?
       return list[ordinal_number - 1] if (1..list.length).include? ordinal_number
 
-      puts "Please enter a valid number"
+      puts 'Please enter a valid number'
     end
-
   end
-
-
 end

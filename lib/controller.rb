@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative './save_load'
 
 class Controller
@@ -36,11 +37,10 @@ class Controller
   end
 
   def start_game
-    puts "Welcome to chess game"
+    puts 'Welcome to chess game'
     game_state = load
     @game = game_state || Game.new
 
     play
   end
-
 end
