@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BlackPawnGenerator
   def generate_moves(origin)
     promote_row = 0

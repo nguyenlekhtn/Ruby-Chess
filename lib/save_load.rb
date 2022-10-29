@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'fileutils'
 
 module SaveLoad
-  SAVE_PATH = 'save/'.freeze
-  PREFIX = 'save_'.freeze
+  SAVE_PATH = 'save/'
+  PREFIX = 'save_'
 
   def save(game)
     puts 'Saving ...'

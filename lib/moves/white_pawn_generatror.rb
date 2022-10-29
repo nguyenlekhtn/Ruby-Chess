@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WhitePawnGenerator
   def generate_moves(origin)
     promote_row = 7
