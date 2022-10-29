@@ -18,6 +18,6 @@ class Rook < Piece
   end
 
   def neighbor_generator(game)
-    ComposedGenerator.new([HorizontalLineGenerator.new(game), VerticalLineGenerator.new(game)])
+    ComposedGenerator.new([HorizontalLineGeneratorForRook.new(game), VerticalLineGeneratorForRook.new(game)])
   end
 end
