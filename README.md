@@ -1,5 +1,13 @@
 # Ruby-Chess
 
+## Usage
+
+Clone this repo then cd into and
+
+* `bundle install` to install gems
+* `ruby main.rb` to run the game
+
+
 ## Background
 
 I learned Ruby from The Odin Project's Ruby in Rail path. And this [Chess project](https://www.theodinproject.com/lessons/ruby-ruby-final-project) is the final project of the Ruby section. It's the capstone project that required me to use all my gained programming knowledge to finish it.
@@ -20,6 +28,14 @@ I don't know how long it took others to complete it. For me, I used to decide to
 **Game**: Manage state a game. 
 
 **HalfGame**: Manage gameplay of a half-move. A half-move is the move of a player in a round. 
+
+**Pieces**: Manage properties of pieces and indicates what moves it can do via #neighbor_generator
+
+**Generators**: Return a set of valid moves after filtering a initial set of moves
+
+**Moves**: Represent a move with methods that indicates the effect of that move on game state.
+
+
 
 
 
