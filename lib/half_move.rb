@@ -85,6 +85,7 @@ class HalfMove
     puts 'You can enter 0 to save the current state of game'
     while (input = player_input) == '0' && !observer.nil?
       observer.save(game)
+      puts 'Please continue to input position'
     end
 
     input
