@@ -24,20 +24,23 @@ class BoardDisplay
     cell_content(piece).colorize(background: background_color(row_index, col_index))
   end
 
-  def row_content(board_row, row_index)
+  def row_content(board_row, row_index, active_cells_in_row = [])
     board_row.map.with_index do |piece, col_index|
-      cell(piece, row_index, col_index)
+      next cell(piece, row_index, col_index) if active_cells_in_row.none? { |cell| cell.col == col_index }
+
+      cell(piece, row_index, col_index).on_red
     end.join
   end
 
-  def row(board_row, row_index)
+  def row(board_row, row_index, cells_in_row = [])
     row_notation = notation_convertor.row_to_notation(row_index)
-    "#{row_notation} #{row_content(board_row, row_index)} #{row_notation}"
+    "#{row_notation} #{row_content(board_row, row_index, cells_in_row)} #{row_notation}"
   end
 
-  def board_content
+  def board_content(active_cells = [])
     board.map.with_index do |board_row, row_index|
-      row(board_row, row_index)
+      cells_in_row = active_cells.select { |cell| cell.row == row_index }
+      row(board_row, row_index, cells_in_row)
     end.reverse.join("\n")
   end
 
@@ -50,6 +53,14 @@ class BoardDisplay
     <<~BOX
       #{col_notations}
       #{board_content}
+      #{col_notations}
+    BOX
+  end
+
+  def show(active_cells)
+    <<~BOX
+      #{col_notations}
+      #{board_content(active_cells)}
       #{col_notations}
     BOX
   end

@@ -77,6 +77,10 @@ class Board
     display.box
   end
 
+  def show(active_cells)
+    display.show(active_cells)
+  end
+
   def same_color_between_two_positions?(cell_one, cell_two)
     get_piece_at(cell_one).color == get_piece_at(cell_two).color
   end

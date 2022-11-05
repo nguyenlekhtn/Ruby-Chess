@@ -18,7 +18,8 @@ class HalfMove
     puts game.board
     start_position = get_valid_start_position
     legal_moves = analyst.legal_moves_of_a_piece(start_position)
-    puts "Legal moves: #{legal_moves.map { |lm| lm.target.to_s }}"
+    legal_cells_to_move = legal_moves.map(&:target)
+    puts game.board.show(legal_cells_to_move)
     move = get_valid_move(start_position)
     game.change_state_by_move(move)
     :continue
@@ -30,7 +31,7 @@ class HalfMove
 
   def get_valid_start_position
     loop do
-      puts 'Enter start position'
+      print 'Enter start position (e.g: A1)'
       position = position_from_input
       return position if validate_start_position(position)
     end
@@ -59,7 +60,7 @@ class HalfMove
 
   def get_valid_move(start_position)
     loop do
-      puts 'Enter end position'
+      print 'Enter end position (ones highlight in red): '
       end_position = position_from_input
       move = validate_move(start_position, end_position)
       return move if move
@@ -82,10 +83,10 @@ class HalfMove
   end
 
   def player_input_with_save_ability
-    puts 'You can enter 0 to save the current state of game'
+    print ', or 0 to save the current state of game: '
     while (input = player_input) == '0' && !observer.nil?
       observer.save(game)
-      puts 'Please continue to input position'
+      puts '\nPlease continue to input position'
     end
 
     input
