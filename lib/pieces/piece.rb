@@ -38,7 +38,7 @@ class Piece
     when Color::BLACK
       symbol.black
     when Color::WHITE
-      symbol.white
+      symbol.red
     else
       symbol
     end.on_light_cyan

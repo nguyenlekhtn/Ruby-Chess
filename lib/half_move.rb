@@ -20,6 +20,7 @@ class HalfMove
     legal_moves = analyst.legal_moves_of_a_piece(start_position)
     legal_cells_to_move = legal_moves.map(&:target)
     puts game.board.show(legal_cells_to_move)
+    puts "Legal moves: #{legal_cells_to_move.map(&:to_s)}"
     move = get_valid_move(start_position)
     game.change_state_by_move(move)
     :continue
@@ -60,7 +61,7 @@ class HalfMove
 
   def get_valid_move(start_position)
     loop do
-      print 'Enter end position (ones highlight in red): '
+      print 'Enter end position (ones highlight in red)'
       end_position = position_from_input
       move = validate_move(start_position, end_position)
       return move if move
