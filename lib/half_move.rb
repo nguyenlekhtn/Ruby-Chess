@@ -38,9 +38,10 @@ class HalfMove
     end
   end
 
-  def position_from_input
+  def position_from_input(save_ability: true)
     loop do
-      position = Cell.for(player_input_with_save_ability)
+      input = save_ability ? player_input_with_save_ability : player_input
+      position = Cell.for(input)
       return position if position
 
       puts 'Invalid position input'
@@ -62,7 +63,7 @@ class HalfMove
   def get_valid_move(start_position)
     loop do
       print 'Enter end position (ones highlight in red)'
-      end_position = position_from_input
+      end_position = position_from_input(save_ability: false)
       move = validate_move(start_position, end_position)
       return move if move
     end
