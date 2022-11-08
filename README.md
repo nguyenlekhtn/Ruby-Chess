@@ -1,12 +1,17 @@
 # Ruby-Chess
 
+## Live demo
+
+https://replit.com/@nguyenlekhtn/Ruby-Chess-1#replit.nix
+
 ## Usage
 
-Clone this repo then cd into and
+**To play on local**: Clone this repo then cd into and
 
 * `bundle install` to install gems
 * `ruby main.rb` to run the game
 
+**To play on Replit**: Click Run button in the my Replit site. It might takes a minute to load some commands related to replit and bundle
 
 
 ## What I applied in this project
