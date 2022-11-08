@@ -35,6 +35,10 @@ https://replit.com/@nguyenlekhtn/Ruby-Chess-1#replit.nix
 
 **Moves**: Represent a move with methods that indicates the effect of that move on game state.
 
+# Things that I would like to improve
+* The info related to color of each side (like the row/ col of white/ black rook, king, ...) is still scattered all over the code and not concentrated in one place. This results in a lot of duplication.
+
+
 # Chess features that is missing
 * En Passant
 * Rule related to the number of moves
