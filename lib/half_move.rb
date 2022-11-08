@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class HalfMove
+  include OutputColor
   attr_reader :game, :observer
 
   def initialize(game, observer = nil)
@@ -13,7 +14,7 @@ class HalfMove
     return :checkmated if analyst.checkmated?
     return :stalemated if analyst.stalemated?
 
-    puts "#{game.active_color}'s turn"
+    highlight "#{game.active_color}'s turn"
     puts 'Your king is in check' if analyst.king_in_check?(game.active_color)
     puts game.board
     start_position = get_valid_start_position
@@ -40,11 +41,16 @@ class HalfMove
 
   def position_from_input(save_ability: true)
     loop do
-      input = save_ability ? player_input_with_save_ability : player_input
+      input = if save_ability
+                print ', or 0 to save the current state of game: '
+                player_input_with_save_ability
+              else
+                player_input
+              end
       position = Cell.for(input)
       return position if position
 
-      puts 'Invalid position input'
+      error 'Invalid position input, please enter again:'
     end
   end
 
@@ -62,7 +68,7 @@ class HalfMove
 
   def get_valid_move(start_position)
     loop do
-      print 'Enter end position (ones highlight in red)'
+      print 'Enter end position (ones highlight in red): '
       end_position = position_from_input(save_ability: false)
       move = validate_move(start_position, end_position)
       return move if move
@@ -73,7 +79,7 @@ class HalfMove
     legal_moves = analyst.legal_moves_of_a_piece(start_position)
     move = legal_moves.find { |lm| lm.target == end_position }
 
-    puts 'Piece at start position can\'t move to end position' if move.nil?
+    error 'Piece at start position can\'t move to end position' if move.nil?
 
     move
   end
@@ -85,10 +91,12 @@ class HalfMove
   end
 
   def player_input_with_save_ability
-    print ', or 0 to save the current state of game: '
-    while (input = player_input) == '0' && !observer.nil?
+    loop do
+      input = player_input
+      return input if saved || input != '0' || observer.nil?
+
       observer.save(game)
-      puts '\nPlease continue to input position'
+      print 'Please continue to input position: '
     end
 
     input
