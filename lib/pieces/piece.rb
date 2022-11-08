@@ -34,14 +34,7 @@ class Piece
   end
 
   def to_s
-    case color
-    when Color::BLACK
-      symbol.black
-    when Color::WHITE
-      symbol.red
-    else
-      symbol
-    end.on_light_cyan
+    symbol.black.on_light_cyan
   end
 
   def neighbor_generator(_game)
