@@ -91,11 +91,13 @@ class HalfMove
   end
 
   def player_input_with_save_ability
+    saved = false
     loop do
       input = player_input
       return input if saved || input != '0' || observer.nil?
 
       observer.save(game)
+      saved = true
       print 'Please continue to input position: '
     end
 
