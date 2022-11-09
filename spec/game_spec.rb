@@ -41,6 +41,7 @@ describe Game do
       new_cs = instance_double(CastleStatusForColor, color: Color::BLACK)
       allow(move).to receive(:castle_status_after_move).and_return(new_cs)
       allow(move).to receive(:origin)
+      allow(move).to receive(:target)
       game.change_castle_status_by_move(move)
       expect(game.castle_status.get_status_by_color(Color::BLACK)).to eql new_cs
     end
